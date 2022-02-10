@@ -5,11 +5,11 @@ import { Route, Routes } from 'react-router-dom';
 import CatalogPage from './components/CatalogPage/CatalogPage';
 import BasketPage from './components/BasketPage/BasketPage';
 import PersonalPage from './components/PersonalPage/PersonalPage';
-import ModalWindow from './components/ModalWindow/ModalWindow';
+import ModalWindow from './components/common/ModalWindow/ModalWindow';
 import { useState } from 'react';
 
 function App() {
-  const [modalActive,  setModalActive] = useState(true)
+  //const [modalActive,  setModalActive] = useState(true)
 
   return (
     <div className="app-wrapper">
@@ -22,7 +22,6 @@ function App() {
             </Routes>
         </div>
         <div className="command-frame">
-            <button onClick={ () => {setModalActive(true)}}>PRESS ME</button>
             {/* <ModalWindow active={modalActive} setActive={setModalActive}>
               hello
             </ModalWindow> */}

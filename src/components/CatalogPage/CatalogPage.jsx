@@ -1,17 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import CatalogMenu from './CatalogMenu/CatalogMenu';
 import './CatalogPage.css';
+import ProductModal from './ProductModal/ProductModal';
+import girosImg from '../../images/giros.jpg';
 
 const CatalogPage = (props) => {
+
+	const [modalActive,  setModalActive] = useState(false);
+	const [productId, setProductId] = useState(0);
+
 	let arr = [];
 	for(let i = 0; i < 20; i++)
 		arr.push(<div className="food-list__item" key={i}>
-		<div className="food-list__item-pic " style={{backgroundImage: 'url(../images/giros.jpg)'} }>
+		<div className="food-list__item-pic " style={{backgroundImage: `url(${girosImg})`} }>
 		</div>
 		<div className="food-list__item-content">
 			<div className="food-list__item-name">Гирос с курицей</div>
 			<div className="food-list__item-price">190р</div>
-			<a href="" className="food-list__item-open">Добавить</a>
+			<button className="food-list__item-open" onClick={(e) => { setModalActive(true); setProductId(i) }}>Добавить</button>
 		</div>
 	</div>)
 	return (
@@ -23,6 +29,7 @@ const CatalogPage = (props) => {
 				</div>
 				
 			</div>
+			<ProductModal active={modalActive} setActive={setModalActive} productId = {productId}/>
 		</div>
 	) 
 };

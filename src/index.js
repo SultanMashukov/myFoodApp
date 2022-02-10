@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
-import App from './App';
+import LoaderSpinner from './components/common/LoaderSpinner/LoaderSpinner';
 
+const App = React.lazy(() => import('./App'));
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+    <Suspense fallback={<LoaderSpinner/>}>
+      <App/>
+    </Suspense>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')

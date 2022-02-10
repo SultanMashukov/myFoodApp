@@ -1,0 +1,36 @@
+/* your css code */
+.loader {
+    overflow: hidden;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    background-color: rgba(251, 160, 56, 0.5);
+  }
+  
+  .loader--global {
+    position: fixed;
+    z-index: 999;
+    background-color: #fba038;
+  }
+  
+  .loader__image {
+    -webkit-animation: loaderAnimation infinite 2s;
+            animation: loaderAnimation infinite 2s;
+  }
+  
+  .loader__text {
+    text-align: center;
+    color: black;
+    font-size: 21px;
+    -webkit-animation: loaderText infinite 2s;
+            animation: loaderText infinite 2s;
+  }
