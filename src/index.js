@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import LoaderSpinner from './components/common/LoaderSpinner/LoaderSpinner';
 
-const App = React.lazy(() => import('./App'));
+const App = React.lazy(() => import('./components/App/App'));
 
 ReactDOM.render(
   <React.StrictMode>

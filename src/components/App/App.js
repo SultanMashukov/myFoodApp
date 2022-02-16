@@ -1,11 +1,11 @@
 import './App.css';
-import './css/all.min.css'
-import MainMenu from './components/MainMenu/MainMenu';
+import '../../css/all.min.css'
+import MainMenu from '../MainMenu/MainMenu';
 import { Route, Routes } from 'react-router-dom';
-import CatalogPage from './components/CatalogPage/CatalogPage';
-import BasketPage from './components/BasketPage/BasketPage';
-import PersonalPage from './components/PersonalPage/PersonalPage';
-import ModalWindow from './components/common/ModalWindow/ModalWindow';
+import CatalogPage from '../CatalogPage/CatalogPage';
+import BasketPage from '../BasketPage/BasketPage';
+import PersonalPage from '../pages/PersonalPage/PersonalPage';
+import ModalWindow from '../common/ModalWindow/ModalWindow';
 import { useState } from 'react';
 
 function App() {
