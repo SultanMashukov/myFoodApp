@@ -1,5 +1,5 @@
 import React from 'react';
-import './CatalogMenu.css';
+import './CatalogMenu.scss';
 
 const CatalogMenu = (props) => {
 	return (

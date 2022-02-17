@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import CatalogMenu from './CatalogMenu/CatalogMenu';
-import './CatalogPage.css';
+import './CatalogPage.scss';
 import ProductModal from './ProductModal/ProductModal';
-import girosImg from '../../images/giros.jpg';
+import girosImg from '../../../images/giros.jpg';
 
 const CatalogPage = (props) => {
 
@@ -20,6 +20,8 @@ const CatalogPage = (props) => {
 			<button className="food-list__item-open" onClick={(e) => { setModalActive(true); setProductId(i) }}>Добавить</button>
 		</div>
 	</div>)
+
+
 	return (
 		<div className="page-food">
 			<CatalogMenu/>

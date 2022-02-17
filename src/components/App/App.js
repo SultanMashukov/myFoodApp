@@ -1,9 +1,9 @@
-import './App.css';
+import './App.scss';
 import '../../css/all.min.css'
 import MainMenu from '../MainMenu/MainMenu';
 import { Route, Routes } from 'react-router-dom';
-import CatalogPage from '../CatalogPage/CatalogPage';
-import BasketPage from '../BasketPage/BasketPage';
+import CatalogPage from '../pages/CatalogPage/CatalogPage';
+import BasketPage from '../pages/BasketPage/BasketPage';
 import PersonalPage from '../pages/PersonalPage/PersonalPage';
 import ModalWindow from '../common/ModalWindow/ModalWindow';
 import { useState } from 'react';

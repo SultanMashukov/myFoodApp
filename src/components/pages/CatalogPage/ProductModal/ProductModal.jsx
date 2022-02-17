@@ -1,5 +1,5 @@
 import React from 'react';
-import './ProductModal.css';
+import './ProductModal.scss';
 
 const ProductModal = ({active, setActive, children, productId}) => {
 	return (

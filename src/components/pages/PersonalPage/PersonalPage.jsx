@@ -1,5 +1,5 @@
 import React from 'react';
-import cssClasses from './PersonalPage.module.css';
+import './PersonalPage.scss';
 
 const PersonalPage = (props) => {
 	return (

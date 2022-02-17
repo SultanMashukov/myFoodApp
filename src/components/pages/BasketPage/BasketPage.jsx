@@ -1,5 +1,5 @@
 import React from 'react';
-import cssClasses from './BasketPage.module.css';
+import cssClasses from './BasketPage.scss';
 
 const BasketPage = (props) => {
 	return (

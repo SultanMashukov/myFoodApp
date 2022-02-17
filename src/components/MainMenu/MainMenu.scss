@@ -1,8 +1,8 @@
 .main-menu {
     color: white;
-  }
-  
-  .main-menu__row {
+}
+
+.main-menu__row {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -10,9 +10,9 @@
     -ms-flex-pack: space-evenly;
     justify-content: space-evenly;
     position: relative;
-  }
-  
-  .main-menu__item {
+}
+
+.main-menu__item {
     width: 50px;
     height: 50px;
     background: 50%;
@@ -33,13 +33,13 @@
     -webkit-transition: background-color 0.3s, top 0.3s;
     -o-transition: background-color 0.3s, top 0.3s;
     transition: background-color 0.3s, top 0.3s;
-  }
-  
-  .main-menu__item--active {
-    background-color: #977e50;
-    top: -6px;
-  }
-  
-  .main-menu__icon {
-    font-size: 27px;
-  }
+}
+
+.main-menu__item--active {
+  background-color: #977e50;
+  top: -6px;
+}
+
+.main-menu__icon {
+  font-size: 27px;
+}
