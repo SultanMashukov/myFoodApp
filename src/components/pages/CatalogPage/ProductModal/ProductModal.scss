@@ -20,6 +20,7 @@
     transition: opacity 0.3s;
     pointer-events: none;
     z-index: 500;
+    overflow: hidden;
   }
   
   .product-modal--active {

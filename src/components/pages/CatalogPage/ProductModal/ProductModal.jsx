@@ -1,10 +1,11 @@
 import React from 'react';
 import Counter from '../../../common/Counter/Counter';
 import './ProductModal.scss';
+import ProductSlider from './ProductSlider/ProductSlider';
 
 const ProductModal = ({active, setActive, productId}) => {
 
-    
+
 
 	return (
 		<div className={ active ? 'product-modal product-modal--active' : 'product-modal' } onClick={(e) =>{
@@ -13,25 +14,10 @@ const ProductModal = ({active, setActive, productId}) => {
 		}}>
 			<div className={active ? 'product-modal__content product-modal__content--active' : 'product-modal__content'}>
 				
-			<div className="product-modal__close">
+			<div className="product-modal__close" onClick={(e) => setActive(false)}>
                 <i className="fal fa-times"></i>
             </div>
-			<div className="swiper product-slider produc-slider-js">
-                <div className="swiper-wrapper">
-                  <div className="swiper-slide">
-                    <img className="" src="/images/giros.jpg" alt="Гирос с курицей"/>
-                  </div>
-                  <div className="swiper-slide">
-                    <img className="" src="/images/giros2.jpg" alt="Гирос с курицей"/>
-                  </div>
-                  <div className="swiper-slide">
-                    <img className="" src="/images/giros3.jpg" alt="Гирос с курицей"/>
-                  </div>
-                </div>
-                <div className="swiper-button-next"></div>
-                <div className="swiper-button-prev"></div>
-            </div>
-
+            <ProductSlider/>
 			<div className="product-modal__info">
                 <div className="product-modal__name">Гирос с курицей</div>
                 <div className="product-modal__description">

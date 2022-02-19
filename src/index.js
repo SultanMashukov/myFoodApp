@@ -8,9 +8,9 @@ const App = React.lazy(() => import('./components/App/App'));
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-    <Suspense fallback={<LoaderSpinner/>}>
-      <App/>
-    </Suspense>
+      <Suspense fallback={<LoaderSpinner/>}>
+        <App/>
+      </Suspense>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
