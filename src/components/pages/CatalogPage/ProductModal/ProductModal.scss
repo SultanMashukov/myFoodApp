@@ -1,3 +1,33 @@
+.product-modal-enter {
+  opacity: 0;
+  pointer-events: none;
+}
+.product-modal-enter-active {
+  opacity: 1;
+  pointer-events: all;
+  transition: opacity 0.3s;
+}
+.product-modal-exit {
+  pointer-events: none;
+  opacity: 1;
+}
+.product-modal-exit-active {
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+@keyframes fadeInUp {
+    0%{transform: translateY(100%);}
+    100%{transform: translateY(0);}
+}
+
+@keyframes fadeIn {
+  0%{opacity: 0;}
+  100%{opacity: 1;}
+}
+
+
+
 .product-modal {
     height: 101%;
     width: 100vw;
@@ -14,19 +44,11 @@
     -webkit-box-align: end;
     -ms-flex-align: end;
     align-items: flex-end;
-    opacity: 0;
-    -webkit-transition: opacity 0.3s;
-    -o-transition: opacity 0.3s;
-    transition: opacity 0.3s;
-    pointer-events: none;
     z-index: 500;
     overflow: hidden;
   }
   
-  .product-modal--active {
-    opacity: 1;
-    pointer-events: all;
-  }
+  
   
   .product-modal__close {
     position: absolute;
@@ -42,14 +64,6 @@
     height: calc(100% - 25px);
     border-radius: 25px 25px 0 0;
     background-color: white;
-    -webkit-transform: translateY(100%);
-    -ms-transform: translateY(100%);
-    transform: translateY(100%);
-    -webkit-transition: -webkit-transform 0.3s ease-in-out;
-    transition: -webkit-transform 0.3s ease-in-out;
-    -o-transition: transform 0.3s ease-in-out;
-    transition: transform 0.3s ease-in-out;
-    transition: transform 0.3s ease-in-out, -webkit-transform 0.3s ease-in-out;
     width: calc(100vw - 20px);
     display: -webkit-box;
     display: -ms-flexbox;
@@ -59,12 +73,7 @@
     -ms-flex-direction: column;
     flex-direction: column;
     position: relative;
-  }
-  
-  .product-modal__content--active {
-    -webkit-transform: translateY(0);
-    -ms-transform: translateY(0);
-    transform: translateY(0);
+    animation: fadeInUp 0.5s forwards;
   }
   
   .product-modal__info {

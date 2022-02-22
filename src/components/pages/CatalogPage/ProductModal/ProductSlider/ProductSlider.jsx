@@ -5,9 +5,6 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 
 import './ProductSlider.scss';
-import giros1 from '../../../../../images/giros.jpg';
-import giros2 from '../../../../../images/giros2.jpg'
-import giros3 from '../../../../../images/giros3.jpg'
 
 const ProductSlider = ({imageURLs}) => {
     return (

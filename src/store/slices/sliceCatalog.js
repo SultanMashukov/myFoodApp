@@ -13,6 +13,7 @@ const catalogSlice = createSlice({
             state.modalIsActive = !state.modalIsActive;
         },
         setProductModalId(state,action){
+            console.log(action.payload.id);
             state.productModalId = action.payload.id;
         }
     }

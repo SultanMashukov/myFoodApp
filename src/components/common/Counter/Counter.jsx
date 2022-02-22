@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import './Counter.scss';
 
-const Counter = ({initCount}) => {
+const Counter = ({initCount, changeCount}) => {
 
-	const [count, setCount] = useState( initCount || 1);
+	
 
 	const decrement = () => {
-		setCount((prev) => prev - 1)
+		changeCount( initCount - 1)
 	}
 
 	const increment = () => {
-		setCount((prev) => prev + 1)
+		changeCount( +initCount + 1)
 	}
 
 	
@@ -20,7 +20,7 @@ const Counter = ({initCount}) => {
 			onClick={decrement}>
 				-
 			</button>
-			<input className="counter__input" type="number" value={count}/>    
+			<input className="counter__input" type="number" value={initCount} onChange={(e) => changeCount(e.target.value)}/>    
 			<button className=" counter__button counter__increment"
 			onClick={increment}>
 				+

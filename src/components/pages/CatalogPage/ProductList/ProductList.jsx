@@ -1,6 +1,5 @@
 import React from 'react';
 import './ProductList.scss';
-import girosImg from '../../../../images/giros.jpg';
 
 
 const ProductList = ({productList, toggleProductModal}) => {

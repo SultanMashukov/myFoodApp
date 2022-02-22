@@ -5,32 +5,42 @@ import ProductModal from './ProductModal/ProductModal';
 import ProductList from './ProductList/ProductList';
 import { useSelector, useDispatch } from 'react-redux';
 import { toggleModal,setProductModalId } from '../../../store/slices/sliceCatalog';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import { CSSTransition } from 'react-transition-group';
 
 const CatalogPage = (props) => {
 	
-	const catalogData = useSelector(state => state.catalog);
+	const catalogData = useSelector( state => state.catalog );
 	const dispatch = useDispatch()
-	console.log(catalogData.catalogItems[catalogData.productModalId]);
-	const toggleProductModal = (id = '') => {
-		dispatch(setProductModalId({id}))
-		dispatch(toggleModal())
+	
+	const toggleProductModal = ( id ) => {
+		if(id){
+			dispatch(setProductModalId({id}))
+			dispatch(toggleModal())
+			
+		}else{
+			dispatch(toggleModal())
+		}
+		
 	}
 
+	
+	const	modalProductData = catalogData.catalogItems.find(elem => elem.id === catalogData.productModalId);
+	
 	return (
 		<div className="page-food">
 			<CatalogMenu/>
 			<ProductList toggleProductModal={toggleProductModal} productList={catalogData.catalogItems}/>
-			<TransitionGroup>
-				<CSSTransition classNames='option'>
-					<ProductModal 
-						active={catalogData.modalIsActive} 
-						toggleProductModal={toggleProductModal} 
-						productData={catalogData.catalogItems[catalogData.productModalId]}/>
-				</CSSTransition>
-				
-			</TransitionGroup>
-			
+			<CSSTransition 
+				in={catalogData.modalIsActive}
+				classNames='product-modal'
+				timeout={300}
+				mountOnEnter
+				unmountOnExit
+			>
+				<ProductModal 
+					toggleProductModal={toggleProductModal} 
+					productData={modalProductData}/>
+			</CSSTransition>
 		</div>
 	) 
 };
