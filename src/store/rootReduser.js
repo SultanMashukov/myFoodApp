@@ -5,6 +5,6 @@ import basketReducer from "./slices/sliceBasket";
 export default  configureStore({
     reducer:{
         catalog: catalogReducer,
-        basker: basketReducer,
+        basket: basketReducer,
     }
 })

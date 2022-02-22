@@ -4,20 +4,21 @@ import initState from '../../database/catalog';
 const catalogSlice = createSlice({
     name: 'catalog',
     initialState:{
-        catalogItems: initState
+        catalogItems: initState,
+        modalIsActive: false,
+        productModalId: '',
     },
     reducers:{
-        addItem(state, action){
-            state.catalogItems.push({
-                id:action.payload.id,
-                name: action.payload.name,
-                price: action.payload.price
-            })
+        toggleModal(state){
+            state.modalIsActive = !state.modalIsActive;
+        },
+        setProductModalId(state,action){
+            state.productModalId = action.payload.id;
         }
     }
 
 })
 
-export const {addItem} = catalogSlice.actions;
+export const { toggleModal, setProductModalId} = catalogSlice.actions;
 
 export default catalogSlice.reducer;

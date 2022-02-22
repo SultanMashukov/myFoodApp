@@ -9,7 +9,7 @@ import giros1 from '../../../../../images/giros.jpg';
 import giros2 from '../../../../../images/giros2.jpg'
 import giros3 from '../../../../../images/giros3.jpg'
 
-const ProductSlider = (props) => {
+const ProductSlider = ({imageURLs}) => {
     return (
         <Swiper
             modules={[Navigation]}
@@ -18,9 +18,7 @@ const ProductSlider = (props) => {
             autoHeight={true}
             navigation={true}
         >
-            <SwiperSlide><img className="" src={giros1} alt="Гирос с курицей"/></SwiperSlide>
-            <SwiperSlide><img className="" src={giros2} alt="Гирос с курицей"/></SwiperSlide>
-            <SwiperSlide><img className="" src={giros3} alt="Гирос с курицей"/></SwiperSlide>
+            {imageURLs.map((url, id) => <SwiperSlide key={id}><img className="" src={url} alt="Гирос с курицей"/></SwiperSlide>)}
         </Swiper>
     );
 };

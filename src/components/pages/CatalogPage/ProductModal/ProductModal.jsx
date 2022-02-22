@@ -3,26 +3,27 @@ import Counter from '../../../common/Counter/Counter';
 import './ProductModal.scss';
 import ProductSlider from './ProductSlider/ProductSlider';
 
-const ProductModal = ({active, setActive, productId}) => {
+const ProductModal = ({active, toggleProductModal, productData}) => {
 
-
-
+    console.log(productData);
+    if(!productData)
+        return false;
 	return (
 		<div className={ active ? 'product-modal product-modal--active' : 'product-modal' } onClick={(e) =>{
 			if(e.target === e.currentTarget)
-				setActive(false);
+            toggleProductModal(false);
 		}}>
 			<div className={active ? 'product-modal__content product-modal__content--active' : 'product-modal__content'}>
 				
-			<div className="product-modal__close" onClick={(e) => setActive(false)}>
+			<div className="product-modal__close" onClick={(e) => toggleProductModal()}>
                 <i className="fal fa-times"></i>
             </div>
-            <ProductSlider/>
+            <ProductSlider imageURLs={productData.images}/>
 			<div className="product-modal__info">
-                <div className="product-modal__name">Гирос с курицей</div>
+                <div className="product-modal__name">{productData.name}</div>
                 <div className="product-modal__description">
-                    Гирос относится к греческому фастфуду, но здоровой его версии. Ведь он приготовлен из выпеченной без масла мягкой питы, гриллованной куриной грудки, замаринованной в лимонном соке и ароматных травах, легкого йогуртового соуса и свежих овощей. Попробуйте эту версию, она вам обязательно понравится.
-                    </div>
+                    {productData.description}
+                </div>
                 
                 <div className="product-modal__options">
                     <div className="product-modal__options-item">
@@ -37,7 +38,7 @@ const ProductModal = ({active, setActive, productId}) => {
                 
                 <div className="product-modal__order">
                     <div className="product-modal__price">
-                        200 <i className="fal fa-ruble-sign"></i>
+                        {productData.price} <i className="fal fa-ruble-sign"></i>
                     </div>
                     <Counter />
                     <button className="product-modal__submit"><i className="fal fa-shopping-basket"></i></button>
