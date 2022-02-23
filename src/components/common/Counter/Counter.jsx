@@ -20,7 +20,7 @@ const Counter = ({initCount, changeCount}) => {
 			onClick={decrement}>
 				-
 			</button>
-			<input className="counter__input" type="number" value={initCount} onChange={(e) => changeCount(e.target.value)}/>    
+			<input className="counter__input" type="text" value={initCount} onChange={(e) => changeCount(e.target.value)}/>    
 			<button className=" counter__button counter__increment"
 			onClick={increment}>
 				+

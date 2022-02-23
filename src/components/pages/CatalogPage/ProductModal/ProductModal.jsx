@@ -6,13 +6,20 @@ import ProductSlider from './ProductSlider/ProductSlider';
 const ProductModal = ({toggleProductModal, productData}) => {
 
     const [productCount, setProductCount] = useState('1');
-
+    const [productOptions, setProductOptions] = useState(productData.options.map((elem) => ({name: elem, checked: true})))
+    
+    
     const changeProductCount = (newCount) => {
         if(newCount>=1){
             setProductCount(newCount);
         }
     }
 
+    const toggleProductOption = (optionName) => {
+        setProductOptions((prevState) => {
+            return prevState.map(option => option.name === optionName ? {...option, checked : !option.checked} : option)
+        })
+    }
 
 	return (
 		<div className='product-modal' onClick={(e) =>{
@@ -32,14 +39,19 @@ const ProductModal = ({toggleProductModal, productData}) => {
                 </div>
                 
                 <div className="product-modal__options">
-                    <div className="product-modal__options-item">
-                        <input className="product-modal__options-checkbox" type="checkbox" name="onion" value="лук" checked="true"/>
-                        <div className="product-modal__options-name">Соус</div>
-                    </div>
-                    <div className="product-modal__options-item">
-                        <input className="product-modal__options-checkbox" type="checkbox" name="onion" value="лук" checked="true"/>
-                        <div className="product-modal__options-name">ЛУК</div>
-                    </div>
+                    {
+                        productOptions.map((option, id) => (
+                            <div className="product-modal__options-item" key={id} onClick={() => toggleProductOption(option.name)}>
+                                <input className="product-modal__options-checkbox" 
+                                type="checkbox" 
+                                checked={option.checked}
+                                onChange={(e)=> toggleProductOption(option.name)}
+                                />
+                                <div className="product-modal__options-name">{option.name}</div>
+                            </div>
+                        ))
+                    }
+                    
                 </div>
                 
                 <div className="product-modal__order">

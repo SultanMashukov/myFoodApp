@@ -10,7 +10,6 @@ const catalog = [
         images:[
             'https://www.philips.ru/c-dam/b2c/ru_RU/marketing-catalog/ho/recipes/breakfast/giros/giros1.jpg',
             'https://grandkulinar.ru/uploads/posts/2015-12/1449830535_grecheskij-fast-fud-giros-lepeshka-s-myasom-yagnenka-i-sousom-dzadziki.jpg',
-            'https://cdn3.top-shop.ru/18/59/normal_8ac20d0c44ea6abd0964afd6c80e5918.jpg',
         ],
         type: 'mainFood'
     },
@@ -25,7 +24,6 @@ const catalog = [
         images:[
             'https://www.philips.ru/c-dam/b2c/ru_RU/marketing-catalog/ho/recipes/breakfast/giros/giros1.jpg',
             'https://grandkulinar.ru/uploads/posts/2015-12/1449830535_grecheskij-fast-fud-giros-lepeshka-s-myasom-yagnenka-i-sousom-dzadziki.jpg',
-            'https://cdn3.top-shop.ru/18/59/normal_8ac20d0c44ea6abd0964afd6c80e5918.jpg',
         ],
         type: 'mainFood'
     },
