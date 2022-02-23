@@ -13,42 +13,7 @@ const basketSlice = createSlice({
                 placeholder: 'Вы не выбрали ни один из напитков. Нажмите, чтобы добавить напиток.',
             }
         },
-        basketItems: [
-            {
-                id: '2',
-                name: 'Гирос',
-                image: 'https://cdn3.top-shop.ru/18/59/normal_8ac20d0c44ea6abd0964afd6c80e5918.jpg',
-                count: 2,
-                price: 200,
-                options:[
-                    {name: 'Лук', removed: false},
-                    {name: 'Перчик', removed: false},
-                    {name: 'Горчица', removed: false}
-                ],
-                removeMark: false,
-                type: 'mainFood'
-            },
-            {
-                id: '3',
-                name: 'Кока кола 0.5',
-                image: 'https://vodovoz.ru/upload/iblock/338/338f369c752a0a009324d8a0d352fbf6.jpeg',
-                count: 2,
-                price: 75,
-                options:'',
-                removeMark: false,
-                type: 'drink'
-            },
-            {
-                id: '4',
-                name: 'Кока кола 0.5',
-                image: 'https://vodovoz.ru/upload/iblock/338/338f369c752a0a009324d8a0d352fbf6.jpeg',
-                count: 2,
-                price: 100,
-                options:'',
-                removeMark: false,
-                type: 'drink'
-            }
-        ],
+        basketItems: [],
         basketPriceSumm: 0, //надо вычислять автоматом, может this?
         needDelivery: true,
         
@@ -62,15 +27,16 @@ const basketSlice = createSlice({
                 count: action.payload.count,
                 price: action.payload.price,
                 priceSum: action.payload.summ,
-                options:'',
+                options:action.payload.options,
                 removeMark: false,
+                type: action.payload.type,
             })
         },
         removeFromBasket(state, action){
-            state.basketItems.find((item) => item.id === action.payload.id).removeMark = true;
+            state.basketItems[action.payload.id].removeMark = true;
         },
         restoreItemToBasket(state, action){
-            state.basketItems.find((item) => item.id === action.payload.id).removeMark = false;
+            state.basketItems[action.payload.id].removeMark = false;
         },
         toggleDelivery(state, action){
             state.needDelivery = !state.needDelivery;

@@ -63,9 +63,9 @@ const BasketPage = (props) => {
 				<div className="basket__price">
 					<div className="basket__price-value">
 						Стоимость всего: { 
-						
 							basketData.basketItems.reduce((prev,cur) =>  !cur.removeMark ? (prev + cur.price * cur.count) : prev , 0)
-						} <i className="fal fa-ruble-sign"></i>
+						} 
+						<i className="fal fa-ruble-sign"></i>
 					</div>
 					
 				</div>

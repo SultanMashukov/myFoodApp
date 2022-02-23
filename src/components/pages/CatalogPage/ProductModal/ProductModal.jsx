@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import Counter from '../../../common/Counter/Counter';
 import './ProductModal.scss';
 import ProductSlider from './ProductSlider/ProductSlider';
+import { useSelector, useDispatch } from 'react-redux';
+import { addItemToBasket } from '../../../../store/slices/sliceBasket';
 
 const ProductModal = ({toggleProductModal, productData}) => {
-
     const [productCount, setProductCount] = useState('1');
-    const [productOptions, setProductOptions] = useState(productData.options.map((elem) => ({name: elem, checked: true})))
-    
+    const [productOptions, setProductOptions] = useState(productData.options.map((elem) => ({name: elem, active: true})));
+    const dispatch = useDispatch();
     
     const changeProductCount = (newCount) => {
         if(newCount>=1){
@@ -17,8 +18,23 @@ const ProductModal = ({toggleProductModal, productData}) => {
 
     const toggleProductOption = (optionName) => {
         setProductOptions((prevState) => {
-            return prevState.map(option => option.name === optionName ? {...option, checked : !option.checked} : option)
+            return prevState.map(option => option.name === optionName ? {...option, active : !option.active} : option);
         })
+    }
+
+    const addProductToBasket = () => {
+        const dataForBasket = {
+            id: productData.id,
+            name: productData.name,
+            image: productData.images[0],
+            count: productCount,
+            price: productData.price,
+            priceSum: productCount*productData.price,
+            options:productOptions,
+            type: productData.type,
+        }
+        dispatch(addItemToBasket(dataForBasket));
+        toggleProductModal();
     }
 
 	return (
@@ -44,7 +60,7 @@ const ProductModal = ({toggleProductModal, productData}) => {
                             <div className="product-modal__options-item" key={id} onClick={() => toggleProductOption(option.name)}>
                                 <input className="product-modal__options-checkbox" 
                                 type="checkbox" 
-                                checked={option.checked}
+                                checked={option.active}
                                 onChange={(e)=> toggleProductOption(option.name)}
                                 />
                                 <div className="product-modal__options-name">{option.name}</div>
@@ -59,7 +75,7 @@ const ProductModal = ({toggleProductModal, productData}) => {
                         {productData.price * productCount} <i className="fal fa-ruble-sign"></i>
                     </div>
                     <Counter initCount={productCount} changeCount={changeProductCount}/>
-                    <button className="product-modal__submit"><i className="fal fa-shopping-basket"></i></button>
+                    <button className="product-modal__submit" onClick={() => addProductToBasket()}><i className="fal fa-shopping-basket"></i></button>
                 </div>
             </div>
 

@@ -2,20 +2,15 @@ import React from 'react';
 import { useEffect } from 'react';
 import './BasketItem.scss';
 
-const BasketItem = ({itemData, removeItem, restoreItem}) => {
+const BasketItem = ({itemData, removeItem, restoreItem, idForArr}) => {
+	useEffect(()=>{},[removeItem,restoreItem,itemData]);
+	
 
-	useEffect(()=>{
-		
-	},[removeItem,restoreItem,itemData]);
-
-	
-	
-	
 	if(itemData.removeMark)
 		return(
 			<div className="basket__removed-item">
                 <div className="basket__removed-notification">
-					<b>{itemData.name}</b> был удален.<button className="basket__restore-btn" onClick={() => {restoreItem(itemData.id)}}>Вернуть?</button>
+					<b>{itemData.name}</b> был удален.<button className="basket__restore-btn" onClick={() => {restoreItem(idForArr)}}>Вернуть?</button>
 				</div>
             </div>
 		)
@@ -32,8 +27,10 @@ const BasketItem = ({itemData, removeItem, restoreItem}) => {
 					{
 						itemData.options.length 
 						? 
-							itemData.options.map((option) => {
-								return <div className="basket__item-option" >{option.name}</div>
+							itemData.options.map((option, index) => {
+								return <div className={option.active? 'basket__item-option' : 'basket__item-option basket__item-option--false'} key={index}>
+									{option.name}
+								</div>
 							})
 							
 						:
@@ -45,7 +42,7 @@ const BasketItem = ({itemData, removeItem, restoreItem}) => {
 					{itemData.count}шт X {itemData.price} = {itemData.count * itemData.price} <i className="fal fa-ruble-sign"></i>
 				</div>
 			</div>
-			<button className="basket__item-delete" onClick={() => {removeItem(itemData.id)}}><i className="fal fa-times"></i></button>
+			<button className="basket__item-delete" onClick={() => {removeItem(idForArr)}}><i className="fal fa-times"></i></button>
 		</div>
 		
 	) 

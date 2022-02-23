@@ -17,7 +17,12 @@ const FoodType = ({foodType, items, removeItem, restoreItem}) => {
 						</div>
 						:
 						<div className="basket__row">
-							{items.map(item => <BasketItem key={item.id} itemData={item} removeItem={removeItem} restoreItem={restoreItem}/>)}
+							{items.map((item,index) => <BasketItem key={index} 
+							itemData={item} 
+							removeItem={removeItem} 
+							restoreItem={restoreItem}
+							idForArr={index}
+							/>)}
 						</div>
 				}
 				
