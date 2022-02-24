@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import LoaderSpinner from './components/common/LoaderSpinner/LoaderSpinner';
 import { Provider,  } from 'react-redux';
 import store from './store/rootReduser';
+import './css/index.css'
 
 const App = React.lazy(() => import('./components/App/App'));
 
@@ -11,9 +12,9 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
-        <Suspense fallback={<LoaderSpinner/>}>
+         <Suspense fallback={<LoaderSpinner/>}>
           <App/>
-        </Suspense>
+        </Suspense> 
       </BrowserRouter>
     </Provider>
   </React.StrictMode>,
