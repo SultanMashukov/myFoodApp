@@ -41,7 +41,20 @@ const catalog = [
             'https://www.pro-vkusnyashki.ru/wp-content/uploads/2020/06/domashnyaya-gribnaya-picca-s-shampinonami-gotovaya-picca-800x445.jpg',
         ],
         type: 'mainFood'
-    }
+    },
+    {
+        id: 4,
+        name: 'Кока-кола 0.5',
+        category: 'drink',
+        price: 45,
+        description: 'Кока-кола – освежающий безалкогольный сильногазированный пастеризованный напиток.',
+        allowedSize: [],
+        options: [],
+        images:[
+            'https://www.barista-ltd.ru/components/com_jshopping/files/img_products/coca-cola_05.jpg',
+        ],
+        type: 'drink'
+    },
 ]
 
 export default catalog;
