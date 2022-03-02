@@ -24,7 +24,8 @@ const ProductModal = ({toggleProductModal, productData}) => {
 
     const addProductToBasket = () => {
         const dataForBasket = {
-            id: productData.id,
+            basketId: Date.now().toString(16),
+            productId: productData.id,
             name: productData.name,
             image: productData.images[0],
             count: productCount,

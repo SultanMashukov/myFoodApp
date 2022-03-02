@@ -6,9 +6,10 @@ import ProductList from './ProductList/ProductList';
 import { useSelector, useDispatch } from 'react-redux';
 import { toggleModal,setProductModalId } from '../../../store/slices/sliceCatalog';
 import { CSSTransition } from 'react-transition-group';
+import { useParams } from 'react-router-dom';
 
 const CatalogPage = (props) => {
-	
+	const urlParams = useParams()
 	const catalogData = useSelector( state => state.catalog );
 	const dispatch = useDispatch()
 	
@@ -23,13 +24,16 @@ const CatalogPage = (props) => {
 		
 	}
 
-	
-	const	modalProductData = catalogData.catalogItems.find(elem => elem.id === catalogData.productModalId);
+	const productList = urlParams.category ? catalogData.catalogItems.filter((item) => item.category === urlParams.category ): catalogData.catalogItems;
+	const modalProductData = catalogData.catalogItems.find(elem => elem.id === catalogData.productModalId);
 	
 	return (
 		<div className="page-food">
 			<CatalogMenu/>
-			<ProductList toggleProductModal={toggleProductModal} productList={catalogData.catalogItems}/>
+			<ProductList 
+				toggleProductModal={toggleProductModal} 
+				productList={productList}
+			/>
 			<CSSTransition 
 				in={catalogData.modalIsActive}
 				classNames='product-modal'

@@ -3,12 +3,8 @@ import { useEffect } from 'react';
 import './BasketItem.scss';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
 
-const BasketItem = ({itemData, removeItem, restoreItem, idForArr}) => {
-
-
+const BasketItem = ({itemData, removeItem, restoreItem}) => {
 	useEffect(()=>{},[removeItem,restoreItem,itemData]);
-	
-	console.log('red');
 	return(
 		<SwitchTransition mode='out-in'>
 			<CSSTransition
@@ -23,7 +19,7 @@ const BasketItem = ({itemData, removeItem, restoreItem, idForArr}) => {
 						<div className="basket__item">
 							<div className="basket__removed-item">
 								<div className="basket__removed-notification">
-									<b>{itemData.name}</b> был удален.<button className="basket__restore-btn" onClick={() => {restoreItem(idForArr)}}>Вернуть?</button>
+									<b>{itemData.name}</b> был удален.<button className="basket__restore-btn" onClick={() => {restoreItem(itemData.basketId)}}>Вернуть?</button>
 								</div>
 							</div>
 						</div>
@@ -53,7 +49,7 @@ const BasketItem = ({itemData, removeItem, restoreItem, idForArr}) => {
 									{itemData.count}шт X {itemData.price} = {itemData.count * itemData.price} <i className="fal fa-ruble-sign"></i>
 								</div>
 							</div>
-							<button className="basket__item-delete" onClick={() => {removeItem(idForArr)}}><i className="fal fa-times"></i></button>
+							<button className="basket__item-delete" onClick={() => {removeItem(itemData.basketId)}}><i className="fal fa-times"></i></button>
 						</div>
 				}
 			</CSSTransition>

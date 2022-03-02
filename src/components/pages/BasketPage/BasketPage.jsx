@@ -4,36 +4,33 @@ import { useSelector } from 'react-redux';
 import './BasketPage.scss';
 import FoodType from './FoodType/FoodType';
 import { removeFromBasket, restoreItemToBasket, toggleDelivery } from '../../../store/slices/sliceBasket';
+import ProductModal from '../CatalogPage/ProductModal/ProductModal';
+import { CSSTransition, SwitchTransition } from 'react-transition-group';
 
 
 const BasketPage = (props) => {
 
 	const basketData = useSelector(state => state.basket);
+	const mainFoodItems = useMemo(() => basketData.basketItems.filter((item) => item.type === 'mainFood'), [basketData.basketItems]);
+	const drinkItems =  useMemo(() => basketData.basketItems.filter((item) => item.type === 'drink'), [basketData.basketItems]);
 	const dispatch = useDispatch();
+	
 
 	const removeItem = useCallback(
 		(id) => {
-			dispatch(removeFromBasket({id:id}))
+			dispatch(removeFromBasket({basketId:id}))
 		},[]
 	) 
 	
 	const restoreItem = useCallback(
 		(id) => {
-			dispatch(restoreItemToBasket({id:id}))
+			dispatch(restoreItemToBasket({basketId:id}))
 		},[]
 	) 
 
 	const toggleDeliveryStatus = () => {
 		dispatch(toggleDelivery())
 	}
-
-
-	// const mainFoodItems = basketData.basketItems.filter((item) => item.type === 'mainFood');
-	// const drinkItems = basketData.basketItems.filter((item) => item.type === 'drink');
-
-	const mainFoodItems = useMemo(() => basketData.basketItems.filter((item) => item.type === 'mainFood'), [basketData.basketItems]);
-	const drinkItems =  useMemo(() => basketData.basketItems.filter((item) => item.type === 'drink'), [basketData.basketItems]);
-
 
 	return (
 		<div className="basket page-component">
@@ -73,6 +70,9 @@ const BasketPage = (props) => {
 					Заказать
 				</button>
 			</div>
+			<CSSTransition>
+				<ProductModal></ProductModal>
+			</CSSTransition>
 			
 		</div>
 	) 

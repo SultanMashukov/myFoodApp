@@ -21,7 +21,6 @@ const FoodType = ({foodType, items, removeItem, restoreItem}) => {
 							itemData={item} 
 							removeItem={removeItem} 
 							restoreItem={restoreItem}
-							idForArr={index}
 							/>)}
 						</div>
 				}

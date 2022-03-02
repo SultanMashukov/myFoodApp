@@ -1,8 +1,12 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import './MainMenu.scss';
+import { useSelector } from 'react-redux';
 
 const MainMenu = (props) => {
+
+	const basketElementsCount = useSelector(state => state.basket.basketItems.length);
+
 	return (
 		<div className="main-menu">
 			<div className="main-menu__row">
@@ -17,6 +21,9 @@ const MainMenu = (props) => {
 					</div>
 				</NavLink>
 				<NavLink to='/basket' className={({ isActive }) => isActive ? 'main-menu__item main-menu__item--active' : 'main-menu__item' }>
+					<div className="main-menu__counter">
+						{basketElementsCount}
+					</div>
 					<div className="main-menu__icon">
 						<i className="fal fa-shopping-basket"></i>
 					</div>

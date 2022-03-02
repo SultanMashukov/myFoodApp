@@ -21,7 +21,8 @@ const basketSlice = createSlice({
     reducers: {
         addItemToBasket(state, action){
             state.basketItems.push({
-                id: action.payload.id,
+                basketId: action.payload.basketId,
+                productId: action.payload.productId,
                 name: action.payload.name,
                 image: action.payload.image,
                 count: action.payload.count,
@@ -33,17 +34,16 @@ const basketSlice = createSlice({
             })
         },
         removeFromBasket(state, action){
-            state.basketItems[action.payload.id].removeMark = true;
+            const itemId = state.basketItems.findIndex((item) => item.basketId === action.payload.basketId);
+            state.basketItems[itemId].removeMark = true;
         },
         restoreItemToBasket(state, action){
-            state.basketItems[action.payload.id].removeMark = false;
+            const itemId = state.basketItems.findIndex((item) => item.basketId === action.payload.basketId);
+            state.basketItems[itemId].removeMark = false;
         },
         toggleDelivery(state, action){
             state.needDelivery = !state.needDelivery;
         },
-        // setBasketPrice(state, action){
-        //     state.basketPriceSumm = action.payload.sum;
-        // }
     }
 })
 

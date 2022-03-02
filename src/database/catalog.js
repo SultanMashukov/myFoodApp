@@ -1,3 +1,9 @@
+const PRODUCTTYPE_DRINK = 'drink';
+const PRODUCTTYPE_MAINFOOD = 'mainFood';
+const PRODUCTTYPE_TASTY = 'tasty';
+const PRODUCTTYPE_SOUCE = 'souce';
+
+
 const catalog = [
     {
         id: 1,
@@ -11,7 +17,7 @@ const catalog = [
             'https://www.philips.ru/c-dam/b2c/ru_RU/marketing-catalog/ho/recipes/breakfast/giros/giros1.jpg',
             'https://grandkulinar.ru/uploads/posts/2015-12/1449830535_grecheskij-fast-fud-giros-lepeshka-s-myasom-yagnenka-i-sousom-dzadziki.jpg',
         ],
-        type: 'mainFood'
+        type: PRODUCTTYPE_MAINFOOD
     },
     {
         id: 2,
@@ -25,7 +31,7 @@ const catalog = [
             'https://www.philips.ru/c-dam/b2c/ru_RU/marketing-catalog/ho/recipes/breakfast/giros/giros1.jpg',
             'https://grandkulinar.ru/uploads/posts/2015-12/1449830535_grecheskij-fast-fud-giros-lepeshka-s-myasom-yagnenka-i-sousom-dzadziki.jpg',
         ],
-        type: 'mainFood'
+        type: PRODUCTTYPE_MAINFOOD
     },
     {
         id: 3,
@@ -40,7 +46,7 @@ const catalog = [
             'https://img.postershop.me/6880/Products/2119259_1623745398.0151_original.jpg',
             'https://www.pro-vkusnyashki.ru/wp-content/uploads/2020/06/domashnyaya-gribnaya-picca-s-shampinonami-gotovaya-picca-800x445.jpg',
         ],
-        type: 'mainFood'
+        type: PRODUCTTYPE_MAINFOOD
     },
     {
         id: 4,
@@ -53,7 +59,72 @@ const catalog = [
         images:[
             'https://www.barista-ltd.ru/components/com_jshopping/files/img_products/coca-cola_05.jpg',
         ],
-        type: 'drink'
+        type: PRODUCTTYPE_DRINK
+    },
+    {
+        id: 5,
+        name: 'Сендвич Мелт',
+        category: 'sanwiches',
+        price: 150,
+        description: 'Свежие овощи по Вашему выбору и сочная горячая начинка из бекона, индейки и ветчины с сыром на свежевыпеченном хлебе в комбинации с Вашим любимым соусом.',
+        allowedSize: [],
+        options: ['Перец', 'Оливки'],
+        images:[
+            'https://455701.selcdn.ru/upload-e261a37fafa9b8f93cad0d17d88d8dc6/iblock/1ca/sandwich_400x211_melt.jpg',
+        ],
+        type: PRODUCTTYPE_MAINFOOD
+    },
+    {
+        id: 6,
+        name: 'Булочка с джемом',
+        category: 'bakery',
+        price: 40,
+        description: 'Горячая булочка из слоеного теста с начинкой из вишневого джема',
+        allowedSize: [],
+        options: [],
+        images:[
+            'https://бабушкинырецепты.рф/wp-content/uploads/2019/04/1-jpeg.jpeg',
+        ],
+        type: PRODUCTTYPE_TASTY
+    },
+    {
+        id: 7,
+        name: 'Хот-дог куриный',
+        category: 'hotdogs',
+        price: 340,
+        description: 'Хот-дог с куриной колбаской с травами, сладким горчичным соусом, кетчупом, маринованными огурчиками, луком и халапеньо.',
+        allowedSize: [],
+        options: [],
+        images:[
+            'https://kfs-menu.ru/images/menu/hot-dog-kurinyy.png',
+        ],
+        type: PRODUCTTYPE_MAINFOOD
+    },
+    {
+        id: 8,
+        name: 'Мороженное клубничное',
+        category: 'dessert',
+        price: 80,
+        description: 'Ванильное мороженое с наполнителем - клубничный соус.',
+        allowedSize: [],
+        options: [],
+        images:[
+            'https://orderapp-static.burgerking.ru/x512/mobile_image/e9ad94f4131ba9e55793c4aabc57daf9.png',
+        ],
+        type: PRODUCTTYPE_TASTY
+    },
+    {
+        id: 9,
+        name: 'Чизбургер',
+        category: 'burgers',
+        price: 120,
+        description: 'Рубленый бифштекс из натуральной говядины на карамелизованной булочке, с ломтиком сыра «Чеддер», кетчупом, горчицей, луком и маринованными огурчиками.',
+        allowedSize: [],
+        options: ['Горчичный соус', 'Кетчуп томатный', 'Лук'],
+        images:[
+            'https://static9.depositphotos.com/1588534/1095/i/600/depositphotos_10957284-stock-photo-cheeseburger-and-french-fries.jpg',
+        ],
+        type: PRODUCTTYPE_MAINFOOD
     },
 ]
 

@@ -6,6 +6,7 @@ import CatalogPage from '../pages/CatalogPage/CatalogPage';
 import BasketPage from '../pages/BasketPage/BasketPage';
 import PersonalPage from '../pages/PersonalPage/PersonalPage';
 import ModalWindow from '../common/ModalWindow/ModalWindow';
+import LoaderSpinner from '../common/LoaderSpinner/LoaderSpinner'
 import { useState } from 'react';
 
 function App() {
@@ -17,7 +18,8 @@ function App() {
             
             <Routes>
                 <Route path='/' element={<CatalogPage/>}/>
-                <Route path='/:category' element={<CatalogPage/>}/>
+                <Route path='/catalog/' element={<CatalogPage/>}/>
+                <Route path='/catalog/:category' element={<CatalogPage/>}/>
                 <Route path='/personal' element={<PersonalPage/>}/>
                 <Route path='/basket' element={<BasketPage/>}/>
             </Routes>
