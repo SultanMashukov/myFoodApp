@@ -2,7 +2,7 @@ import React from 'react';
 import BasketItem from './BasketItem/BasketItem';
 import './FoodType.scss';
 
-const FoodType = ({foodType, items, removeItem, restoreItem}) => {
+const FoodType = ({foodType, items, removeItem, restoreItem, toggleItemChangerModal}) => {
 	
 	return (
 		<div className="basket__type">
@@ -17,10 +17,11 @@ const FoodType = ({foodType, items, removeItem, restoreItem}) => {
 						</div>
 						:
 						<div className="basket__row">
-							{items.map((item,index) => <BasketItem key={index} 
+							{items.map((item) => <BasketItem key={item.basketId} 
 							itemData={item} 
 							removeItem={removeItem} 
 							restoreItem={restoreItem}
+							toggleItemChangerModal={toggleItemChangerModal}
 							/>)}
 						</div>
 				}

@@ -3,8 +3,11 @@ import { useEffect } from 'react';
 import './BasketItem.scss';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
 
-const BasketItem = ({itemData, removeItem, restoreItem}) => {
+const BasketItem = ({itemData, removeItem, restoreItem, toggleItemChangerModal}) => {
 	useEffect(()=>{},[removeItem,restoreItem,itemData]);
+	const showItemChanger = (e) => {
+		toggleItemChangerModal(itemData.productId, itemData.basketId)
+	}
 	return(
 		<SwitchTransition mode='out-in'>
 			<CSSTransition
@@ -24,7 +27,7 @@ const BasketItem = ({itemData, removeItem, restoreItem}) => {
 							</div>
 						</div>
 					:
-						<div className="basket__item">
+						<div className="basket__item" onClick={(e) => showItemChanger(e)}>
 							<div className="basket__item-pic">
 								<img  className="basket__item-img" src={itemData.image} alt={itemData.name}/>
 							</div>
@@ -49,7 +52,7 @@ const BasketItem = ({itemData, removeItem, restoreItem}) => {
 									{itemData.count}шт X {itemData.price} = {itemData.count * itemData.price} <i className="fal fa-ruble-sign"></i>
 								</div>
 							</div>
-							<button className="basket__item-delete" onClick={() => {removeItem(itemData.basketId)}}><i className="fal fa-times"></i></button>
+							<button className="basket__item-delete" onClick={(e) => {removeItem(itemData.basketId);e.stopPropagation()}}><i className="fal fa-times"></i></button>
 						</div>
 				}
 			</CSSTransition>

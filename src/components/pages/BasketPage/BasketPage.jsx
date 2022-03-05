@@ -3,9 +3,9 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import './BasketPage.scss';
 import FoodType from './FoodType/FoodType';
-import { removeFromBasket, restoreItemToBasket, toggleDelivery } from '../../../store/slices/sliceBasket';
-import ProductModal from '../CatalogPage/ProductModal/ProductModal';
-import { CSSTransition, SwitchTransition } from 'react-transition-group';
+import { removeFromBasket, restoreItemToBasket, toggleDelivery, toggleModal, changeItemInBasket, setModalInfo } from '../../../store/slices/sliceBasket';
+import { CSSTransition, SwitchTransition,} from 'react-transition-group';
+import BasketItemChanger from './BasketItemChanger/BasketItemChanger';
 
 
 const BasketPage = (props) => {
@@ -32,6 +32,17 @@ const BasketPage = (props) => {
 		dispatch(toggleDelivery())
 	}
 
+	const toggleItemChangerModal = ( productId, basketItemId ) => {
+		if(productId && basketItemId){
+			dispatch(setModalInfo({productId,basketItemId}))
+			dispatch(toggleModal())
+			
+		}else{
+			dispatch(toggleModal())
+		}
+		
+	}
+
 	return (
 		<div className="basket page-component">
 			{
@@ -53,8 +64,16 @@ const BasketPage = (props) => {
 				КОМПОНЕНТ ВЫБОРА АДРЕСА
 			</div>
 
-			<FoodType foodType={basketData.basketSections.mainFood} items={mainFoodItems} removeItem={removeItem} restoreItem={restoreItem}/>
-			<FoodType foodType={basketData.basketSections.drinks} items={drinkItems} removeItem={removeItem} restoreItem={restoreItem}/>
+			<FoodType 
+				foodType={basketData.basketSections.mainFood} 
+				items={mainFoodItems} removeItem={removeItem} 
+				restoreItem={restoreItem}
+				toggleItemChangerModal={toggleItemChangerModal}/>
+			<FoodType 
+				foodType={basketData.basketSections.drinks} 
+				items={drinkItems} removeItem={removeItem} 
+				restoreItem={restoreItem}
+				toggleItemChangerModal={toggleItemChangerModal}/>
 
 			<div className="basket__controls">
 				<div className="basket__price">
@@ -70,9 +89,15 @@ const BasketPage = (props) => {
 					Заказать
 				</button>
 			</div>
-			<CSSTransition>
-				<ProductModal></ProductModal>
+			<CSSTransition
+			timeout={300}
+			in={basketData.modalIsActive}
+			classNames='product-modal'
+			mountOnEnter
+			unmountOnExit>
+				{<BasketItemChanger productId={basketData.modalInfo.productId} basketItemId={basketData.modalInfo.basketItemId} toggleModal={toggleItemChangerModal}/> }
 			</CSSTransition>
+			
 			
 		</div>
 	) 

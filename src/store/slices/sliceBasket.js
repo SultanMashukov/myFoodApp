@@ -14,8 +14,12 @@ const basketSlice = createSlice({
             }
         },
         basketItems: [],
-        basketPriceSumm: 0, //надо вычислять автоматом, может this?
         needDelivery: true,
+        modalIsActive: false,
+        modalInfo: {
+            basketItemId: '',
+            productId: ''
+        }
         
     },
     reducers: {
@@ -33,6 +37,11 @@ const basketSlice = createSlice({
                 type: action.payload.type,
             })
         },
+        changeItemInBasket(state, action){
+            const itemId = state.basketItems.findIndex((item) => item.basketId === action.payload.basketItemId);
+            state.basketItems[itemId].count = action.payload.count
+            state.basketItems[itemId].options =action.payload.options
+        },
         removeFromBasket(state, action){
             const itemId = state.basketItems.findIndex((item) => item.basketId === action.payload.basketId);
             state.basketItems[itemId].removeMark = true;
@@ -44,9 +53,18 @@ const basketSlice = createSlice({
         toggleDelivery(state, action){
             state.needDelivery = !state.needDelivery;
         },
+        setModalInfo(state, action){
+            state.modalInfo.basketItemId = action.payload.basketItemId;
+            state.modalInfo.productId = action.payload.productId;
+        },
+        toggleModal(state){
+            state.modalIsActive = !state.modalIsActive;
+        },
     }
 })
 
 export default basketSlice.reducer;
 
-export const {addItemToBasket, removeFromBasket, restoreItemToBasket, toggleDelivery} = basketSlice.actions;
+export const {
+    addItemToBasket, removeFromBasket, restoreItemToBasket, 
+    toggleDelivery, changeItemInBasket, toggleModal, setModalInfo} = basketSlice.actions;
