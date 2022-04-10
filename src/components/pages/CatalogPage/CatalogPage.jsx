@@ -32,25 +32,16 @@ const CatalogPage = (props) => {
 	},[dispatch])
 
 	if(catalogData.catalogItems){
-		productList = urlParams.category ? catalogData.catalogItems.filter((item) => item.category === urlParams.category ): catalogData.catalogItems;
+		productList = urlParams.category ? catalogData.catalogItems.filter((item) => item.food_type.code === urlParams.category ): catalogData.catalogItems;
 		modalProductData = catalogData.catalogItems.find(elem => elem.id === catalogData.productModalId);
 	}
-	
 	
 	return (
 		<div className="page-food">
 			<CatalogMenu/>
-			{
-				loadingStatus === 'loaded' 
-				&& 
-				<ProductList 
-					toggleProductModal={toggleProductModal} 
-					productList={productList}
-				/>
-			}
+			{loadingStatus === 'loaded' && <ProductList toggleProductModal={toggleProductModal} productList={productList}/>}
 			{ loadingStatus === 'pending' && <LoadingSpinner/> }
 			{ loadingStatus === 'rejected' && <div className="error">{catalogData.listFetchError}</div> }
-			
 			<CSSTransition 
 				in={catalogData.modalIsActive}
 				classNames='product-modal'
