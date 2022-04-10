@@ -32,7 +32,7 @@ const ProductModal = ({toggleProductModal, productData}) => {
             price: productData.price,
             priceSum: productCount*productData.price,
             options:productOptions,
-            type: productData.type,
+            type: productData.food_type.code,
         }
         dispatch(addItemToBasket(dataForBasket));
         toggleProductModal();
