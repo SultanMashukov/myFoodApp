@@ -9,13 +9,13 @@ const ProductList = ({productList, toggleProductModal}) => {
 					{
 						productList.map((item) => {
 							return(
-								<div className="food-list__item" key={item.id}>
+								<div className="food-list__item" key={item.id} onClick={(e) => { toggleProductModal(item.id);}}>
 									<div className="food-list__item-pic " style={{backgroundImage: `url(${item?.images?.[0] || ''})`} }>
 									</div>
 									<div className="food-list__item-content">
 										<div className="food-list__item-name">{item.name}</div>
 										<div className="food-list__item-price">{item.price}р</div>
-										<button className="food-list__item-open" onClick={(e) => { toggleProductModal(item.id);}}>Добавить {item.id}</button>
+										<button className="food-list__item-open">Добавить {item.id}</button>
 									</div>
 								</div>
 							)
