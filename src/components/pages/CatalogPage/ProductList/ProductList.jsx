@@ -3,9 +3,6 @@ import './ProductList.scss';
 
 
 const ProductList = ({productList, toggleProductModal}) => {
-
-	
-	
 	return (
 		<div className="food-list">
 				<div className="food-list__row">

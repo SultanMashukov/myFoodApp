@@ -129,3 +129,15 @@ const catalog = [
 ]
 
 export default catalog;
+
+// {
+//     "name": "Гирос с курицей",
+//     "foodTypeId": 3,
+//     "options": ["Лук","Острый соус","Соус"],
+//     "description": "Гирос относится к греческому фастфуду, но здоровой его версии. Ведь он приготовлен из выпеченной без масла мягкой питы, говядины на углях, замаринованной в лимонном соке и ароматных травах, легкого йогуртового соуса и свежих овощей. Попробуйте эту версию, она вам обязательно понравится.",
+//    "images": [
+//        "https://www.philips.ru/c-dam/b2c/ru_RU/marketing-catalog/ho/recipes/breakfast/giros/giros1.jpg",
+//         "https://grandkulinar.ru/uploads/posts/2015-12/1449830535_grecheskij-fast-fud-giros-lepeshka-s-myasom-yagnenka-i-sousom-dzadziki.jpg"
+//     ],
+//     "price": 180
+// }

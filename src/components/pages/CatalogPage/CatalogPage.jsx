@@ -1,18 +1,21 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import CatalogMenu from './CatalogMenu/CatalogMenu';
 import './CatalogPage.scss';
 import ProductModal from './ProductModal/ProductModal';
 import ProductList from './ProductList/ProductList';
+import LoadingSpinner from '../../common/LoaderSpinner/LoaderSpinner'
 import { useSelector, useDispatch } from 'react-redux';
-import { toggleModal,setProductModalId } from '../../../store/slices/sliceCatalog';
+import { toggleModal,setProductModalId, fetchCatalogItems } from '../../../store/slices/sliceCatalog';
 import { CSSTransition } from 'react-transition-group';
 import { useParams } from 'react-router-dom';
 
 const CatalogPage = (props) => {
-	const urlParams = useParams()
+	const urlParams = useParams();
 	const catalogData = useSelector( state => state.catalog );
-	const dispatch = useDispatch()
-	
+	const dispatch = useDispatch();
+	const loadingStatus = catalogData.listFetchStatus;
+	let productList, modalProductData;
+
 	const toggleProductModal = ( id ) => {
 		if(id){
 			dispatch(setProductModalId({id}))
@@ -24,16 +27,30 @@ const CatalogPage = (props) => {
 		
 	}
 
-	const productList = urlParams.category ? catalogData.catalogItems.filter((item) => item.category === urlParams.category ): catalogData.catalogItems;
-	const modalProductData = catalogData.catalogItems.find(elem => elem.id === catalogData.productModalId);
+	useEffect(()=>{
+		dispatch(fetchCatalogItems())
+	},[dispatch])
+
+	if(catalogData.catalogItems){
+		productList = urlParams.category ? catalogData.catalogItems.filter((item) => item.category === urlParams.category ): catalogData.catalogItems;
+		modalProductData = catalogData.catalogItems.find(elem => elem.id === catalogData.productModalId);
+	}
+	
 	
 	return (
 		<div className="page-food">
 			<CatalogMenu/>
-			<ProductList 
-				toggleProductModal={toggleProductModal} 
-				productList={productList}
-			/>
+			{
+				loadingStatus === 'loaded' 
+				&& 
+				<ProductList 
+					toggleProductModal={toggleProductModal} 
+					productList={productList}
+				/>
+			}
+			{ loadingStatus === 'pending' && <LoadingSpinner/> }
+			{ loadingStatus === 'rejected' && <div className="error">{catalogData.listFetchError}</div> }
+			
 			<CSSTransition 
 				in={catalogData.modalIsActive}
 				classNames='product-modal'
