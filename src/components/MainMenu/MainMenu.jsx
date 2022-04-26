@@ -10,7 +10,7 @@ const MainMenu = (props) => {
 	return (
 		<div className="main-menu">
 			<div className="main-menu__row">
-				<NavLink to='/' className={({ isActive }) => isActive ? 'main-menu__item main-menu__item--active' : 'main-menu__item' }>
+				<NavLink to='/catalog' className={({ isActive }) => isActive ? 'main-menu__item main-menu__item--active' : 'main-menu__item' }>
 					<div className="main-menu__icon">
 						<i className="fal fa-burger-soda"></i>
 					</div>

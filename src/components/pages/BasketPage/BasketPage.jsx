@@ -18,7 +18,7 @@ const BasketPage = (props) => {
 	}, [basketData.basketItems]);
 
 	const drinkItems =  useMemo(() => {
-		return basketData.basketItems.filter((item) => ['drinks'].includes(item.type))
+		return basketData.basketItems.filter((item) => ['drink'].includes(item.type))
 	}, [basketData.basketItems]);
 
 	const removeItem = useCallback(
