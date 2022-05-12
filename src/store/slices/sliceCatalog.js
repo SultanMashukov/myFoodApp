@@ -26,6 +26,7 @@ const catalogSlice = createSlice({
         productModalId: '',
         listFetchStatus: null,
         listFetchError: null,
+        nameFilter:''
     },
     reducers:{
         toggleModal(state){
@@ -33,6 +34,9 @@ const catalogSlice = createSlice({
         },
         setProductModalId(state,action){
             state.productModalId = action.payload.id;
+        },
+        setNameFilter(state, action){
+            state.nameFilter = action.payload.string;
         }
     }, 
     extraReducers:{
@@ -51,6 +55,6 @@ const catalogSlice = createSlice({
 
 })
 
-export const { toggleModal, setProductModalId} = catalogSlice.actions;
+export const { toggleModal, setProductModalId, setNameFilter} = catalogSlice.actions;
 
 export default catalogSlice.reducer;

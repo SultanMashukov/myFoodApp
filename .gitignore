@@ -25,3 +25,4 @@ yarn-error.log*
 #my rules
 
 /LAYOUT
+for_extract.html
