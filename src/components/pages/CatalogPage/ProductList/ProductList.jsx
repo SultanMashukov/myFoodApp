@@ -16,7 +16,7 @@ const ProductList = ({productList, toggleProductModal}) => {
 									<div className="food-list__item-content">
 										<div className="food-list__item-name">{item.name}</div>
 										<div className="food-list__item-price">{item.price}р</div>
-										<button className="food-list__item-open">Добавить {item.id}</button>
+										<button className="food-list__item-open">Добавить</button>
 									</div>
 								</div>
 							)
