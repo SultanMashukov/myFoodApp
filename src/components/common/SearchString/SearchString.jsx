@@ -9,9 +9,12 @@ const SearchString = ({changeSearchString, initSearchString}) => {
 				className="searchInput" 
 				type="text" 
 				value={initSearchString}
+				placeholder="Поиск по названию..."
 				onChange={e=>changeSearchString(e.target.value.toLowerCase())}
-				/> 
-			<i className="fal fa-search"/>		
+				/>
+			<div className="searchIcon">
+				<i className="fal fa-search"/>		
+			</div>
 		</div>
 		
 	) 

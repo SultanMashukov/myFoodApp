@@ -7,7 +7,8 @@ const ProductList = ({productList, toggleProductModal}) => {
 		<div className="food-list">
 				<div className="food-list__row">
 					{
-						productList.map((item) => {
+						productList.length 
+						?productList.map((item) => {
 							return(
 								<div className="food-list__item" key={item.id} onClick={(e) => { toggleProductModal(item.id);}}>
 									<div className="food-list__item-pic " style={{backgroundImage: `url(${item?.images?.[0] || ''})`} }>
@@ -20,6 +21,7 @@ const ProductList = ({productList, toggleProductModal}) => {
 								</div>
 							)
 						})
+						:'Ничего нет :('
 					}
 				</div>
 				

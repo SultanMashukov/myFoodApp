@@ -1,1 +1,20 @@
 /* your css code */
+.search{
+  display: flex;
+  padding: 5px;
+  position: relative;
+  justify-content: center;
+  max-width: 300px;
+  margin: 0 auto;
+}
+.searchInput{ 
+  flex-grow: 1;
+  height: 30px;
+  padding: 0 20px;
+  
+}
+.searchIcon{
+  position: absolute;
+  right: 20px;
+  top: 35%;
+}
