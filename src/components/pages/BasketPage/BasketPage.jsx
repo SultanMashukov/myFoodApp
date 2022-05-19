@@ -80,20 +80,26 @@ const BasketPage = (props) => {
 				restoreItem={restoreItem}
 				toggleItemChangerModal={toggleItemChangerModal}/>
 
-			<div className="basket__controls">
-				<div className="basket__price">
-					<div className="basket__price-value">
-						Стоимость всего: { 
-							basketData.basketItems.reduce((prev,cur) =>  !cur.removeMark ? (prev + cur.price * cur.count) : prev , 0)
-						} 
-						<i className="fal fa-ruble-sign"></i>
+			{
+				basketData.basketItems.length 
+				?
+				<div className="basket__controls">
+					<div className="basket__price">
+						<div className="basket__price-value">
+							Стоимость всего: { 
+								basketData.basketItems.reduce((prev,cur) =>  !cur.removeMark ? (prev + cur.price * cur.count) : prev , 0)
+							} 
+							<i className="fal fa-ruble-sign"></i>
+						</div>
+						
 					</div>
-					
+					<button className="basket__order-btn">
+						Заказать
+					</button>
 				</div>
-				<button className="basket__order-btn">
-					Заказать
-				</button>
-			</div>
+				:''
+			}
+			
 			<CSSTransition
 			timeout={300}
 			in={basketData.modalIsActive}
