@@ -8,7 +8,7 @@ import PersonalPage from '../pages/PersonalPage/PersonalPage';
 import ModalWindow from '../common/ModalWindow/ModalWindow';
 import LoaderSpinner from '../common/LoaderSpinner/LoaderSpinner'
 import { useState } from 'react';
-import Orders from '../pages/Orders/Orders';
+// import Orders from '../pages/Orders/Orders';
 
 function App() {
   //const [modalActive,  setModalActive] = useState(true)
@@ -22,7 +22,7 @@ function App() {
                 <Route path='/catalog/' element={<CatalogPage/>}/>
                 <Route path='/catalog/:category' element={<CatalogPage/>}/>
                 <Route path='/personal' element={<PersonalPage/>}/>
-                <Route path='/personal/orders' element={<Orders/>}/>
+                {/* <Route path='/personal/orders' element={<Orders/>}/> */}
                 <Route path='/basket' element={<BasketPage/>}/>
             </Routes>
         </div>

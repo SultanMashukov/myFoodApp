@@ -1,12 +1,23 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { Link, NavLink } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
+import OrderDetail from './OrderDetail/OrderDetail';
 import './Orders.scss';
 import OrdersList from './OrdersList/OrdersList';
+import { CSSTransition} from 'react-transition-group';
+import { toggleModal, setCurrentDetailId } from '../../../store/slices/sliceOrders';
 
 const Orders = (props) => {
+	const dispatch = useDispatch();
 	const ordersData = useSelector(state => state.orders);
-	const ordersList = ordersData.ordersList;
+	
+	const toggleDetailOrder = (currentDetailId)=>{
+		if(ordersData.currentDetailId)
+			dispatch(setCurrentDetailId({currentDetailId:''}))
+		dispatch(setCurrentDetailId({currentDetailId}))
+		dispatch(toggleModal());
+		
+	}
 	
 	return (
 		<div className="orders">
@@ -18,7 +29,15 @@ const Orders = (props) => {
 						История заказов
 				</div>
 			</div>
-			<OrdersList ordersList={ordersList}/>
+			<OrdersList toggleDetailOrder={toggleDetailOrder}/>
+			<CSSTransition	
+				timeout={300}
+				in={ordersData.modalIsActive}
+				classNames='basket__item'
+				mountOnEnter
+				unmountOnExit>
+					<OrderDetail orderData={ordersData.ordersList.find(el => el.id === ordersData.currentDetailId)}/>
+			</CSSTransition>
 		</div>
 	) 
 };

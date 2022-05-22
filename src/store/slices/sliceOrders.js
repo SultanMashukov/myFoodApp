@@ -3,6 +3,18 @@ import { createSlice } from "@reduxjs/toolkit";
 const ordersSlice = createSlice({
     name: 'orders',
     initialState:{
+        modalIsActive: false,
+        currentDetailId:'',
+        basketSections:{
+            mainFood:{
+                name: 'Основные блюда',
+                placeholder: 'Вы ничего не выбрали из блюд. Нажмите, чтобы добавить.',
+            },
+            drinks: {
+                name: 'Напитки',
+                placeholder: 'Вы не выбрали ни один из напитков. Нажмите, чтобы добавить напиток.',
+            }
+        },
         ordersList:[
             {
                 id: 1,
@@ -48,10 +60,16 @@ const ordersSlice = createSlice({
         addNewOrder(state, action){
             state.orders.push()
         },
+        setCurrentDetailId(state, action){
+            state.currentDetailId = action.payload.currentDetailId;
+        },
+        toggleModal(state){
+            state.modalIsActive = !state.modalIsActive;
+        },
 
     }
 })
 
 export default ordersSlice.reducer;
 
-export const { addNewOrder } = ordersSlice.actions;
+export const { addNewOrder, setCurrentDetailId,toggleModal } = ordersSlice.actions;

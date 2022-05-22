@@ -1,8 +1,12 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import OrdersItem from './OrdersItem/OrdersItem';
 import './OrdersList.scss';
 
-const OrdersList = ({ordersList}) => {
+const OrdersList = ({toggleDetailOrder}) => {
+	
+	const ordersList = useSelector(state => state.orders);
+
 	return (
 		<div className="orders__row">
 			
@@ -13,7 +17,9 @@ const OrdersList = ({ordersList}) => {
 						name: order.positions.reduce((prevVal,nextEl) => prevVal+`${nextEl.name} x${nextEl.count}, `, ''),
 					}
 					
-					return <OrdersItem key={namedOrder.id} orderData={namedOrder}/>
+					return <OrdersItem 
+					key={namedOrder.id} orderData={namedOrder}
+					toggleDetailOrder={toggleDetailOrder}/>
 				})
 			}
 		</div>
