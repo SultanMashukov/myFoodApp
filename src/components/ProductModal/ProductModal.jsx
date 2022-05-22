@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import Counter from '../../../common/Counter/Counter';
-import './ProductModal.scss';
-import ProductSlider from './ProductSlider/ProductSlider';
 import { useSelector, useDispatch } from 'react-redux';
-import { addItemToBasket } from '../../../../store/slices/sliceBasket';
+import './ProductModal.scss';
+import Counter from 'components/Counter/Counter';
+import ProductSlider from './ProductSlider/ProductSlider';
+import { addItemToBasket } from 'store/slices/sliceBasket';
 
 const ProductModal = ({toggleProductModal, productData}) => {
     const [productCount, setProductCount] = useState('1');

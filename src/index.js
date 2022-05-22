@@ -1,12 +1,13 @@
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
-import LoaderSpinner from './components/common/LoaderSpinner/LoaderSpinner';
 import { Provider,  } from 'react-redux';
-import store from './store/rootReduser';
-import './css/index.css'
+import LoaderSpinner from 'components/LoaderSpinner/LoaderSpinner';
+import store from 'store/rootReduser';
+import 'assets/css/all.min.css'
+import 'assets/css/index.css'
 
-const App = React.lazy(() => import('./components/App/App'));
+const App = React.lazy(() => import('App'));
 
 ReactDOM.render(
   <React.StrictMode>

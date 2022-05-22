@@ -1,12 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './CatalogMenu.scss';
 import { NavLink, useParams } from 'react-router-dom';
 
 
 
 const CatalogMenu = (props) => {
-
-	
 
 	return (
 		<div className="food-menu">

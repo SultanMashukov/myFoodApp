@@ -1,5 +1,5 @@
 import React from 'react';
-import './ProductList.scss';
+import './CatalogList.scss';
 
 
 const ProductList = ({productList, toggleProductModal}) => {

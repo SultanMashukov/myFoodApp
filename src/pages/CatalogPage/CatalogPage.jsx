@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react';
 import CatalogMenu from './CatalogMenu/CatalogMenu';
 import './CatalogPage.scss';
-import ProductModal from './ProductModal/ProductModal';
-import ProductList from './ProductList/ProductList';
-import LoadingSpinner from '../../common/LoaderSpinner/LoaderSpinner'
+import ProductModal from 'components/ProductModal/ProductModal';
+import ProductList from './CatalogList/CatalogList';
+import LoadingSpinner from 'components/LoaderSpinner/LoaderSpinner'
 import { useSelector, useDispatch } from 'react-redux';
-import { toggleModal,setProductModalId, fetchCatalogItems, setNameFilter } from '../../../store/slices/sliceCatalog';
+import { toggleModal,setProductModalId, fetchCatalogItems, setNameFilter } from 'store/slices/sliceCatalog';
 import { CSSTransition } from 'react-transition-group';
 import { useParams } from 'react-router-dom';
-import SearchString from '../../common/SearchString/SearchString';
+import SearchString from 'components/SearchString/SearchString';
 
 const CatalogPage = (props) => {
 	const urlParams = useParams();

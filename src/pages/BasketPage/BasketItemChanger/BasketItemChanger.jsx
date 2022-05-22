@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import Counter from '../../../common/Counter/Counter';
+import { useSelector, useDispatch } from 'react-redux';
+import Counter from 'components/Counter/Counter';
 import './BasketItemChanger.scss';
 import ProductSlider from './ProductSlider/ProductSlider';
-import { useSelector, useDispatch } from 'react-redux';
-import { changeItemInBasket } from '../../../../store/slices/sliceBasket';
+import { changeItemInBasket } from 'store/slices/sliceBasket';
 
 const BasketItemChanger = ({toggleModal, productId, basketItemId}) => {
     

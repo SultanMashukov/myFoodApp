@@ -1,10 +1,10 @@
 import React, { useCallback, useMemo } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
+import { CSSTransition} from 'react-transition-group';
 import './BasketPage.scss';
 import FoodType from './FoodType/FoodType';
-import { removeFromBasket, restoreItemToBasket, toggleDelivery, toggleModal, setModalInfo } from '../../../store/slices/sliceBasket';
-import { CSSTransition} from 'react-transition-group';
+import { removeFromBasket, restoreItemToBasket, toggleDelivery, toggleModal, setModalInfo } from 'store/slices/sliceBasket';
 import BasketItemChanger from './BasketItemChanger/BasketItemChanger';
 
 

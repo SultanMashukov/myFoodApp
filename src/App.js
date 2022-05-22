@@ -1,12 +1,11 @@
-import './App.scss';
-import '../../css/all.min.css'
-import MainMenu from '../MainMenu/MainMenu';
+import 'App.scss';
+import MainMenu from 'components/MainMenu/MainMenu';
 import { Route, Routes } from 'react-router-dom';
-import CatalogPage from '../pages/CatalogPage/CatalogPage';
-import BasketPage from '../pages/BasketPage/BasketPage';
-import PersonalPage from '../pages/PersonalPage/PersonalPage';
-import ModalWindow from '../common/ModalWindow/ModalWindow';
-import LoaderSpinner from '../common/LoaderSpinner/LoaderSpinner'
+import CatalogPage from 'pages/CatalogPage/CatalogPage';
+import BasketPage from 'pages/BasketPage/BasketPage';
+import PersonalPage from 'pages/PersonalPage/PersonalPage';
+import ModalWindow from 'components/ModalWindow/ModalWindow';
+import LoaderSpinner from 'components/LoaderSpinner/LoaderSpinner'
 import { useState } from 'react';
 // import Orders from '../pages/Orders/Orders';
 
