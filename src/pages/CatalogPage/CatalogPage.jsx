@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import CatalogMenu from './CatalogMenu/CatalogMenu';
 import './CatalogPage.scss';
 import CatalogList from './CatalogList/CatalogList';
@@ -9,7 +9,6 @@ import CatalogPicker from './CatalogPicker/CatalogPicker';
 import CatalogSearchString from './CatalogSearchString/CatalogSearchString';
 
 const CatalogPage = (props) => {
-	const catalogData = useSelector( state => state.catalog );
 	const dispatch = useDispatch();
 
 	const toggleProductModal = ( id ) => {
@@ -22,9 +21,6 @@ const CatalogPage = (props) => {
 		}
 		
 	}
-	const changeSearchString = ( string ) => {
-		dispatch(setNameFilter({string}))
-	}
 
 	useEffect(()=>{
 		dispatch(fetchCatalogItems()) //запрос за каталогом к API
@@ -33,8 +29,7 @@ const CatalogPage = (props) => {
 	return (
 		<div className="page-food">
 			<CatalogMenu/>
-			{/* <CatalogSearchString/> */}
-			<SearchString changeSearchString={changeSearchString} initSearchString={catalogData.nameFilter}/>
+			<CatalogSearchString/>
 			<CatalogList toggleProductModal={toggleProductModal}/>
 			<CatalogPicker toggleProductModal={toggleProductModal}/>
 		</div>
