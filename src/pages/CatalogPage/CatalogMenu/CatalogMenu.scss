@@ -32,11 +32,16 @@
     width: 2px;
     background-color: gray;
   }
-  
+  .food-menu__item-name{
+    font-size: 12px;
+  }
   .food-menu__link > i {
     font-size: 2em;
     margin-bottom: 5px;
     display: block;
+  }
+  .food-menu__link.active{
+    color: orange;
   }
   
   /*КОНЕЦ МЕНЮ БЛЮД */
