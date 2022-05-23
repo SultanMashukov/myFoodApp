@@ -24,8 +24,10 @@ const catalogSlice = createSlice({
         catalogItems: null,
         modalIsActive: false,
         productModalId: '',
-        listFetchStatus: null,
-        listFetchError: null,
+        listFetchingInfo:{
+            status: null,
+            errorMsg: null,
+        },
         nameFilter:''
     },
     reducers:{
@@ -41,15 +43,15 @@ const catalogSlice = createSlice({
     }, 
     extraReducers:{
         [fetchCatalogItems.pending]: (state) =>{
-            state.listFetchStatus = 'pending';
+            state.listFetchingInfo.status = 'pending';
         },
         [fetchCatalogItems.fulfilled]: (state,action) =>{
             state.catalogItems = action.payload;
-            state.listFetchStatus = 'loaded';
+            state.listFetchingInfo.status = 'loaded';
         },
         [fetchCatalogItems.rejected]: (state,action) =>{
-            state.listFetchStatus = 'rejected';
-            state.listFetchError = action.payload;
+            state.listFetchingInfo.status = 'rejected';
+            state.listFetchingInfo.errormsg = action.payload;
         },
     }
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import './ProductModal.scss';
 import Counter from 'components/Counter/Counter';
 import ProductSlider from './ProductSlider/ProductSlider';
