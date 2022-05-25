@@ -2,7 +2,7 @@ import React from 'react';
 import './OrderDetail.scss';
 import FoodType from './FoodType/FoodType';
 import { useDispatch, useSelector } from 'react-redux';
-import { setCurrentDetailId, toggleModal } from 'store/slices/sliceOrders';
+import { toggleModal } from 'store/slices/sliceOrders';
 
 const OrderDetail = ({orderId}) => {
 	
