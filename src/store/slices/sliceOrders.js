@@ -5,6 +5,10 @@ const ordersSlice = createSlice({
     initialState:{
         modalIsActive: false,
         currentDetailId:'',
+        currentDetailInfo:{
+            id:'',
+            showComponent:false,
+        },
         basketSections:{
             mainFood:{
                 name: 'Основные блюда',
@@ -18,7 +22,7 @@ const ordersSlice = createSlice({
         ordersList:[
             {
                 id: 1,
-                price: 890,
+                totalPrice: 890,
                 status: {id:1, name: 'complete'},
                 date: '01.02.2022',
                 positions:[
@@ -37,14 +41,14 @@ const ordersSlice = createSlice({
             },
             {
                 id: 2,
-                price: 890,
+                totalPrice: 890,
                 status: {id:1, name: 'inProcess'},
                 date: '01.02.2022',
                 positions:[
                     {
                         productId: 1,
                         name: 'Гирос',
-                        count:3,
+                        count:8,
                         price: 180,
                         image: 'https://www.philips.ru/c-dam/b2c/ru_RU/marketing-catalog/ho/recipes/breakfast/giros/giros1.jpg',
                         options: [
@@ -61,10 +65,10 @@ const ordersSlice = createSlice({
             state.orders.push()
         },
         setCurrentDetailId(state, action){
-            state.currentDetailId = action.payload.currentDetailId;
+            state.currentDetailInfo.id = action.payload.currentDetailId;
         },
         toggleModal(state){
-            state.modalIsActive = !state.modalIsActive;
+            state.currentDetailInfo.showComponent = !state.currentDetailInfo.showComponent;
         },
 
     }

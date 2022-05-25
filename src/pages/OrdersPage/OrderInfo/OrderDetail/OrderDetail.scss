@@ -1,0 +1,212 @@
+/* your css code */
+.ordersDetail {
+  padding: 10px;
+  min-height: 100%;
+  background-color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  z-index: 1;
+}
+.ordersDetail__controls{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  align-items: center;
+}
+.ordersDetail__metaInfo{
+  font-size: 18px;
+  margin-bottom: 20px;
+  & i{
+    font-size: 22px;
+    
+  }
+}
+.ordersDetail__metaInfoItem{
+  margin-bottom: 5px;
+}
+.ordersDetail__repeatBtn{
+    background-color: #F8774A;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    border-radius: 25px;
+    text-transform: uppercase;
+    box-shadow: 0px 4px 4px rgba(0,0,0,0.25);
+}
+.ordersDetail__closeBtn {
+  padding: 10px;
+  font-size: 22px;
+}
+
+.ordersDetail__place {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: #ffbb3d;
+  color: white;
+  border-radius: 10px;
+  overflow: hidden;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.ordersDetail__place-item {
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  text-align: center;
+  padding: 10px;
+}
+
+.ordersDetail__place-item--active {
+  background-color: #e7a932;
+  -webkit-box-shadow: inset -3px -2px 3px rgba(0, 0, 0, 0.25);
+  box-shadow: inset -3px -2px 3px rgba(0, 0, 0, 0.25);
+}
+
+.ordersDetail__type {
+  margin-bottom: 15px;
+}
+
+.ordersDetail__type-name {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.ordersDetail__type-placeholder {
+  width: 100%;
+  -webkit-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.1);
+  font-weight: 300;
+}
+
+.ordersDetail__item {
+  width: 100%;
+  -webkit-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.ordersDetail__item:last-child {
+  margin-bottom: 0px;
+}
+
+.ordersDetail__item-pic {
+  max-width: 100px;
+}
+
+.ordersDetail__item-info {
+  padding: 7px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+}
+
+.ordersDetail__item-name {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.ordersDetail__item-counter {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.ordersDetail__item-sum {
+  margin-top: auto;
+  -ms-flex-item-align: end;
+  align-self: flex-end;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.ordersDetail__item-delete {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+}
+
+.ordersDetail__removed-item {
+  width: 100%;
+  -webkit-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 5px;
+  font-weight: 300;
+}
+
+.ordersDetail__order-btn {
+  background-color: #f8774a;
+  color: white;
+  padding: 5px 10px;
+  text-align: center;
+  border-radius: 25px;
+  text-transform: uppercase;
+  -webkit-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.ordersDetail__item-options {
+  display: flex;
+  font-size: 0.8em;
+  margin: 5px -3px 0 -3px;
+}
+.ordersDetail__item-option {
+  margin: 0 3px 3px 3px;
+  &--false {
+    text-decoration: line-through;
+    color: red;
+  }
+}
+
+.orderDetailAnim-enter {
+  opacity: 0;
+  transform: translateX(110%);
+}
+.orderDetailAnim-enter-active {
+  opacity: 1;
+  transform: translateX(0%);
+  transition: all 0.3s;
+}
+.orderDetailAnim-exit {
+  opacity: 1;
+  transform: translateX(0%);
+}
+.orderDetailAnim-exit-active {
+  opacity: 0;
+  transform: translateX(110%);
+  transition: all 0.3s;
+}

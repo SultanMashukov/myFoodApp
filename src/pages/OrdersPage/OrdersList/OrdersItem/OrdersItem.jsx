@@ -1,7 +1,7 @@
 import React from 'react';
 import './OrdersItem.scss';
 
-const OrdersItem = ({orderData, toggleDetailOrder}) => {
+const OrdersItem = ({orderData, openOrderInfo}) => {
 
 	let statusComp = null;
 	switch(orderData.status.name){
@@ -20,7 +20,7 @@ const OrdersItem = ({orderData, toggleDetailOrder}) => {
 	}
 
 	return (
-		<div className="orders__item" onClick={e => toggleDetailOrder(orderData.id)}>
+		<div className="orders__item" onClick={e => openOrderInfo(orderData.id)}>
 			{
 				statusComp
 			}

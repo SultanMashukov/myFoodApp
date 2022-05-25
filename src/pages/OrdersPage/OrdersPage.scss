@@ -1,5 +1,7 @@
 /* your css code */
 .orders {
+    position: relative;
+    height: 100%;
 	&__title { 
         padding: 10px;
         text-align: center;

@@ -1,11 +1,17 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import OrdersItem from './OrdersItem/OrdersItem';
+import { setCurrentDetailId, toggleModal } from 'store/slices/sliceOrders';
 import './OrdersList.scss';
 
 const OrdersList = ({toggleDetailOrder}) => {
-	
-	const ordersList = useSelector(state => state.orders);
+	const dispatch = useDispatch();
+	const ordersList = useSelector(state => state.orders.ordersList);
+
+	const openOrderInfo = (orderid) => {
+		dispatch(setCurrentDetailId({currentDetailId:orderid}));
+		dispatch(toggleModal())
+	}
 
 	return (
 		<div className="orders__row">
@@ -19,7 +25,7 @@ const OrdersList = ({toggleDetailOrder}) => {
 					
 					return <OrdersItem 
 					key={namedOrder.id} orderData={namedOrder}
-					toggleDetailOrder={toggleDetailOrder}/>
+					openOrderInfo={openOrderInfo}/>
 				})
 			}
 		</div>
