@@ -4,7 +4,7 @@ import OrdersItem from './OrdersItem/OrdersItem';
 import { setCurrentDetailId, toggleModal } from 'store/slices/sliceOrders';
 import './OrdersList.scss';
 
-const OrdersList = ({toggleDetailOrder}) => {
+const OrdersList = () => {
 	const dispatch = useDispatch();
 	const ordersList = useSelector(state => state.orders.ordersList);
 
