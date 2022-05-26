@@ -24,20 +24,18 @@ const ProductModal = ({toggleProductModal, productData}) => {
 
     const addProductToBasket = () => {
         const dataForBasket = {
-            basketId: Date.now().toString(16),
             productId: productData.id,
             name: productData.name,
             image: productData.images[0],
             count: productCount,
             price: productData.price,
-            priceSum: productCount*productData.price,
             options:productOptions,
             type: productData.food_type.code,
         }
         dispatch(addItemToBasket(dataForBasket));
         toggleProductModal();
     }
-
+    
 	return (
 		<div className='product-modal' onClick={(e) =>{
 			if(e.target === e.currentTarget)

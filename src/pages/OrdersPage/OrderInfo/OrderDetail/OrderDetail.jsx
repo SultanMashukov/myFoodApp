@@ -3,11 +3,14 @@ import './OrderDetail.scss';
 import FoodType from './FoodType/FoodType';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleModal } from 'store/slices/sliceOrders';
+import { repeatBasketByOrder } from 'store/slices/sliceBasket';
+import { useNavigate } from 'react-router-dom';
 
 const OrderDetail = ({orderId}) => {
 	
 	const dispatch = useDispatch();
 	const orderData = useSelector( state => state.orders.ordersList ).find( el => el.id === orderId );
+	const navigate = useNavigate()
 
 	const mainFoodItems =  orderData.positions.filter((item) => ['giros','pizza'].includes(item.type));
 	const drinkItems = orderData.positions.filter((item) => ['drink'].includes(item.type));
@@ -15,11 +18,16 @@ const OrderDetail = ({orderId}) => {
 	const closeOrdersDetail = () => {
 		dispatch(toggleModal())
 	}
+	const repeatOrder = () => {
+        dispatch(repeatBasketByOrder({orderPositions: orderData.positions}));
+		navigate('/basket',{replace:true})
+    }
+
 
 	return (
 		<div className="ordersDetail">
 			<div className="ordersDetail__controls">
-				<div className="ordersDetail__repeatBtn">
+				<div className="ordersDetail__repeatBtn" onClick={repeatOrder}>
 					<i class="fal fa-redo"></i> Повторить 
 				</div>
 				<div className="ordersDetail__closeBtn" onClick={closeOrdersDetail}>

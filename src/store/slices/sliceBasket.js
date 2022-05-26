@@ -25,17 +25,34 @@ const basketSlice = createSlice({
     reducers: {
         addItemToBasket(state, action){
             state.basketItems.push({
-                basketId: action.payload.basketId,
+                basketId: Date.now().toString(16) + action.payload.productId,
                 productId: action.payload.productId,
                 name: action.payload.name,
                 image: action.payload.image,
                 count: action.payload.count,
                 price: action.payload.price,
                 priceSum: action.payload.summ,
-                options:action.payload.options,
+                options:action.payload.count * action.payload.price,
                 removeMark: false,
                 type: action.payload.type,
             })
+        },
+        repeatBasketByOrder(state, action){
+            const basketItems = action.payload.orderPositions.map((orderElement)=>{
+                return {
+                    basketId: Date.now().toString(16) + orderElement.productId,
+                    productId: orderElement.productId,
+                    name: orderElement.name,
+                    image: orderElement.image,
+                    count: orderElement.count,
+                    price: orderElement.price,
+                    priceSum: orderElement.count * orderElement.price,
+                    options: orderElement.options,
+                    removeMark: false,
+                    type: orderElement.type,
+                }
+            })
+            state.basketItems = basketItems;
         },
         changeItemInBasket(state, action){
             const itemId = state.basketItems.findIndex((item) => item.basketId === action.payload.basketItemId);
@@ -67,4 +84,4 @@ export default basketSlice.reducer;
 
 export const {
     addItemToBasket, removeFromBasket, restoreItemToBasket, 
-    toggleDelivery, changeItemInBasket, toggleModal, setModalInfo} = basketSlice.actions;
+    toggleDelivery, changeItemInBasket, toggleModal, setModalInfo, repeatBasketByOrder} = basketSlice.actions;

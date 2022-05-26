@@ -3,8 +3,6 @@ import { createSlice } from "@reduxjs/toolkit";
 const ordersSlice = createSlice({
     name: 'orders',
     initialState:{
-        modalIsActive: false,
-        currentDetailId:'',
         currentDetailInfo:{
             id:'',
             showComponent:false,
@@ -33,9 +31,18 @@ const ordersSlice = createSlice({
                         price: 180,
                         image: 'https://www.philips.ru/c-dam/b2c/ru_RU/marketing-catalog/ho/recipes/breakfast/giros/giros1.jpg',
                         options: [
-                            {name:'перчик', active: true}
+                            {name:'перчик', active: false}
                         ],
                         type:"giros"
+                    },
+                    {
+                        productId: 3,
+                        name: 'Кола',
+                        count:2,
+                        price: 90,
+                        image: 'https://www.philips.ru/c-dam/b2c/ru_RU/marketing-catalog/ho/recipes/breakfast/giros/giros1.jpg',
+                        options: [],
+                        type:"drink"
                     }
                 ]
             },
@@ -67,8 +74,19 @@ const ordersSlice = createSlice({
         setCurrentDetailId(state, action){
             state.currentDetailInfo.id = action.payload.currentDetailId;
         },
-        toggleModal(state){
-            state.currentDetailInfo.showComponent = !state.currentDetailInfo.showComponent;
+        toggleModal(state, action){
+            switch(action.payload){
+                case 'on':
+                    state.currentDetailInfo.showComponent = true;
+                    break;
+                case 'off':
+                    state.currentDetailInfo.showComponent = false;
+                    break;
+                default:
+                    state.currentDetailInfo.showComponent = !state.currentDetailInfo.showComponent;
+                    break;
+            } 
+            
         },
 
     }
