@@ -5,7 +5,7 @@ import './BasketItemChanger.scss';
 import ProductSlider from './ProductSlider/ProductSlider';
 import { changeItemInBasket } from 'store/slices/sliceBasket';
 
-const BasketItemChanger = ({toggleModal, productId, basketItemId}) => {
+const BasketItemChanger = ({closeChanger, productId, basketItemId}) => {
     
     const productData = useSelector(state => state.catalog.catalogItems.find(el => el.id === productId))
     const currentBasketItemData = useSelector(state => state.basket.basketItems.find(el => el.basketId === basketItemId))
@@ -33,16 +33,16 @@ const BasketItemChanger = ({toggleModal, productId, basketItemId}) => {
             options:productOptions,
         }
         dispatch(changeItemInBasket(dataForBasket));
-        toggleModal();
+        closeChanger();
     }
 	return (
 		<div className='product-modal' onClick={(e) =>{
 			if(e.target === e.currentTarget)
-            toggleModal(false);
+            closeChanger();
 		}}>
 			<div className='product-modal__content' >
 				
-			<div className="product-modal__close" onClick={(e) => toggleModal()}>
+			<div className="product-modal__close" onClick={(e) => closeChanger()}>
                 <i className="fal fa-times"></i>
             </div>
             <ProductSlider imageURLs={productData.images }/>

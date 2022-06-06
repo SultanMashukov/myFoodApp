@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
-import { useEffect } from 'react';
+import React from 'react';
 import './BasketItem.scss';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
 
-const BasketItem = ({itemData, removeItem, restoreItem, toggleItemChangerModal}) => {
-	useEffect(()=>{},[removeItem,restoreItem,itemData]);
+const BasketItem = ({itemData, removeItem, restoreItem, openChanger}) => {
+	
 	const showItemChanger = (e) => {
-		toggleItemChangerModal(itemData.productId, itemData.basketId)
+		openChanger(itemData.productId, itemData.basketId)
 	}
 	return(
 		<SwitchTransition mode='out-in'>

@@ -1,8 +1,9 @@
 import React from 'react';
 import BasketItem from './BasketItem/BasketItem';
-import './FoodType.scss';
+import './BasketListSection.scss';
 
-const FoodType = ({foodType, items, removeItem, restoreItem, toggleItemChangerModal}) => {
+
+const BasketListSection = ({foodType, items, removeItem, restoreItem, openChanger}) => {
 	
 	return (
 		<div className="basket__type">
@@ -21,7 +22,7 @@ const FoodType = ({foodType, items, removeItem, restoreItem, toggleItemChangerMo
 							itemData={item} 
 							removeItem={removeItem} 
 							restoreItem={restoreItem}
-							toggleItemChangerModal={toggleItemChangerModal}
+							openChanger={openChanger}
 							/>)}
 						</div>
 				}
@@ -30,4 +31,4 @@ const FoodType = ({foodType, items, removeItem, restoreItem, toggleItemChangerMo
 	) 
 };
 
-export default FoodType;
+export default BasketListSection;

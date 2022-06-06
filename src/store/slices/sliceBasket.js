@@ -16,8 +16,8 @@ const basketSlice = createSlice({
         basketItems: [],
         needDelivery: true,
         deliveryAddress: '',
-        modalIsActive: false,
         modalInfo: {
+            modalIsActive: false,
             basketItemId: '',
             productId: ''
         }
@@ -32,8 +32,8 @@ const basketSlice = createSlice({
                 image: action.payload.image,
                 count: action.payload.count,
                 price: action.payload.price,
-                priceSum: action.payload.summ,
-                options:action.payload.count * action.payload.price,
+                priceSum: action.payload.count * action.payload.price,
+                options:action.payload.options,
                 removeMark: false,
                 type: action.payload.type,
             })
@@ -75,8 +75,19 @@ const basketSlice = createSlice({
             state.modalInfo.basketItemId = action.payload.basketItemId;
             state.modalInfo.productId = action.payload.productId;
         },
-        toggleModal(state){
-            state.modalIsActive = !state.modalIsActive;
+        toggleModal(state, action){
+            switch(action.payload){
+                case 'on':
+                    state.modalInfo.modalIsActive = true;
+                    break;
+                case 'off':
+                    state.modalInfo.modalIsActive = false;
+                    break;
+                default:
+                    state.modalInfo.modalIsActive = !state.modalInfo.modalIsActive;
+                    break;
+            } 
+            
         },
     }
 })
