@@ -15,6 +15,7 @@ const basketSlice = createSlice({
         },
         basketItems: [],
         needDelivery: true,
+        deliveryAddress: '',
         modalIsActive: false,
         modalInfo: {
             basketItemId: '',

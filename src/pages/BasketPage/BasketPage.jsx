@@ -4,8 +4,9 @@ import { useSelector } from 'react-redux';
 import { CSSTransition} from 'react-transition-group';
 import './BasketPage.scss';
 import FoodType from './FoodType/FoodType';
-import { removeFromBasket, restoreItemToBasket, toggleDelivery, toggleModal, setModalInfo } from 'store/slices/sliceBasket';
+import { removeFromBasket, restoreItemToBasket, toggleModal, setModalInfo } from 'store/slices/sliceBasket';
 import BasketItemChanger from './BasketItemChanger/BasketItemChanger';
+import BasketDelivery from './BasketDelivery/BasketDelivery';
 
 
 const BasketPage = (props) => {
@@ -33,10 +34,6 @@ const BasketPage = (props) => {
 		},[]
 	) 
 
-	const toggleDeliveryStatus = () => {
-		dispatch(toggleDelivery())
-	}
-
 	const toggleItemChangerModal = ( productId, basketItemId ) => {
 		if(productId && basketItemId){
 			dispatch(setModalInfo({productId,basketItemId}))
@@ -50,24 +47,7 @@ const BasketPage = (props) => {
 
 	return (
 		<div className="basket page-component">
-			{
-				basketData.needDelivery 
-				?
-					<div className="basket__place">
-						<div className="basket__place-item" onClick={toggleDeliveryStatus}>В ресторане</div>
-						<div className="basket__place-item basket__place-item--active" onClick={toggleDeliveryStatus}>Доставка</div>
-					</div>
-				:
-					<div className="basket__place">
-						<div className="basket__place-item basket__place-item--active" onClick={toggleDeliveryStatus}>В ресторане</div>
-						<div className="basket__place-item" onClick={toggleDeliveryStatus}>Доставка</div>
-					</div>
-
-			}
-			
-			<div className="basket__address">
-				КОМПОНЕНТ ВЫБОРА АДРЕСА
-			</div>
+			<BasketDelivery/>
 
 			<FoodType 
 				foodType={basketData.basketSections.mainFood} 

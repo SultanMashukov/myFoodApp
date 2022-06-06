@@ -3,6 +3,14 @@
     height: 100%;
     display: flex;
     flex-direction: column;
+    position: fixed;
+    top: 0;
+    z-index: 999;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    background-color: navajowhite;
+
 
     &__close{
         position: absolute;
@@ -13,6 +21,9 @@
     }
     &__mapContainer{
         flex: 1 0 400px;
+        background-image: url(https://fvmstatic.s3.amazonaws.com/maps/m/ICON-MM-01-0002.png);
+        background-size: 10%;
+        background-repeat: repeat;
     }
     &__controls {
         padding: 10px;

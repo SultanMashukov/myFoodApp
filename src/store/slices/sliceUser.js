@@ -6,8 +6,8 @@ const userSlice = createSlice({
         id:1,
         name: 'Vasya',
         address:{
-            string: 'ул. Кукукев ',
-            coord: [12,12]
+            string: 'Россия г.Ростов-на-Дону ул. Строителей козиматов качественных, 28 кв.1',
+            coord: [45.042710, 41.952956]
         }
     },
     reducers: {
