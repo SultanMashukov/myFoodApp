@@ -8,10 +8,8 @@ const AddressPicker = ({initCoord, initAddrString, closeFunc, saveNewLocation}) 
 	//Код в этом useEffect отвечает за отрисовку карты, и привязу к кнопок
 	useEffect(()=>{
 		if(window.ymaps){
-			
 			const ymaps = window.ymaps;
 			ymaps.ready(() => {
-				console.log(212121);
 				let myMap = new ymaps.Map("addresspickermap", {
 					center: [55.755819, 37.617644],
 					zoom: 16,
