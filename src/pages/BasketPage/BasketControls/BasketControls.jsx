@@ -1,8 +1,15 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { addNewOrder } from 'store/slices/sliceOrders';
 
 const BasketControls = (props) => {
+	const dispatch = useDispatch()
 	const basketItems = useSelector(state => state.basket.basketItems)
+
+	const addToOrders = () => {
+		dispatch(addNewOrder())
+	}
+
 	return (
 		<>
 			{

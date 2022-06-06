@@ -3,16 +3,6 @@ import { createSlice } from "@reduxjs/toolkit";
 const basketSlice = createSlice({
     name: 'basket',
     initialState:{
-        basketSections:{
-            mainFood:{
-                name: 'Основные блюда',
-                placeholder: 'Вы ничего не выбрали из блюд. Нажмите, чтобы добавить.',
-            },
-            drinks: {
-                name: 'Напитки',
-                placeholder: 'Вы не выбрали ни один из напитков. Нажмите, чтобы добавить напиток.',
-            }
-        },
         basketItems: [],
         needDelivery: true,
         deliveryAddress: '',
