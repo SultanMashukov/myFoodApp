@@ -36,10 +36,10 @@ const OrderDetail = ({orderId}) => {
 			</div>
 			<div className="ordersDetail__metaInfo">
 				<div className="ordersDetail__metaInfoItem">
-					<i class="far fa-map"></i> ул.Кирова 23, кв 2
+					<i class="far fa-map"></i> {orderData.address.string}
 				</div>
 				<div className="ordersDetail__metaInfoItem">
-					<i class="fal fa-calendar-alt"></i> 20.12.2021 13:40
+					<i class="fal fa-calendar-alt"></i> {new Date(orderData.date).toLocaleString()} 
 				</div>
 				<div className="ordersDetail__metaInfoItem">
 					<i class="fal fa-ruble-sign"></i> {orderData.totalPrice}

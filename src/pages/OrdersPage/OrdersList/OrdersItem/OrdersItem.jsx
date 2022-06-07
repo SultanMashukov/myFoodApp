@@ -29,7 +29,7 @@ const OrdersItem = ({orderData, openOrderInfo}) => {
 			</div>
 			<div className="orders__item-info">
 					<div className="orders__item-price">Сумма заказа: {orderData.price} <i className="fal fa-ruble-sign"></i></div>
-					<div className="orders__item-date">Дата: {orderData.date}</div>
+					<div className="orders__item-date">Дата: {new Date(orderData.date).toLocaleDateString()}</div>
 			</div>
 		</div>
 	) 
