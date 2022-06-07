@@ -1,12 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './styles.scss';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 
 const CatalogMenu = (props) => {
+	const urlParams = useParams()
+	
+	useEffect(() => {
+		if(urlParams.category){
+			const menuRowActiveItem = document.querySelector('.food-menu__link.active').parentElement;
+			menuRowActiveItem.scrollIntoView({inline: 'center', behavior: 'smooth'})
+		}
+	},[urlParams])
 	
 	return (
 		<div className="food-menu">
 			<div className="food-menu__row">
+				<div className="food-menu__item">
+					<NavLink to='/catalog/' className='food-menu__link'>
+						<div className="food-menu__item-name">ВСЕ</div>
+					</NavLink>
+				</div>
 				<div className="food-menu__item">
 					<NavLink to='/catalog/pizza' className='food-menu__link'>
 						<i className="fal fa-pizza-slice"></i>
