@@ -1,8 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import OrdersItem from './OrdersItem/OrdersItem';
+import OrdersItem from './OrdersItem';
 import { setCurrentDetailId, toggleModal } from 'store/slices/sliceOrders';
-import './OrdersList.scss';
 
 const OrdersList = () => {
 	const dispatch = useDispatch();

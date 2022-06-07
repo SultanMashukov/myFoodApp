@@ -7,7 +7,7 @@ import PersonalPage from 'pages/PersonalPage/PersonalPage';
 import ModalWindow from 'components/ModalWindow/ModalWindow';
 import LoaderSpinner from 'components/LoaderSpinner/LoaderSpinner'
 import { useState } from 'react';
-import OrdersPage from 'pages/OrdersPage/OrdersPage';
+import OrdersPage from 'pages/OrdersPage';
 
 function App() {
   //const [modalActive,  setModalActive] = useState(true)

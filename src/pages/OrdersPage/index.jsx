@@ -1,8 +1,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import './OrdersPage.scss';
-import OrdersList from './OrdersList/OrdersList';
-import OrderInfo from './OrderInfo/OrderInfo';
+import './styles.scss';
+import OrdersList from './OrdersList';
+import OrderInfo from './OrderInfo';
 
 const Orders = (props) => {
 	

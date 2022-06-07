@@ -2,8 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { CSSTransition} from 'react-transition-group';
 import { toggleModal } from 'store/slices/sliceOrders';
-import OrderDetail from './OrderDetail/OrderDetail';
-import './OrderInfo.scss';
+import OrderDetail from './OrderDetail';
 
 const OrderInfo = (props) => {
 	const dispatch = useDispatch();

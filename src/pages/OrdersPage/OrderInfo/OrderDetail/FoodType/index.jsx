@@ -1,6 +1,5 @@
 import React from 'react';
-import FoodTypeItem from './FoodTypeItem/FoodTypeItem';
-import './FoodType.scss';
+import FoodTypeItem from './FoodTypeItem';
 
 const FoodType = ({foodType, items, removeItem, restoreItem, toggleItemChangerModal}) => {
 	

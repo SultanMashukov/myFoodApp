@@ -1,5 +1,4 @@
 import React from 'react';
-import './FoodTypeItem.scss';
 
 const FoodTypeItem = ({itemData}) => {
 	

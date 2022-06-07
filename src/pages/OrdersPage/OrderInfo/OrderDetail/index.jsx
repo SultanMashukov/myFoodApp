@@ -1,6 +1,6 @@
 import React from 'react';
-import './OrderDetail.scss';
-import FoodType from './FoodType/FoodType';
+import './styles.scss';
+import FoodType from './FoodType';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleModal } from 'store/slices/sliceOrders';
 import { repeatBasketByOrder } from 'store/slices/sliceBasket';
