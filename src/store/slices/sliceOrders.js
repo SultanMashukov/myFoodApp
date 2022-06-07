@@ -23,6 +23,7 @@ const ordersSlice = createSlice({
                 totalPrice: 890,
                 status: {id:1, name: 'complete'},
                 date: '01.02.2022',
+                address: {string: 'Москва уу.Ленина 20'},
                 positions:[
                     {
                         productId: 1,
@@ -51,6 +52,7 @@ const ordersSlice = createSlice({
                 totalPrice: 890,
                 status: {id:1, name: 'inProcess'},
                 date: '01.02.2022',
+                address: {string: 'Москва уу.Ленина 20'},
                 positions:[
                     {
                         productId: 1,
