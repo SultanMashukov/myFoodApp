@@ -69,11 +69,20 @@ const ordersSlice = createSlice({
     },
     reducers: {
         addNewOrder(state, action){
-            state.orders.push()
+            state.ordersList.push({
+                id: Date.now().toString(16),
+                totalPrice: 'total, price',
+                status: {id:1, name: 'inProcess'},
+                date: Date.now(),
+                address: action.payload.address || {string: 'В ресторане'},
+                positions: action.payload.positions
+            })
         },
+
         setCurrentDetailId(state, action){
             state.currentDetailInfo.id = action.payload.currentDetailId;
         },
+        
         toggleModal(state, action){
             switch(action.payload){
                 case 'on':

@@ -4,7 +4,7 @@ const basketSlice = createSlice({
     name: 'basket',
     initialState:{
         basketItems: [],
-        needDelivery: true,
+        needDelivery: false,
         deliveryAddress: '',
         modalInfo: {
             modalIsActive: false,
@@ -79,6 +79,9 @@ const basketSlice = createSlice({
             } 
             
         },
+        resetBasket(state){
+            state.basketItems = []
+        }
     }
 })
 
@@ -86,4 +89,5 @@ export default basketSlice.reducer;
 
 export const {
     addItemToBasket, removeFromBasket, restoreItemToBasket, 
-    toggleDelivery, changeItemInBasket, toggleModal, setModalInfo, repeatBasketByOrder} = basketSlice.actions;
+    toggleDelivery, changeItemInBasket, toggleModal, 
+    setModalInfo, repeatBasketByOrder, resetBasket} = basketSlice.actions;

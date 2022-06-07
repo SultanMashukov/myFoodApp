@@ -35,7 +35,7 @@ const BasketList = (props) => {
 		<>
 			<BasketListSection 
 				items={mainFoodItems} 
-				foodType={{name:'Главыные блюда', placeholder: 'Ничего :( Нажмите, чтобы выбрать еду '}}
+				foodType={{name:'Покушать', placeholder: 'Ничего :( Нажмите, чтобы выбрать еду '}}
 				removeItem={removeItem}
 				restoreItem={restoreItem}
 				openChanger={openChanger}/>

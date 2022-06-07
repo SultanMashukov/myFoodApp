@@ -1,13 +1,35 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addNewOrder } from 'store/slices/sliceOrders';
+import { resetBasket } from 'store/slices/sliceBasket';
 
 const BasketControls = (props) => {
 	const dispatch = useDispatch()
-	const basketItems = useSelector(state => state.basket.basketItems)
+	const basketItems = useSelector(state => state.basket.basketItems);
+	const isNeedDelivery = useSelector(state => state.basket.needDelivery);
+	const userAddress = useSelector(state => state.user.address);
 
 	const addToOrders = () => {
-		dispatch(addNewOrder())
+		const orderPositions = [];
+
+		basketItems.forEach(element => {
+			orderPositions.push({
+				productId: element.productId,
+				name: element.name,
+				count: element.count,
+				price: element.price,
+				image: element.image,
+				options: element.options,
+				type: element.type
+			})
+		});
+
+		dispatch(addNewOrder({
+			address: isNeedDelivery ? userAddress : '',
+			positions:orderPositions
+		}));
+
+		dispatch(resetBasket())
 	}
 
 	return (
@@ -25,7 +47,7 @@ const BasketControls = (props) => {
 						</div>
 						
 					</div>
-					<button className="basket__order-btn">
+					<button className="basket__order-btn" onClick={addToOrders}>
 						Заказать
 					</button>
 				</div>
