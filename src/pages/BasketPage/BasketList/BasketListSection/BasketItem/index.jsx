@@ -1,5 +1,4 @@
 import React from 'react';
-import './BasketItem.scss';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
 
 const BasketItem = ({itemData, removeItem, restoreItem, openChanger}) => {

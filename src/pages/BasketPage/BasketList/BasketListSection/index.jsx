@@ -1,8 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import BasketItem from './BasketItem/BasketItem';
-import './BasketListSection.scss';
-
+import BasketItem from './BasketItem';
 
 const BasketListSection = ({foodType, catalogLink,  items, removeItem, restoreItem, openChanger}) => {
 	

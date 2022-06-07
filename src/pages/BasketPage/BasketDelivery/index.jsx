@@ -1,8 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import './BasketDelivery.scss';
 import { toggleDelivery } from "store/slices/sliceBasket";
-import BasketAddressPicker from './BasketAddressPicker/BasketAddressPicker';
+import BasketAddressPicker from './BasketAddressPicker';
 
 const BasketDelivery = (props) => {
 	const dispatch = useDispatch();

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Counter from 'components/Counter/Counter';
-import './BasketItemChanger.scss';
-import ProductSlider from './ProductSlider/ProductSlider';
+import './styles.scss';
+import ProductSlider from './ProductSlider';
 import { changeItemInBasket } from 'store/slices/sliceBasket';
 
 const BasketItemChanger = ({closeChanger, productId, basketItemId}) => {

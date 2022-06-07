@@ -2,7 +2,7 @@ import 'App.scss';
 import MainMenu from 'components/MainMenu/MainMenu';
 import { Route, Routes } from 'react-router-dom';
 import CatalogPage from 'pages/CatalogPage/CatalogPage';
-import BasketPage from 'pages/BasketPage/BasketPage';
+import BasketPage from 'pages/BasketPage';
 import PersonalPage from 'pages/PersonalPage/PersonalPage';
 import ModalWindow from 'components/ModalWindow/ModalWindow';
 import LoaderSpinner from 'components/LoaderSpinner/LoaderSpinner'

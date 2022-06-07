@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import './BasketAddressPicker.scss';
 import AddressPicker from 'components/AddressPicker/AddressPicker';
 import { useDispatch, useSelector } from 'react-redux';
 import { CSSTransition } from 'react-transition-group';

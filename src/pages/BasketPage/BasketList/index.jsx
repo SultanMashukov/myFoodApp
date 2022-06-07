@@ -1,7 +1,6 @@
 import React, {useCallback} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import './BasketList.scss';
-import BasketListSection from './BasketListSection/BasketListSection';
+import BasketListSection from './BasketListSection';
 import { removeFromBasket, restoreItemToBasket, toggleModal, setModalInfo } from 'store/slices/sliceBasket';
 
 const BasketList = (props) => {
