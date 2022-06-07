@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
-import './MainMenu.scss';
+import { NavLink } from 'react-router-dom';
+import './styles.scss';
 import { useSelector } from 'react-redux';
 
 const MainMenu = (props) => {

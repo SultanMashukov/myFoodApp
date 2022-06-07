@@ -1,5 +1,5 @@
 import React from 'react';
-import './LoaderSpinner.scss';
+import './styles.scss';
 import pizzaImg from 'assets/images/loader_pizza_static.png'
 
 const LoaderSpinner = (props) => {

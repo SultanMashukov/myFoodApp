@@ -1,11 +1,11 @@
 import 'App.scss';
-import MainMenu from 'components/MainMenu/MainMenu';
+import MainMenu from 'components/MainMenu';
 import { Route, Routes } from 'react-router-dom';
 import CatalogPage from 'pages/CatalogPage';
 import BasketPage from 'pages/BasketPage';
 import PersonalPage from 'pages/PersonalPage';
-import ModalWindow from 'components/ModalWindow/ModalWindow';
-import LoaderSpinner from 'components/LoaderSpinner/LoaderSpinner'
+import ModalWindow from 'components/ModalWindow';
+import LoaderSpinner from 'components/LoaderSpinner'
 import { useState } from 'react';
 import OrdersPage from 'pages/OrdersPage';
 

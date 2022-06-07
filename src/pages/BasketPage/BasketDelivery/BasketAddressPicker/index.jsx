@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import AddressPicker from 'components/AddressPicker/AddressPicker';
+import AddressPicker from 'components/AddressPicker';
 import { useDispatch, useSelector } from 'react-redux';
 import { CSSTransition } from 'react-transition-group';
 import { setAddress } from 'store/slices/sliceUser';

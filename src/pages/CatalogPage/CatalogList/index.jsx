@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector} from 'react-redux';
 import './styles.scss';
-import LoaderSpinner from 'components/LoaderSpinner/LoaderSpinner';
+import LoaderSpinner from 'components/LoaderSpinner';
 
 
 const CatalogList = ({toggleProductModal}) => {

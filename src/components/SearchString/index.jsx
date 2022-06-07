@@ -1,5 +1,5 @@
 import React from 'react';
-import './SearchString.scss';
+import './styles.scss';
 
 const SearchString = ({changeSearchString, initSearchString}) => {
 	return (

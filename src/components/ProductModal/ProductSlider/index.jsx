@@ -3,8 +3,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/navigation';
-
-import './ProductSlider.scss';
+import './styles.scss';
 
 const ProductSlider = ({imageURLs}) => {
     return (

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import './ProductModal.scss';
-import Counter from 'components/Counter/Counter';
-import ProductSlider from './ProductSlider/ProductSlider';
+import './styles.scss';
+import Counter from 'components/Counter';
+import ProductSlider from './ProductSlider';
 import { addItemToBasket } from 'store/slices/sliceBasket';
 
 const ProductModal = ({toggleProductModal, productData}) => {

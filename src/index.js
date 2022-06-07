@@ -2,7 +2,7 @@ import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider,  } from 'react-redux';
-import LoaderSpinner from 'components/LoaderSpinner/LoaderSpinner';
+import LoaderSpinner from 'components/LoaderSpinner';
 import store from 'store/rootReduser';
 import 'assets/css/all.min.css'
 import 'assets/css/index.css'

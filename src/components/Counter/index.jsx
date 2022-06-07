@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
-import './Counter.scss';
+import React from 'react';
+import './styles.scss';
 
 const Counter = ({initCount, changeCount}) => {
-
-	
 
 	const decrement = () => {
 		changeCount( initCount - 1)

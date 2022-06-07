@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import './AddressPicker.scss';
+import './styles.scss';
 
 const AddressPicker = ({initCoord, initAddrString, closeFunc, saveNewLocation}) => {
 	const startCoord = initCoord;
