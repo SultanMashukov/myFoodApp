@@ -36,12 +36,14 @@ const BasketList = (props) => {
 			<BasketListSection 
 				items={mainFoodItems} 
 				foodType={{name:'Покушать', placeholder: 'Ничего :( Нажмите, чтобы выбрать еду '}}
+				catalogLink='/catalog'
 				removeItem={removeItem}
 				restoreItem={restoreItem}
 				openChanger={openChanger}/>
 			<BasketListSection 
 				items={drinkItems} 
 				foodType={{name:'Напитки', placeholder: 'А попить? Нажмите, чтобы подобрать напиток'}}
+				catalogLink='/catalog/drink/'
 				removeItem={removeItem}
 				restoreItem={restoreItem}
 				openChanger={openChanger}/>

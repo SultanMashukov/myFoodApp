@@ -1,9 +1,10 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import BasketItem from './BasketItem/BasketItem';
 import './BasketListSection.scss';
 
 
-const BasketListSection = ({foodType, items, removeItem, restoreItem, openChanger}) => {
+const BasketListSection = ({foodType, catalogLink,  items, removeItem, restoreItem, openChanger}) => {
 	
 	return (
 		<div className="basket__type">
@@ -13,9 +14,9 @@ const BasketListSection = ({foodType, items, removeItem, restoreItem, openChange
 				{
 					!items.length 
 						? 
-						<div className="basket__type-placeholder">
+						<NavLink className="basket__type-placeholder" to={catalogLink}>
 							{foodType.placeholder}
-						</div>
+						</NavLink>
 						:
 						<div className="basket__row">
 							{items.map((item) => <BasketItem key={item.basketId} 
