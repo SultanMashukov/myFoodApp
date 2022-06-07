@@ -28,7 +28,7 @@ const OrderDetail = ({orderId}) => {
 		<div className="ordersDetail">
 			<div className="ordersDetail__controls">
 				<div className="ordersDetail__repeatBtn" onClick={repeatOrder}>
-					<i class="fal fa-redo"></i> Повторить 
+					<i className="fal fa-redo"></i> Повторить 
 				</div>
 				<div className="ordersDetail__closeBtn" onClick={closeOrdersDetail}>
 					<i className='fal fa-times'></i> 
@@ -36,13 +36,13 @@ const OrderDetail = ({orderId}) => {
 			</div>
 			<div className="ordersDetail__metaInfo">
 				<div className="ordersDetail__metaInfoItem">
-					<i class="far fa-map"></i> {orderData.address.string}
+					<i className="far fa-map"></i> {orderData.address.string}
 				</div>
 				<div className="ordersDetail__metaInfoItem">
-					<i class="fal fa-calendar-alt"></i> {new Date(orderData.date).toLocaleString()} 
+					<i className="fal fa-calendar-alt"></i> {new Date(orderData.date).toLocaleString()} 
 				</div>
 				<div className="ordersDetail__metaInfoItem">
-					<i class="fal fa-ruble-sign"></i> {orderData.totalPrice}
+					<i className="fal fa-ruble-sign"></i> {orderData.totalPrice}
 				</div>
 			</div>
 			
