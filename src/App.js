@@ -3,7 +3,7 @@ import MainMenu from 'components/MainMenu/MainMenu';
 import { Route, Routes } from 'react-router-dom';
 import CatalogPage from 'pages/CatalogPage';
 import BasketPage from 'pages/BasketPage';
-import PersonalPage from 'pages/PersonalPage/PersonalPage';
+import PersonalPage from 'pages/PersonalPage';
 import ModalWindow from 'components/ModalWindow/ModalWindow';
 import LoaderSpinner from 'components/LoaderSpinner/LoaderSpinner'
 import { useState } from 'react';

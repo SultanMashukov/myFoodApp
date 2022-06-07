@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import './PersonalPage.scss';
+import './styles.scss';
 
 const PersonalPage = (props) => {
 	return (
