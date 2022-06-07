@@ -1,5 +1,5 @@
 import React from 'react';
-import './CatalogMenu.scss';
+import './styles.scss';
 import { NavLink } from 'react-router-dom';
 
 const CatalogMenu = (props) => {

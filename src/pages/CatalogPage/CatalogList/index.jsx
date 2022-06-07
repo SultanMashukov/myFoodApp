@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector} from 'react-redux';
-import './CatalogList.scss';
+import './styles.scss';
 import LoaderSpinner from 'components/LoaderSpinner/LoaderSpinner';
 
 

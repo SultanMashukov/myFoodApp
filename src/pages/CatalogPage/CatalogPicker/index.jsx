@@ -1,5 +1,4 @@
 import React from 'react';
-import './CatalogPicker.scss';
 import { CSSTransition } from 'react-transition-group';
 import ProductModal from 'components/ProductModal/ProductModal';
 import { useSelector } from 'react-redux';

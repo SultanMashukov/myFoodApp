@@ -1,6 +1,5 @@
 import SearchString from 'components/SearchString/SearchString';
 import React from 'react';
-import './CatalogSearchString.scss';
 import { useSelector, useDispatch } from 'react-redux';
 import { setNameFilter } from 'store/slices/sliceCatalog';
 
