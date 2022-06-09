@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useSelector} from 'react-redux';
 import './styles.scss';
 import LoaderSpinner from 'components/LoaderSpinner';
+import CatalogSearchString from '../CatalogSearchString';
 
 
 const CatalogList = ({toggleProductModal}) => {
@@ -26,6 +27,7 @@ const CatalogList = ({toggleProductModal}) => {
 	if(listFetchingInfo.status === 'loaded')
 		return (
 			<div className="food-list">
+				<CatalogSearchString/>
 				<div className="food-list__row">
 					{
 						catalogList.length 

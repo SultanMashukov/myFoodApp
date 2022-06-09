@@ -5,7 +5,6 @@ import CatalogList from './CatalogList';
 import { useDispatch } from 'react-redux';
 import { toggleModal,setProductModalId, fetchCatalogItems } from 'store/slices/sliceCatalog';
 import CatalogPicker from './CatalogPicker';
-import CatalogSearchString from './CatalogSearchString';
 
 const CatalogPage = (props) => {
 	const dispatch = useDispatch();
@@ -28,7 +27,6 @@ const CatalogPage = (props) => {
 	return (
 		<div className="page-food">
 			<CatalogMenu/>
-			<CatalogSearchString/>
 			<CatalogList toggleProductModal={toggleProductModal}/>
 			<CatalogPicker toggleProductModal={toggleProductModal}/>
 		</div>
