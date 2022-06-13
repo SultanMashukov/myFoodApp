@@ -8,6 +8,8 @@ import ModalWindow from 'components/ModalWindow';
 import LoaderSpinner from 'components/LoaderSpinner'
 import { useState } from 'react';
 import OrdersPage from 'pages/OrdersPage';
+import LoginPage from 'pages/LoginPage';
+import RegistrationPage from 'pages/RegistrationPage';
 
 function App() {
   //const [modalActive,  setModalActive] = useState(true)
@@ -23,6 +25,8 @@ function App() {
                 <Route path='/personal' element={<PersonalPage/>}/>
                 <Route path='/personal/orders' element={<OrdersPage/>}/>
                 <Route path='/basket' element={<BasketPage/>}/>
+                <Route path='/login' element={<LoginPage/>}/>
+                <Route path='/registration' element={<RegistrationPage/>}/>
             </Routes>
         </div>
         <div className="command-frame">

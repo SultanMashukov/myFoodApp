@@ -5,7 +5,7 @@ import { Provider,  } from 'react-redux';
 import LoaderSpinner from 'components/LoaderSpinner';
 import store from 'store/rootReduser';
 import 'assets/css/all.min.css'
-import 'assets/css/index.css'
+//import 'assets/css/index.css'
 
 const App = React.lazy(() => import('App'));
 
