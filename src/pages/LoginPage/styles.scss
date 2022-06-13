@@ -1,0 +1,13 @@
+.loginPage {
+    background-color: white;
+    height: 100%;
+	&__inner { }
+	&__title { }
+	&__registration {
+        padding: 10px;
+    }
+	&__registrationLink { 
+        color: lightblue;
+        text-decoration: underline;
+    }
+}
