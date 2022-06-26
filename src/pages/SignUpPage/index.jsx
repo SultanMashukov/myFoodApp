@@ -18,11 +18,18 @@ const SignUpPage = (props) => {
 	useEffect(() => {
 		if (isAuth) {
 			dispatch(clearState());
+			navigate('/');
 		}
 		if (isError) {
 			dispatch(clearState());
 		}
 	}, [isAuth, isError]);
+
+	useEffect(() => {
+		return () => {
+			dispatch(clearState());
+		};
+	}, []);
 
 	return (
 		<div className="signInPage">
