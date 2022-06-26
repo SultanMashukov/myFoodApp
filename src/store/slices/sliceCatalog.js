@@ -6,10 +6,12 @@ export const fetchCatalogItems = createAsyncThunk(
     async function(_, {rejectWithValue}) {
         try{
             const response = await fetch('http://localhost:5000/api/catalog/get_all')
+            
             if(!response.ok){
                 throw new Error('ServerError!')
             }
             const data = await response.json();
+            
             return data;
         }catch(e){
             return rejectWithValue(e.message)

@@ -1,16 +1,35 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './styles.scss';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form";
+import { useSelector, useDispatch } from 'react-redux';
+import { signInUser, clearState } from 'store/slices/sliceUser';
 
 const LoginPage = (props) => {
-
 	const { register, handleSubmit ,   formState:{errors, isValid} } = useForm({mode: 'onBlur'});
-
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
+	const { isSuccess, isError, errorMessage } = useSelector(state => state.user);
 
 	const onSubmit = (data) => {
-		console.log(data);
-	}
+		dispatch(signInUser(data));
+	};
+
+	useEffect(() => {
+		return () => {
+			dispatch(clearState());
+		};
+	}, []);
+
+	useEffect(() => {
+		if (isSuccess) {
+			dispatch(clearState());
+			navigate(-1, {replace: true});
+		}
+		if (isError) {
+			dispatch(clearState());
+		}
+	}, [isSuccess, isError]);
 
 	return (
 		<div className="loginPage">

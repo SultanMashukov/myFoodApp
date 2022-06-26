@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import { useSelector, useDispatch } from 'react-redux';
-import { signupUser, clearState } from 'store/slices/sliceUser';
+import { signUpUser, clearState } from 'store/slices/sliceUser';
 
 
 const RegistrationPage = (props) => {
@@ -12,7 +12,7 @@ const RegistrationPage = (props) => {
 	const { isSuccess, isError, errorMessage } = useSelector(state => state.user);
 
 	const onSubmit = (data) => {
-		dispatch(signupUser(data));
+		dispatch(signUpUser(data));
 	};
 
 	useEffect(() => {
