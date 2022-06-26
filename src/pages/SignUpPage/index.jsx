@@ -9,27 +9,20 @@ const RegistrationPage = (props) => {
 	const { register, handleSubmit , formState:{errors, isValid} } = useForm({mode: 'onBlur'});
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
-	const { isSuccess, isError, errorMessage } = useSelector(state => state.user);
+	const { isError, isAuth } = useSelector(state => state.user);
 
 	const onSubmit = (data) => {
 		dispatch(signUpUser(data));
 	};
 
 	useEffect(() => {
-		return () => {
+		if (isAuth) {
 			dispatch(clearState());
-		};
-	}, []);
-
-	useEffect(() => {
-		if (isSuccess) {
-			dispatch(clearState());
-			//navigate.push('/');
 		}
 		if (isError) {
 			dispatch(clearState());
 		}
-	}, [isSuccess, isError]);
+	}, [isAuth, isError]);
 
 	return (
 		<div className="signInPage">

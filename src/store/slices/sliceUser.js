@@ -39,7 +39,6 @@ export const checkAuth = createAsyncThunk(
     async function(_,{rejectWithValue}){
         try{
             const response = await UserAPI.authCheck()
-            console.log(response);
             if(response.statusText !== "OK"){
                 throw new Error('User not authorized!')
             }
@@ -62,7 +61,7 @@ const userSlice = createSlice({
             string: 'Россия г.Ростов-на-Дону ул. Строителей козиматов качественных, 28 кв.1',
             coord: [45.042710, 41.952956]
         },
-        isFetching: false,
+        isFetching: true,
         isSuccess: false,
         isError: false,
         errorMessage: "",
@@ -101,7 +100,6 @@ const userSlice = createSlice({
             state.isAuth = true;
             state.email = payload.email;
             state.username = payload.name;
-            console.log(payload);
         },
         [signInUser.pending]: (state) => {
             state.isFetching = true;
@@ -120,7 +118,6 @@ const userSlice = createSlice({
             state.isFetching = true;
         },
         [checkAuth.rejected]: (state) => {
-            state.isAuth = false;
             state.isFetching = false;
         }
     }
