@@ -1,18 +1,13 @@
 import 'App.scss';
 import MainMenu from 'components/MainMenu';
 import { Route, Routes } from 'react-router-dom';
-import CatalogPage from 'pages/CatalogPage';
-import BasketPage from 'pages/BasketPage';
-import PersonalPage from 'pages/PersonalPage';
 import ModalWindow from 'components/ModalWindow';
 import LoaderSpinner from 'components/LoaderSpinner'
 import { useEffect, useState } from 'react';
-import OrdersPage from 'pages/OrdersPage';
-import SignIn from 'pages/SignInPage';
-import SignUp from 'pages/SignUpPage';
 import PrivateRoute from 'HOC/PrivateRoute';
 import { useDispatch } from 'react-redux';
 import { checkAuth } from 'store/slices/sliceUser';
+import { publicRoutes, privateRoutes} from 'routes';
 
 function App() {
     //const [modalActive,  setModalActive] = useState(true)
@@ -26,17 +21,19 @@ function App() {
             <div className="content-frame">
 
                 <Routes>
-                    <Route path='/' element={<CatalogPage />} />
-                    <Route path='/catalog/' element={<CatalogPage />} />
-                    <Route path='/catalog/:category' element={<CatalogPage />} />
-                    <Route path='/personal' element={
-                        <PrivateRoute>
-                            <PersonalPage />
-                        </PrivateRoute>} />
-                    <Route path='/personal/orders' element={<OrdersPage />} />
-                    <Route path='/basket' element={<BasketPage />} />
-                    <Route path='/signup' element={<SignUp />} />
-                    <Route path='/signin' element={<SignIn />} />
+                    {
+                        publicRoutes.map(route => <Route key={route.path} path={route.path} element={<route.component />} />)
+                    }
+                    {
+                        privateRoutes.map(route => {
+                            return (
+                                <Route key={route.path} path={route.path} element={
+                                    <PrivateRoute>
+                                        <route.component />
+                                    </PrivateRoute>} />
+                            )
+                        })
+                    }
                 </Routes>
             </div>
             <div className="command-frame">

@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { useSelector, useDispatch } from 'react-redux';
 import { signInUser, clearState } from 'store/slices/sliceUser';
 
-const LoginPage = (props) => {
+const SignInPage = (props) => {
 	const { register, handleSubmit ,   formState:{errors, isValid} } = useForm({mode: 'onBlur'});
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
@@ -81,4 +81,4 @@ const LoginPage = (props) => {
 	) 
 };
 
-export default LoginPage;
+export default SignInPage;

@@ -4,7 +4,7 @@ import './styles.scss';
 import OrdersList from './OrdersList';
 import OrderInfo from './OrderInfo';
 
-const Orders = (props) => {
+const OrdersPage = (props) => {
 	
 	
 	return (
@@ -24,4 +24,4 @@ const Orders = (props) => {
 	) 
 };
 
-export default Orders;
+export default OrdersPage;

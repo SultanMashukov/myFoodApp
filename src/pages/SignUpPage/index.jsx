@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { signUpUser, clearState } from 'store/slices/sliceUser';
 
 
-const RegistrationPage = (props) => {
+const SignUpPage = (props) => {
 	const { register, handleSubmit , formState:{errors, isValid} } = useForm({mode: 'onBlur'});
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
@@ -88,4 +88,4 @@ const RegistrationPage = (props) => {
 	) 
 };
 
-export default RegistrationPage;
+export default SignUpPage;
