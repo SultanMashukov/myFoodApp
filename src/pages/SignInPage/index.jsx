@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { signInUser, clearState } from 'store/slices/sliceUser';
 
 const SignInPage = (props) => {
-	const { register, handleSubmit ,   formState:{errors, isValid} } = useForm({mode: 'onBlur'});
+	const { register, handleSubmit ,   formState:{errors, isValid} } = useForm({mode: 'all'});
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const { isAuth, isError } = useSelector(state => state.user);
@@ -72,7 +72,7 @@ const SignInPage = (props) => {
                     </form>
                 </div>
 				<div className="loginPage__registration">
-					У вас нет учетной записи?  <NavLink  className="loginPage__registrationLink" to="/registration">
+					У вас нет учетной записи?  <NavLink  className="loginPage__registrationLink" to="/signup">
 						Зарегистрируйтесь
 					</NavLink>
 				</div>

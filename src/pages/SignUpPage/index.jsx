@@ -6,7 +6,7 @@ import { signUpUser, clearState } from 'store/slices/sliceUser';
 
 
 const SignUpPage = (props) => {
-	const { register, handleSubmit , formState:{errors, isValid} } = useForm({mode: 'onBlur'});
+	const { register, handleSubmit , formState:{errors, isValid} } = useForm({mode: 'all'});
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const { isError, isAuth } = useSelector(state => state.user);
@@ -86,7 +86,7 @@ const SignUpPage = (props) => {
                     </form>
                 </div>
 				<div className="loginPage__registration">
-					Вы уже зерегистрированы?  <NavLink  className="loginPage__registrationLink" to="/login">
+					Вы уже зерегистрированы?  <NavLink  className="loginPage__registrationLink" to="/signin">
 						Авторизируйтесь
 					</NavLink>
 				</div>
