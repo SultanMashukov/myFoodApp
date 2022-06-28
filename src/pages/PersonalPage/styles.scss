@@ -1,31 +1,59 @@
 /* your css code */
+
+
 .personal {
-	&__title {
-        padding: 10px;
-        text-align: center;
-        font-weight: bold;
-    }
 	&__row {
         padding: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
     }
 	&__item {
-        
-        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-        border: 1px solid rgba(0, 0, 0, 0.1);
+        box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
         border-radius: 10px;
         display: flex;
         position: relative;
-        margin-bottom: 10px;
-        
+        margin: 15px 10px;
+        height: 130px;
+        width: 130px;
         &:last-child{
             margin-bottom: 0px;
         }
     }
-    &__item-icon{
-        margin-right: 10px;
-    }
-	&__item-link {
+	&__itemLink {
         width: 100%;
         padding: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
     }
+	&__itemIcon {
+        color: #f76692;
+        font-size: 36px;
+        margin-bottom: 15px;
+    }
+	&__itemName { 
+
+    }
+}
+.userInfo {
+    padding: 20px;
+	&__row { 
+        text-align: center;
+    }
+	&__item {
+        margin-bottom: 10px;
+        & i{
+            color: #f76692;
+        }
+    }
+	&__userName {
+        font-weight: normal;
+        font-size: 18px;
+    }
+	&__userEmail { }
+	&__userPhone { }
+	&__userAddress { }
 }

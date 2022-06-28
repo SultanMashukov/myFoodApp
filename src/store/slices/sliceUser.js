@@ -53,14 +53,16 @@ export const checkAuth = createAsyncThunk(
 const userSlice = createSlice({
     name: 'user',
     initialState:{
-        isAuth: false,
-        id:1,
+        id:'',
         name: '',
         email: '',
-        address:{
-            string: 'Россия г.Ростов-на-Дону ул. Строителей козиматов качественных, 28 кв.1',
-            coord: [45.042710, 41.952956]
-        },
+        address: null,
+        phone: '', 
+        // address:{
+        //     string: 'Россия г.Ростов-на-Дону ул. Строителей козиматов качественных, 28 кв.1',
+        //     coord: [45.042710, 41.952956]
+        // },
+        isAuth: false,
         isFetching: true,
         isSuccess: false,
         isError: false,
@@ -99,7 +101,7 @@ const userSlice = createSlice({
             state.isSuccess = true;
             state.isAuth = true;
             state.email = payload.email;
-            state.username = payload.name;
+            state.name = payload.name;
         },
         [signInUser.pending]: (state) => {
             state.isFetching = true;
@@ -110,9 +112,11 @@ const userSlice = createSlice({
             state.errorMessage = payload.message;
         },
         //проверка авторизации
-        [checkAuth.fulfilled]: (state) => {
+        [checkAuth.fulfilled]: (state, { payload }) => {
             state.isAuth = true;
             state.isFetching = false;
+            state.email = payload.email;
+            state.name = payload.name;
         },
         [checkAuth.pending]: (state) => {
             state.isFetching = true;
