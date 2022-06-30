@@ -37,6 +37,10 @@
 	&__itemName { 
 
     }
+    &__userForm{
+        display: flex;
+        justify-content: space-between;
+    }
 }
 .userInfo {
     padding: 20px;

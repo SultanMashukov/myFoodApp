@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { useForm } from "react-hook-form";
 import { useDispatch } from 'react-redux';
 import { toggleEditMode, updateUser } from 'store/slices/sliceUser';
+import FetchLoadSpinner from 'components/FetchLoadSpinner';
 
 const UserInfo = () => {
 	
@@ -22,6 +23,7 @@ const UserInfo = () => {
 	if(userData.editMode){
 		return (
 			<form className="form__inner" onSubmit={handleSubmit(onSubmit)}>
+				{userData.isUpdateFetching && <FetchLoadSpinner/>}
 				<div className="form__row">
 					<div className="form__field">
 						<input
@@ -41,19 +43,6 @@ const UserInfo = () => {
 					<div className="form__field">
 						<input 
 							className="form__input js_clearable" 
-							type="email" 
-							placeholder=" " 
-							{...register("email",{
-								required:'Поле email обязательно к заполнению',
-								value: userData.email
-							})}
-						/>
-						<div className="form__fieldName"><i className="far fa-envelope"></i> Email</div>
-						<div className="form__fieldError">{errors?.email?.message}</div>
-					</div>
-					<div className="form__field">
-						<input 
-							className="form__input js_clearable" 
 							type="phone" 
 							placeholder=" " 
 							{...register("phone",{
@@ -65,7 +54,7 @@ const UserInfo = () => {
 						<div className="form__fieldError">{errors?.phone?.message}</div>
 					</div>
 				</div>
-				<div className="form__submitContainer">
+				<div className="personal__userForm form__submitContainer">
 					<input type="button" className="form__submitBtn" value="Отмена" onClick={()=>setEditMode('off')}/>
 					<input type="submit" className="form__submitBtn" value="Сохранить" disabled={!isValid}/>
 				</div>

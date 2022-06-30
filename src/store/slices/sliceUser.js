@@ -79,6 +79,7 @@ const userSlice = createSlice({
         },
         isAuth: false,
         isFetching: true,
+        isUpdateFetching: false,
         isSuccess: false,
         isError: false,
         errorMessage: "",
@@ -129,6 +130,7 @@ const userSlice = createSlice({
             state.isAuth = true;
             state.email = payload.email;
             state.name = payload.name;
+            state.phone = payload.phone;
         },
         [signInUser.pending]: (state) => {
             state.isFetching = true;
@@ -144,7 +146,7 @@ const userSlice = createSlice({
             state.isFetching = false;
             state.email = payload.email;
             state.name = payload.name;
-            state.phone = '+7 909 088 00 99'//payload.phone;
+            state.phone = payload.phone;
         },
         [checkAuth.pending]: (state) => {
             state.isFetching = true;
@@ -154,15 +156,16 @@ const userSlice = createSlice({
         },
         //радактирование профиля
         [updateUser.fulfilled]: (state, { payload }) => {
-            state.isAuth = true;
-            state.isFetching = false;
-            state.phone = 'ГОТОВО'//payload.phone;
+            state.editMode = false;
+            state.isUpdateFetching = false;
+            state.name = payload.name;
+            state.phone = payload.phone;
         },
         [updateUser.pending]: (state) => {
-            state.isFetching = true;
+            state.isUpdateFetching = true;
         },
         [updateUser.rejected]: (state) => {
-            state.isFetching = false;
+            state.isUpdateFetching = false;
         }
     }
 })
