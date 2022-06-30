@@ -24,5 +24,11 @@ export const UserAPI = {
         return instance.post(
             `user/auth/`,{}
         );
+    },
+
+    update(name, email, phone){
+        return instance.post(
+            `user/update/`,{name, email, phone}
+        );
     }
 }

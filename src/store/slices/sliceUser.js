@@ -50,6 +50,21 @@ export const checkAuth = createAsyncThunk(
 )
 
 
+export const updateUser = createAsyncThunk(
+    'user/updateUser',
+    async function(userData,{rejectWithValue}){
+        try{
+            const response = await UserAPI.update(userData.name, userData.email, userData.phone)
+            if(response.statusText !== "OK"){
+                throw new Error('User not authorized!')
+            }
+            return response.data;
+        }catch(e){
+            return rejectWithValue(e.message)
+        }
+    }
+)
+
 const userSlice = createSlice({
     name: 'user',
     initialState:{
@@ -58,16 +73,16 @@ const userSlice = createSlice({
         email: '',
         address: null,
         phone: '', 
-        // address:{
-        //     string: 'Россия г.Ростов-на-Дону ул. Строителей козиматов качественных, 28 кв.1',
-        //     coord: [45.042710, 41.952956]
-        // },
+        address:{
+            string: 'ул. Строителей козиматов качественных, 28 кв.1',
+            coord: [45.042710, 41.952956]
+        },
         isAuth: false,
         isFetching: true,
         isSuccess: false,
         isError: false,
         errorMessage: "",
-
+        editMode: false,
     },
     reducers: {
         setAddress(state, action){
@@ -76,7 +91,19 @@ const userSlice = createSlice({
         clearState(){
 
         },
-        
+        toggleEditMode(state, action){
+            switch(action.payload){
+                case 'on':
+                    state.editMode = true;
+                    break;
+                case 'off':
+                    state.editMode = false;
+                    break;
+                default:
+                    state.editMode = !state.editMode;
+                    break;
+            }
+        },
     },
     extraReducers:{
         //регистрация
@@ -117,11 +144,24 @@ const userSlice = createSlice({
             state.isFetching = false;
             state.email = payload.email;
             state.name = payload.name;
+            state.phone = '+7 909 088 00 99'//payload.phone;
         },
         [checkAuth.pending]: (state) => {
             state.isFetching = true;
         },
         [checkAuth.rejected]: (state) => {
+            state.isFetching = false;
+        },
+        //радактирование профиля
+        [updateUser.fulfilled]: (state, { payload }) => {
+            state.isAuth = true;
+            state.isFetching = false;
+            state.phone = 'ГОТОВО'//payload.phone;
+        },
+        [updateUser.pending]: (state) => {
+            state.isFetching = true;
+        },
+        [updateUser.rejected]: (state) => {
             state.isFetching = false;
         }
     }
@@ -129,4 +169,4 @@ const userSlice = createSlice({
 
 export default userSlice.reducer;
 
-export const { setAddress, clearState } = userSlice.actions;
+export const { setAddress, clearState, toggleEditMode } = userSlice.actions;

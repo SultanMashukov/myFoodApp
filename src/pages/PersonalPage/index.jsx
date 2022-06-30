@@ -1,12 +1,17 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import './styles.scss';
+import UserInfo from './UserInfo';
+import { useDispatch } from 'react-redux';
+import { toggleEditMode } from 'store/slices/sliceUser';
 
 const PersonalPage = (props) => {
+	
+	const dispatch = useDispatch();
+	const setEditMode = (val) => {
+		dispatch(toggleEditMode(val))
+	}
 
-	const userData = useSelector(state => state.user);
-	console.log(userData);
 	return (
 		<div className="personal">
 			<div className="pageHeader">
@@ -14,40 +19,17 @@ const PersonalPage = (props) => {
 						Личный кабинет
 				</div>
 			</div>
-			<div className="userInfo">
-				<div className="userInfo__row">
-					<div className="userInfo__item">
-						<div className="userInfo__userName">
-							{userData.name}
-						</div>
-					</div>
-					<div className="userInfo__item">
-						<div className="userInfo__userEmail">
-							<i className="far fa-envelope"></i> {userData.email}
-						</div>
-					</div>
-					<div className="userInfo__item">
-						<div className="userInfo__userPhone">
-							<i className="fal fa-phone"></i> +7 928 324 12 21{userData.phone}
-						</div>
-					</div>
-					<div className="userInfo__item">
-						<div className="userInfo__userAddress">
-							<i className="fal fa-map-marker-check"></i> ул.Такая то лкы 12
-						</div>
-					</div>
-				</div>
-			</div>
+			<UserInfo/>
 			<div className="personal__row">
 					<div className="personal__item">
-						<a href="" className="personal__itemLink">
+						<div className="personal__itemLink" onClick={()=> setEditMode('on')}>
 							<div className="personal__itemIcon">
 								<i className="fal fa-edit"></i>
 							</div>
 							<div className="personal__itemName">
 								Редактировать профиль
 							</div>
-						</a>
+						</div>
 					</div>
 					<div className="personal__item">
 						<a href="" className="personal__itemLink">
