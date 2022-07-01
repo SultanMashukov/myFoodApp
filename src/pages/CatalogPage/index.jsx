@@ -20,10 +20,6 @@ const CatalogPage = (props) => {
 		
 	}
 
-	useEffect(()=>{
-		dispatch(fetchCatalogItems()) //запрос за каталогом к API
-	},[dispatch])
-
 	return (
 		<div className="page-food">
 			<CatalogMenu/>

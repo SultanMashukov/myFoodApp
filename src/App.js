@@ -8,12 +8,15 @@ import PrivateRoute from 'HOC/PrivateRoute';
 import { useDispatch } from 'react-redux';
 import { checkAuth } from 'store/slices/sliceUser';
 import { publicRoutes, privateRoutes} from 'routes';
+import { fetchCatalogItems } from 'store/slices/sliceCatalog';
 
 function App() {
     //const [modalActive,  setModalActive] = useState(true)
     const dispatch = useDispatch();
+    
     useEffect(()=>{
-        dispatch(checkAuth())
+        dispatch(checkAuth()) //проверка авторизации
+        dispatch(fetchCatalogItems()) //запрос за каталогом к API
     },[])
 
     return (
