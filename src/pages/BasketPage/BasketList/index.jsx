@@ -10,6 +10,8 @@ const BasketList = (props) => {
 	const basketItems = useSelector(state => state.basket.basketItems);
 	const mainFoodItems = basketItems.filter((item) => ['giros','pizza'].includes(item.type));
 	const drinkItems =	basketItems.filter((item) => ['drink'].includes(item.type))
+	const dessertItems =	basketItems.filter((item) => ['dessert'].includes(item.type))
+	const souseItems =	basketItems.filter((item) => ['souse'].includes(item.type))
 
 	const removeItem = useCallback(
 		(id) => {
@@ -43,6 +45,20 @@ const BasketList = (props) => {
 				items={drinkItems} 
 				foodType={{name:'Напитки', placeholder: 'А попить? Нажмите, чтобы подобрать напиток'}}
 				catalogLink='/catalog/drink/'
+				removeItem={removeItem}
+				restoreItem={restoreItem}
+				openChanger={openChanger}/>
+			<BasketListSection 
+				items={dessertItems} 
+				foodType={{name:'Дессерты', placeholder: 'А десерт? Нажмите, чтобы выбрать десерт'}}
+				catalogLink='/catalog/dessert/'
+				removeItem={removeItem}
+				restoreItem={restoreItem}
+				openChanger={openChanger}/>
+			<BasketListSection 
+				items={souseItems} 
+				foodType={{name:'Соусы', placeholder: 'Может соус? Нажмите, чтобы вырбрать соусы'}}
+				catalogLink='/catalog/souse/'
 				removeItem={removeItem}
 				restoreItem={restoreItem}
 				openChanger={openChanger}/>
