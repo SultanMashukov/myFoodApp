@@ -4,7 +4,7 @@ const OrdersItem = ({orderData, openOrderInfo}) => {
 
 	let statusComp = null;
 	switch(orderData.status.name){
-		case('inProcess'):
+		case('inProgress'):
 			statusComp = <div className="orders__item-status orders__item-status--processing">
 							<i className="fas fa-clock"></i>
 						</div>
@@ -27,7 +27,7 @@ const OrdersItem = ({orderData, openOrderInfo}) => {
 					{orderData.name}
 			</div>
 			<div className="orders__item-info">
-					<div className="orders__item-price">Сумма заказа: {orderData.price} <i className="fal fa-ruble-sign"></i></div>
+					<div className="orders__item-price">Сумма заказа: {orderData.totalPrice} <i className="fal fa-ruble-sign"></i></div>
 					<div className="orders__item-date">Дата: {new Date(orderData.date).toLocaleDateString()}</div>
 			</div>
 		</div>

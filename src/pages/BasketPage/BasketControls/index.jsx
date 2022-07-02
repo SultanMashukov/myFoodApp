@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addNewOrder } from 'store/slices/sliceOrders';
+import { addOrder } from 'store/slices/sliceOrders';
 import { resetBasket } from 'store/slices/sliceBasket';
 
 const BasketControls = (props) => {
@@ -14,17 +14,13 @@ const BasketControls = (props) => {
 
 		basketItems.forEach(element => {
 			orderPositions.push({
-				productId: element.productId,
-				name: element.name,
+				catalogId: element.productId,
 				count: element.count,
-				price: element.price,
-				image: element.image,
 				options: element.options,
-				type: element.type
 			})
 		});
 
-		dispatch(addNewOrder({
+		dispatch(addOrder({
 			address: isNeedDelivery ? userAddress : '',
 			positions:orderPositions
 		}));

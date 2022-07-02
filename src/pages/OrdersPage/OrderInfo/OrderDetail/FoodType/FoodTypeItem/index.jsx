@@ -1,7 +1,7 @@
 import React from 'react';
 
 const FoodTypeItem = ({itemData}) => {
-	
+	debugger
 	return(	
 		<div className="ordersDetail__item">
 			<div className="ordersDetail__item-pic">

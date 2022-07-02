@@ -32,3 +32,11 @@ export const UserAPI = {
         );
     }
 }
+
+export const OrdersAPI = {
+    add(address, positions){
+        return instance.post(
+            `orders/add/`,{ address, positions}
+        );
+    }
+}

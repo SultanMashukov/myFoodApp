@@ -1,85 +1,38 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { OrdersAPI } from "api";
+
+export const addOrder = createAsyncThunk(
+    'orders/addOrder',
+    async function(userData, {rejectWithValue} ) {
+        try{
+            const response = await OrdersAPI.add(userData.address || {string: 'В ресторане'}, userData.positions  )
+
+            if(response.statusText !== "OK"){
+                throw new Error('ServerError!')
+            }
+            return response.data;
+        }catch(e){
+            return rejectWithValue(e.message)
+        }
+        
+    }
+)
+
+
+
 
 const ordersSlice = createSlice({
     name: 'orders',
+    isFetching: false,
+    isSuccsess: false,
     initialState:{
         currentDetailInfo:{
             id:'',
             showComponent:false,
         },
-        basketSections:{
-            mainFood:{
-                name: 'Основные блюда',
-                placeholder: 'Вы ничего не выбрали из блюд. Нажмите, чтобы добавить.',
-            },
-            drinks: {
-                name: 'Напитки',
-                placeholder: 'Вы не выбрали ни один из напитков. Нажмите, чтобы добавить напиток.',
-            }
-        },
-        ordersList:[
-            {
-                id: 1,
-                totalPrice: 890,
-                status: {id:1, name: 'complete'},
-                date: '01.02.2022',
-                address: {string: 'Москва уу.Ленина 20'},
-                positions:[
-                    {
-                        productId: 1,
-                        name: 'Гирос',
-                        count:3,
-                        price: 180,
-                        image: 'https://www.philips.ru/c-dam/b2c/ru_RU/marketing-catalog/ho/recipes/breakfast/giros/giros1.jpg',
-                        options: [
-                            {name:'перчик', active: false}
-                        ],
-                        type:"giros"
-                    },
-                    {
-                        productId: 3,
-                        name: 'Кола',
-                        count:2,
-                        price: 90,
-                        image: 'https://www.philips.ru/c-dam/b2c/ru_RU/marketing-catalog/ho/recipes/breakfast/giros/giros1.jpg',
-                        options: [],
-                        type:"drink"
-                    }
-                ]
-            },
-            {
-                id: 2,
-                totalPrice: 890,
-                status: {id:1, name: 'inProcess'},
-                date: '01.02.2022',
-                address: {string: 'Москва уу.Ленина 20'},
-                positions:[
-                    {
-                        productId: 1,
-                        name: 'Гирос',
-                        count:8,
-                        price: 180,
-                        image: 'https://www.philips.ru/c-dam/b2c/ru_RU/marketing-catalog/ho/recipes/breakfast/giros/giros1.jpg',
-                        options: [
-                            {name:'перчик', active: true}
-                        ],
-                        type:"giros"
-                    }
-                ]
-            }
-        ],
+        ordersList:[],
     },
     reducers: {
-        addNewOrder(state, action){
-            state.ordersList.push({
-                id: Date.now().toString(16),
-                totalPrice: 'total, price',
-                status: {id:1, name: 'inProcess'},
-                date: Date.now(),
-                address: action.payload.address || {string: 'В ресторане'},
-                positions: action.payload.positions
-            })
-        },
 
         setCurrentDetailId(state, action){
             state.currentDetailInfo.id = action.payload.currentDetailId;
@@ -99,7 +52,19 @@ const ordersSlice = createSlice({
             } 
             
         },
-
+    },
+    extraReducers:{
+        //добавление заказа
+        [addOrder.fulfilled]: (state, { payload }) => {
+            state.isFetching = false;
+            state.ordersList.push(payload.newOrder)
+        },
+        [addOrder.pending]: (state) => {
+            state.isFetching = true;
+        },
+        [addOrder.rejected]: (state) => {
+            state.isFetching = false;
+        }
     }
 })
 
