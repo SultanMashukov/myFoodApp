@@ -38,5 +38,15 @@ export const OrdersAPI = {
         return instance.post(
             `orders/add/`,{ address, positions}
         );
-    }
+    },
+    getAll(){
+        return instance.post(
+            `orders/get_all/`,{}
+        );
+    },
+    getDetail(orderId){
+        return instance.post(
+            `orders/get_detail/`,{ orderId }
+        );
+    },
 }

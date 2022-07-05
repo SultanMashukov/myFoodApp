@@ -11,9 +11,8 @@ const OrderDetail = ({orderId}) => {
 	const dispatch = useDispatch();
 	const orderData = useSelector( state => state.orders.ordersList ).find( el => el.id === orderId );
 	const navigate = useNavigate()
-
-	const mainFoodItems =  orderData.positions.filter((item) => ['giros','pizza'].includes(item.type));
-	const drinkItems = orderData.positions.filter((item) => ['drink'].includes(item.type));
+	const mainFoodItems =  orderData.positions.filter((item) => ['giros','pizza'].includes(item.catalog.food_type.code));
+	const drinkItems = orderData.positions.filter((item) => ['drink'].includes(item.catalog.food_type.code));
 
 	const closeOrdersDetail = () => {
 		dispatch(toggleModal())
@@ -39,7 +38,7 @@ const OrderDetail = ({orderId}) => {
 					<i className="far fa-map"></i> {orderData.address.string}
 				</div>
 				<div className="ordersDetail__metaInfoItem">
-					<i className="fal fa-calendar-alt"></i> {new Date(orderData.date).toLocaleString()} 
+					<i className="fal fa-calendar-alt"></i> {new Date(orderData.createdAt).toLocaleString()} 
 				</div>
 				<div className="ordersDetail__metaInfoItem">
 					<i className="fal fa-ruble-sign"></i> {orderData.totalPrice}

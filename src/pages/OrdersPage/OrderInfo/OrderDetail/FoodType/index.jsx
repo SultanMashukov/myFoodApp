@@ -16,7 +16,7 @@ const FoodType = ({foodType, items, removeItem, restoreItem, toggleItemChangerMo
 								{foodType.name}
 							</div>
 							<div className="ordersDetail__row">
-							{items.map((item) => <FoodTypeItem key={item.name} 
+							{items.map((item) => <FoodTypeItem key={item.catalog.id} 
 							itemData={item} 
 							removeItem={removeItem} 
 							restoreItem={restoreItem}

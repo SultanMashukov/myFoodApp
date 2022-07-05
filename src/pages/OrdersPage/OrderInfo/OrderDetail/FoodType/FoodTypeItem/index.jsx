@@ -1,14 +1,14 @@
 import React from 'react';
 
 const FoodTypeItem = ({itemData}) => {
-	debugger
+	
 	return(	
 		<div className="ordersDetail__item">
 			<div className="ordersDetail__item-pic">
-				<img  className="ordersDetail__item-img" src={itemData.image} alt={itemData.name}/>
+				<img  className="ordersDetail__item-img" src={itemData.catalog.images[0]} alt={itemData.catalog.name}/>
 			</div>
 			<div className="ordersDetail__item-info">
-				<div className="ordersDetail__item-name">{itemData.name}</div>
+				<div className="ordersDetail__item-name">{itemData.catalog.name}</div>
 				<div className="ordersDetail__item-options">
 					{
 						itemData.options.length 
@@ -24,7 +24,7 @@ const FoodTypeItem = ({itemData}) => {
 					}
 				</div>
 				<div className="ordersDetail__item-sum">
-					{itemData.count}шт X {itemData.price} = {itemData.count * itemData.price} <i className="fal fa-ruble-sign"></i>
+					{itemData.count}шт X {itemData.catalog.price} = {itemData.count * itemData.catalog.price} <i className="fal fa-ruble-sign"></i>
 				</div>
 			</div>
 			

@@ -3,7 +3,7 @@ import React from 'react';
 const OrdersItem = ({orderData, openOrderInfo}) => {
 
 	let statusComp = null;
-	switch(orderData.status.name){
+	switch(orderData.status){
 		case('inProgress'):
 			statusComp = <div className="orders__item-status orders__item-status--processing">
 							<i className="fas fa-clock"></i>
@@ -28,7 +28,7 @@ const OrdersItem = ({orderData, openOrderInfo}) => {
 			</div>
 			<div className="orders__item-info">
 					<div className="orders__item-price">Сумма заказа: {orderData.totalPrice} <i className="fal fa-ruble-sign"></i></div>
-					<div className="orders__item-date">Дата: {new Date(orderData.date).toLocaleDateString()}</div>
+					<div className="orders__item-date">Дата: {new Date(orderData.createdAt).toLocaleDateString()}</div>
 			</div>
 		</div>
 	) 

@@ -18,6 +18,40 @@ export const addOrder = createAsyncThunk(
     }
 )
 
+export const fetchOrders = createAsyncThunk(
+    'orders/fetchOrders',
+    async function(userData, {rejectWithValue} ) {
+        try{
+            const response = await OrdersAPI.getAll()
+
+            if(response.statusText !== "OK"){
+                throw new Error('ServerError!')
+            }
+            return response.data;
+        }catch(e){
+            return rejectWithValue(e.message)
+        }
+        
+    }
+)
+
+export const fetchOrderDetails = createAsyncThunk(
+    'orders/fetchOrderDetails',
+    async function(userData, {rejectWithValue} ) {
+        try{
+            const response = await OrdersAPI.getDetail(userData.orderId)
+
+            if(response.statusText !== "OK"){
+                throw new Error('ServerError!')
+            }
+            return response.data;
+        }catch(e){
+            return rejectWithValue(e.message)
+        }
+        
+    }
+)
+
 
 
 
@@ -63,6 +97,31 @@ const ordersSlice = createSlice({
             state.isFetching = true;
         },
         [addOrder.rejected]: (state) => {
+            state.isFetching = false;
+        },
+
+        //получение истории заказов
+        [fetchOrders.fulfilled]: (state, { payload }) => {
+            state.isFetching = false;
+            state.ordersList = payload
+        },
+        [fetchOrders.pending]: (state) => {
+            state.isFetching = true;
+        },
+        [fetchOrders.rejected]: (state) => {
+            state.isFetching = false;
+        },
+
+        //получение детальной информации о заказае
+        [fetchOrderDetails.fulfilled]: (state, { payload }) => {
+            state.isFetching = false;
+            state.ordersList.find(el => el.id === payload.orderId).positions = payload.positions
+            state.ordersList = [...state.ordersList]
+        },
+        [fetchOrderDetails.pending]: (state) => {
+            state.isFetching = true;
+        },
+        [fetchOrderDetails.rejected]: (state) => {
             state.isFetching = false;
         }
     }
