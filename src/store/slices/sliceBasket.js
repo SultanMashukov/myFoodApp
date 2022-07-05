@@ -29,18 +29,18 @@ const basketSlice = createSlice({
             })
         },
         repeatBasketByOrder(state, action){
-            const basketItems = action.payload.orderPositions.map((orderElement)=>{
+            const basketItems = action.payload.orderPositions.map((position)=>{
                 return {
-                    basketId: Date.now().toString(16) + orderElement.productId,
-                    productId: orderElement.productId,
-                    name: orderElement.name,
-                    image: orderElement.image,
-                    count: orderElement.count,
-                    price: orderElement.price,
-                    priceSum: orderElement.count * orderElement.price,
-                    options: orderElement.options,
+                    basketId: Date.now().toString(16) + position.catalog.id,
+                    productId: position.catalog.id,
+                    name: position.catalog.name,
+                    image: position.catalog.images[0],
+                    count: position.count,
+                    price: position.catalog.price,
+                    priceSum: position.count * position.catalog.price,
+                    options: position.options,
                     removeMark: false,
-                    type: orderElement.type,
+                    type: position.catalog.food_type.code,
                 }
             })
             state.basketItems = basketItems;

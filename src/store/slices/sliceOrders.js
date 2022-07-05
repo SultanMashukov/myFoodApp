@@ -5,7 +5,7 @@ export const addOrder = createAsyncThunk(
     'orders/addOrder',
     async function(userData, {rejectWithValue} ) {
         try{
-            const response = await OrdersAPI.add(userData.address || {string: 'В ресторане'}, userData.positions  )
+            const response = await OrdersAPI.add(userData.address , userData.positions  )
 
             if(response.statusText !== "OK"){
                 throw new Error('ServerError!')

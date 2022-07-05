@@ -13,19 +13,23 @@ const BasketControls = (props) => {
 		const orderPositions = [];
 
 		basketItems.forEach(element => {
-			orderPositions.push({
-				catalogId: element.productId,
-				count: element.count,
-				options: element.options,
-			})
+			if(!element.removeMark)
+				orderPositions.push({
+					catalogId: element.productId,
+					count: element.count,
+					options: element.options,
+				})
 		});
 
-		dispatch(addOrder({
-			address: isNeedDelivery ? userAddress : '',
-			positions:orderPositions
-		}));
-
-		dispatch(resetBasket())
+		if(orderPositions.length){
+			dispatch(addOrder({
+				address: isNeedDelivery ? userAddress : 'В ресторане',
+				positions:orderPositions
+			}));
+	
+			dispatch(resetBasket())
+		}
+		
 	}
 
 	return (
