@@ -26,20 +26,29 @@ const CatalogList = ({toggleProductModal}) => {
 		return <div className="error">{listFetchingInfo.errorMsg}</div>
 	if(listFetchingInfo.status === 'loaded')
 		return (
-			<div className="food-list">
+			<div className="foodList">
 				<CatalogSearchString/>
-				<div className="food-list__row">
+				<div className="foodList__row">
 					{
 						catalogList.length 
 						?catalogList.map((item) => {
 							return(
-								<div className="food-list__item" key={item.id} onClick={(e) => { toggleProductModal(item.id);}}>
-									<div className="food-list__item-pic " style={{backgroundImage: `url(${item?.images?.[0] || ''})`} }>
+								<div className="foodList__item" key={item.id}>
+									<div className="foodList__itemPic " style={{backgroundImage: `url(${item?.images?.[0] || ''})`} }>
 									</div>
-									<div className="food-list__item-content">
-										<div className="food-list__item-name">{item.name}</div>
-										<div className="food-list__item-price">{item.price}р</div>
-										<button className="food-list__item-open">Добавить</button>
+									<div className="foodList__itemContent">
+										<div className="foodList__itemName">{item.name}</div>
+										<div className="foodList__itemControls">
+											<button className={item.isFavorite 
+											? 'foodList__itemButton foodList__itemFavorite--active'
+											: 'foodList__itemButton foodList__itemFavorite'}>
+												<i className="fas fa-heart"></i>
+											</button>
+											<div className="foodList__itemPrice">{item.price} <i className="fal fa-ruble-sign"></i></div>
+											<button className="foodList__itemButton" onClick={(e) => { toggleProductModal(item.id);}}>
+												<i className="fal fa-shopping-basket"></i>
+											</button>
+										</div>
 									</div>
 								</div>
 							)
