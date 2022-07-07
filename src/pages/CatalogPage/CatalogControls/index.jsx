@@ -5,11 +5,11 @@ import CatalogSearchString from '../CatalogSearchString';
 
 const CatalogControls = ({toggleFavoriteFilter}) => {
 	
-	const [searchParams] = useSearchParams();
+	const [searchParams, setSarchParams] = useSearchParams();
 	const [favoritesIsActive, setFavoritesIsActive]  = useState(false);
 	
 	const toggleFavorite = () => {
-		searchParams.delete('favorites')
+		setSarchParams({})
 		toggleFavoriteFilter();
 		setFavoritesIsActive(!favoritesIsActive);
 		
