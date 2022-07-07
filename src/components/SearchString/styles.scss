@@ -4,14 +4,13 @@
   padding: 5px;
   position: relative;
   justify-content: center;
-  max-width: 300px;
-  margin: 0 auto;
 }
 .searchInput{ 
   flex-grow: 1;
   height: 30px;
   padding: 0 20px;
-  
+  border: 1px solid #d4cdcd;
+  border-radius: 10px;
 }
 .searchIcon{
   position: absolute;
