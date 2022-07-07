@@ -24,6 +24,7 @@ const catalogSlice = createSlice({
     name: 'catalog',
     initialState:{
         catalogItems: null,
+        favorites: localStorage.catalogFavorites ? JSON.parse(localStorage.catalogFavorites): [],
         modalIsActive: false,
         productModalId: '',
         listFetchingInfo:{
@@ -41,7 +42,15 @@ const catalogSlice = createSlice({
         },
         setNameFilter(state, action){
             state.nameFilter = action.payload.string;
-        }
+        },
+        toggleProductIsFavorite(state, action){
+            const isFavoriteIndex = state.favorites.indexOf(action.payload)
+            if(isFavoriteIndex !== -1){
+                state.favorites.splice(isFavoriteIndex, 1)
+            }else{
+                state.favorites.push(action.payload)
+            }
+        },
     }, 
     extraReducers:{
         [fetchCatalogItems.pending]: (state) =>{
@@ -59,6 +68,10 @@ const catalogSlice = createSlice({
 
 })
 
-export const { toggleModal, setProductModalId, setNameFilter} = catalogSlice.actions;
+export const { 
+    toggleModal, 
+    setProductModalId, 
+    setNameFilter,
+    toggleProductIsFavorite} = catalogSlice.actions;
 
 export default catalogSlice.reducer;

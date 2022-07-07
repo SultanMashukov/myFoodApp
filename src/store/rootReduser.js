@@ -13,12 +13,13 @@ const store = configureStore({
     }
 })
 
-const saveBasketInLocalStorage = (itemsArray)=>{
-    localStorage.userBasket = JSON.stringify(itemsArray)
+const saveInLocalStorage = (keyName,itemsArray)=>{
+    localStorage[keyName] = JSON.stringify(itemsArray)
 }
 
 store.subscribe(() => {
-    saveBasketInLocalStorage(store.getState().basket.basketItems)
+    saveInLocalStorage('userBasket',store.getState().basket.basketItems) //сохранение состояния корзины в localStorage
+    saveInLocalStorage('catalogFavorites',store.getState().catalog.favorites) //сохранение избранных товаров в localStorage
 })
 
 export default store;
