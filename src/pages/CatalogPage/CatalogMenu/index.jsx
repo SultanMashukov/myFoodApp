@@ -5,8 +5,10 @@ import { NavLink, useParams } from 'react-router-dom';
 const CatalogMenu = (props) => {
 	const urlParams = useParams()
 	
+	const allowedCategories = ['pizza','sanwiches','burgers','giros','bakery','hotdogs','dessert','drink']
+
 	useEffect(() => {
-		if(urlParams.category){
+		if(urlParams.category && allowedCategories.includes(urlParams.category)){
 			const menuRowActiveItem = document.querySelector('.food-menu__link.active').parentElement;
 			menuRowActiveItem.scrollIntoView({inline: 'center', behavior: 'smooth'})
 		}

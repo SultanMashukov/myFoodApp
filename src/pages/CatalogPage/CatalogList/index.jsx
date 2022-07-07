@@ -50,17 +50,18 @@ const CatalogList = ({toggleProductModal}) => {
 		return (
 			<div className="foodList">
 				<CatalogControls toggleFavoriteFilter={toggleFavoriteFilter}/>
-				<div className="foodList__row">
-					{
-						catalogList.length 
-						?catalogList.map((item) => {
-							//проверка на "избранность" товара
-							if(favoritesList.length){
-								item = favoritesList.includes(item.id) 
-								? {...item,isFavorite: true} 
-								: {...item,isFavorite: false}
-							}
-							return(
+				
+				{
+					catalogList.length 
+					?catalogList.map((item) => {
+						//проверка на "избранность" товара
+						if(favoritesList.length){
+							item = favoritesList.includes(item.id) 
+							? {...item,isFavorite: true} 
+							: {...item,isFavorite: false}
+						}
+						return(
+							<div className="foodList__row">
 								<div className="foodList__item" key={item.id}>
 									<div className="foodList__itemPic " style={{backgroundImage: `url(${item?.images?.[0] || ''})`} }>
 									</div>
@@ -80,11 +81,11 @@ const CatalogList = ({toggleProductModal}) => {
 										</div>
 									</div>
 								</div>
-							)
-						})
-						:'Ничего нет :('
-					}
-				</div>
+							</div>
+						)
+					})
+					:<div className='foodList__empty'>Ничего не найдено :(</div>
+				}
 			</div>
 		)
 	return <></>
