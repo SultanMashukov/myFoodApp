@@ -50,42 +50,41 @@ const CatalogList = ({toggleProductModal}) => {
 		return (
 			<div className="foodList">
 				<CatalogControls toggleFavoriteFilter={toggleFavoriteFilter}/>
-				
-				{
-					catalogList.length 
-					?catalogList.map((item) => {
-						//проверка на "избранность" товара
-						if(favoritesList.length){
-							item = favoritesList.includes(item.id) 
-							? {...item,isFavorite: true} 
-							: {...item,isFavorite: false}
-						}
-						return(
-							<div className="foodList__row">
-								<div className="foodList__item" key={item.id}>
-									<div className="foodList__itemPic " style={{backgroundImage: `url(${item?.images?.[0] || ''})`} }>
-									</div>
-									<div className="foodList__itemContent">
-										<div className="foodList__itemName">{item.name}</div>
-										<div className="foodList__itemControls">
-											<button className={item.isFavorite 
-												? 'foodList__itemButton foodList__itemFavorite--active'
-												: 'foodList__itemButton foodList__itemFavorite'}
-												onClick={()=>toggleProductFavoritStatus(item.id)}>
-												<i className="fas fa-heart"></i>
-											</button>
-											<div className="foodList__itemPrice">{item.price} <i className="fal fa-ruble-sign"></i></div>
-											<button className="foodList__itemButton" onClick={(e) => { toggleProductModal(item.id);}}>
-												<i className="fal fa-shopping-basket"></i>
-											</button>
+				<div className="foodList__row">
+					{
+						catalogList.length 
+						?catalogList.map((item) => {
+							//проверка на "избранность" товара
+							if(favoritesList.length){
+								item = favoritesList.includes(item.id) 
+								? {...item,isFavorite: true} 
+								: {...item,isFavorite: false}
+							}
+							return(
+									<div className="foodList__item" key={item.id}>
+										<div className="foodList__itemPic " style={{backgroundImage: `url(${item?.images?.[0] || ''})`} }>
+										</div>
+										<div className="foodList__itemContent">
+											<div className="foodList__itemName">{item.name}</div>
+											<div className="foodList__itemControls">
+												<button className={item.isFavorite 
+													? 'foodList__itemButton foodList__itemFavorite--active'
+													: 'foodList__itemButton foodList__itemFavorite'}
+													onClick={()=>toggleProductFavoritStatus(item.id)}>
+													<i className="fas fa-heart"></i>
+												</button>
+												<div className="foodList__itemPrice">{item.price} <i className="fal fa-ruble-sign"></i></div>
+												<button className="foodList__itemButton" onClick={(e) => { toggleProductModal(item.id);}}>
+													<i className="fal fa-shopping-basket"></i>
+												</button>
+											</div>
 										</div>
 									</div>
-								</div>
-							</div>
-						)
-					})
-					:<div className='foodList__empty'>Ничего не найдено :(</div>
-				}
+							)
+						})
+						:<div className='foodList__empty'>Ничего не найдено :(</div>
+					}
+				</div>
 			</div>
 		)
 	return <></>
