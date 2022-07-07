@@ -1,8 +1,35 @@
 /* your css code */
-
-  
-  /*СПИСОК БЛЮД */
-  
-  
-  
-  /*КОНЕЦМЕНЮ БЛЮД */
+.catalogControls{
+  display: flex;
+  align-items: center;
+  padding: 0px 10px;
+  &__btn{
+    background-color: #bfb8b8;
+    color: white;
+    font-size: 16px;
+    padding: 5px 10px;
+    border-radius: 10px;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: background-color .3s;
+  }
+  &__priceOrder{
+    transform: scaleY(1);
+    background-color: orange;
+    transition: background-color .3s, transform .3s;
+    &--active{
+      &>i{
+        transform: scaleY(-1);
+      }
+    }
+  }
+  &__favorites{
+    &--active{
+      background-color: orange;
+      &>i{
+        transition: color .3s;
+        color: red;
+      }
+    }
+  }
+}
