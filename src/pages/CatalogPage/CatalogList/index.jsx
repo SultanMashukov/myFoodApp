@@ -13,6 +13,7 @@ import { useState } from 'react';
 const CatalogList = ({toggleProductModal}) => {
 
 	const urlParams = useParams();
+	
 	const dispatch = useDispatch();
 	const listFetchingInfo = useSelector(state => state.catalog.listFetchingInfo);
 	const nameFilter = useSelector(state => state.catalog.nameFilter);
@@ -29,7 +30,7 @@ const CatalogList = ({toggleProductModal}) => {
 	}
 
 	//фильтр, оставляющий только избранные товары
-	if(favoritesOnly){
+	if(catalogList && favoritesOnly){
 		catalogList = catalogList.filter(item => favoritesList.includes(item.id))
 	}
 	//фильтр, оставляющие товары выбранной категории

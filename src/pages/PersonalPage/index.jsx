@@ -52,14 +52,14 @@ const PersonalPage = (props) => {
 						</NavLink>
 					</div>
 					<div className="personal__item">
-						<a href="" className="personal__itemLink">
+						<NavLink to="/catalog/?favorites" className="personal__itemLink">
 							<div className="personal__itemIcon">
 								<i className="far fa-heart"></i>
 							</div>
 							<div className="personal__itemName">
 								Избранные блюда
 							</div>
-						</a>
+						</NavLink>
 					</div>
 					<div className="personal__item">
 						<a href="" className="personal__itemLink">

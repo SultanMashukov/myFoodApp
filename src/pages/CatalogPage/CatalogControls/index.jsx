@@ -1,15 +1,25 @@
 import React from 'react';
 import { useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import CatalogSearchString from '../CatalogSearchString';
 
 const CatalogControls = ({toggleFavoriteFilter}) => {
-
+	
+	const [searchParams] = useSearchParams();
 	const [favoritesIsActive, setFavoritesIsActive]  = useState(false);
-
+	
 	const toggleFavorite = () => {
+		searchParams.delete('favorites')
 		toggleFavoriteFilter();
-		setFavoritesIsActive(!favoritesIsActive)
+		setFavoritesIsActive(!favoritesIsActive);
+		
 	}
+
+	if( (searchParams.get('favorites') !== null) && !favoritesIsActive ){
+		toggleFavorite()
+	}
+	
+	
 
 	return (
 		<div className='catalogControls'>
