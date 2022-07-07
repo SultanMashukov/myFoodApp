@@ -9,6 +9,7 @@ import { useDispatch } from 'react-redux';
 import { checkAuth } from 'store/slices/sliceUser';
 import { publicRoutes, privateRoutes} from 'routes';
 import { fetchCatalogItems } from 'store/slices/sliceCatalog';
+import NotFoundPage from 'pages/NotFoundPage';
 
 function App() {
     //const [modalActive,  setModalActive] = useState(true)
@@ -37,6 +38,7 @@ function App() {
                             )
                         })
                     }
+                    <Route path='*' element={<NotFoundPage/>} />
                 </Routes>
             </div>
             <div className="command-frame">

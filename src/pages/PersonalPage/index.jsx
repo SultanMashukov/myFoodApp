@@ -61,7 +61,7 @@ const PersonalPage = (props) => {
 							</div>
 						</NavLink>
 					</div>
-					<div className="personal__item">
+					<div className="personal__item personal__item--disabled" >
 						<a href="" className="personal__itemLink">
 							<div className="personal__itemIcon">
 								<i className="fal fa-weight-hanging"></i>
