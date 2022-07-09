@@ -3,9 +3,11 @@
     background-image: url(/assets/images/travolta.png);
     background-position: left bottom;
     background-repeat: no-repeat;
-    background-size: 70%;
-    padding: 70px 20px;
+    background-size: 50%;
     text-align: center;
+    &__inner{
+        padding: 70px 20px;
+    }
 	&__error { 
         text-align: center;
         font-size: 50px;
