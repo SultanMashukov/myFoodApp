@@ -20,7 +20,16 @@ const BasketItem = ({itemData, removeItem, restoreItem, openChanger}) => {
 						<div className="basket__item">
 							<div className="basket__removed-item">
 								<div className="basket__removed-notification">
-									<b>{itemData.name}</b> был удален.<button className="basket__restore-btn" onClick={() => {restoreItem(itemData.basketId)}}>Вернуть?</button>
+									<div className="basket__removedText">
+										<b>{itemData.name}</b> был удален.
+									</div>
+									<div className="basket__removedButton">
+										<button	button className="basket__restore-btn" onClick={() => {restoreItem(itemData.basketId)}}>
+											<div className="basket__removedCounter">1</div>
+											<i class="fal fa-undo"></i>
+										</button>
+									</div>
+									
 								</div>
 							</div>
 						</div>

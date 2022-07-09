@@ -1,6 +1,6 @@
 /* your css code */
 .basket {
-    padding: 10px;
+    
     min-height: 100%;
     background-color: white;
     display: -webkit-box;
@@ -10,6 +10,9 @@
     -webkit-box-direction: normal;
     -ms-flex-direction: column;
     flex-direction: column;
+  }
+  .basket__inner{
+    padding: 10px;
   }
   
   .basket__place {
@@ -71,14 +74,13 @@
   .basket__item {
     width: 100%;
     -webkit-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     position: relative;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
   }
   
   .basket__item:last-child {
@@ -128,6 +130,26 @@
     height: 20px;
     width: 20px;
     border-radius: 50%;
+    background-color: red;
+    color: white;
+  }
+
+  .basket__restore-btn{
+    background-color: orange;
+    color: white;
+    height: 30px;
+    width: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    margin-left: 10px;
+    position: relative;
+    &>i{
+      transform-origin: center;
+      animation: rotate .8s linear infinite reverse;
+      font-size: 21px;
+    }
   }
   
   .basket__removed-item {
@@ -136,10 +158,19 @@
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 10px;
-    padding: 5px;
+    padding: 5px 10px;
     font-weight: 300;
+    background-color: #ffdbe1;
   }
-  
+  .basket__removed-notification{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .basket__removedCounter{
+    position: absolute;
+  }
+  .basket__removedText{}
   .basket__controls {
     padding-top: 10px;
     border-top: 1px solid rgba(0, 0, 0, 0.1);
@@ -160,8 +191,7 @@
     border-radius: 25px;
     text-transform: uppercase;
     -webkit-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);    
   }
   .basket__item-options{
     display: flex;
@@ -222,4 +252,9 @@
   opacity: 0;
   transform: translateX(-110%);
   transition: all 0.3s;
+}
+
+@keyframes rotate {
+  0%{transform: rotate(0deg);}
+  100%{transform: rotate(360deg)}
 }

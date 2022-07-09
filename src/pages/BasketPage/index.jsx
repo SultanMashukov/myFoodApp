@@ -9,11 +9,18 @@ import BasketControls from './BasketControls';
 const BasketPage = (props) => {
 
 	return (
-		<div className="basket page-component">
-			<BasketDelivery/>
-			<BasketList/>
-			<BasketControls/>
-			<BasketChanger/>
+		<div className="basket">
+			<div className="pageHeader">
+				<div className="pageHeader__title">
+						Корзина
+				</div>
+			</div>
+			<div className="basket__inner">
+				<BasketDelivery/>
+				<BasketList/>
+				<BasketControls/>
+				<BasketChanger/>
+			</div>
 		</div>
 	) 
 };

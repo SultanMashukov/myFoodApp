@@ -4,6 +4,8 @@ import BasketItem from './BasketItem';
 
 const BasketListSection = ({foodType, catalogLink,  items, removeItem, restoreItem, openChanger}) => {
 	
+	if(!items.length)
+		return <></>
 	return (
 		<div className="basket__type">
 				<div className="basket__type-name">
