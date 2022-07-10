@@ -15,8 +15,8 @@ const BasketPage = (props) => {
 						Корзина
 				</div>
 			</div>
+			<BasketDelivery/>
 			<div className="basket__inner">
-				<BasketDelivery/>
 				<BasketList/>
 				<BasketControls/>
 				<BasketChanger/>

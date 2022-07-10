@@ -34,6 +34,9 @@ const BasketList = (props) => {
 		}
 	}
 
+	if(!basketItems.length)
+		return <div className="basket__emptyNotification">Корзина пуста</div>
+
 	return (
 		<>
 			<BasketListSection 
