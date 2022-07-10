@@ -1,11 +1,13 @@
 import React from 'react';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
+import BasketItemMarked from './BasketItemMarked';
 
 const BasketItem = ({itemData, removeItem, restoreItem, openChanger}) => {
 	
 	const showItemChanger = (e) => {
 		openChanger(itemData.productId, itemData.basketId)
 	}
+
 	return(
 		<SwitchTransition mode='out-in'>
 			<CSSTransition
@@ -17,22 +19,7 @@ const BasketItem = ({itemData, removeItem, restoreItem, openChanger}) => {
 				{
 					itemData.removeMark
 					?
-						<div className="basket__item">
-							<div className="basket__removed-item">
-								<div className="basket__removed-notification">
-									<div className="basket__removedText">
-										<b>{itemData.name}</b> был удален.
-									</div>
-									<div className="basket__removedButton">
-										<button	button className="basket__restore-btn" onClick={() => {restoreItem(itemData.basketId)}}>
-											<div className="basket__removedCounter">1</div>
-											<i class="fal fa-undo"></i>
-										</button>
-									</div>
-									
-								</div>
-							</div>
-						</div>
+						<BasketItemMarked basketId={itemData.basketId} name={itemData.name} restoreItem={restoreItem} />
 					:
 						<div className="basket__item" onClick={(e) => showItemChanger(e)}>
 							<div className="basket__item-pic">

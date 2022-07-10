@@ -1,7 +1,7 @@
 import React, {useCallback} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import BasketListSection from './BasketListSection';
-import { removeFromBasket, restoreItemToBasket, toggleModal, setModalInfo } from 'store/slices/sliceBasket';
+import { restoreItemToBasket, toggleModal, setModalInfo, deleteItem } from 'store/slices/sliceBasket';
 
 const BasketList = (props) => {
 
@@ -15,9 +15,11 @@ const BasketList = (props) => {
 
 	const removeItem = useCallback(
 		(id) => {
-			dispatch(removeFromBasket({basketId:id}))
+			dispatch(deleteItem({basketId:id}))
 		},[]
 	) 
+
+	
 	
 	const restoreItem = useCallback(
 		(id) => {

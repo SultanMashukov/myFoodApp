@@ -1,4 +1,21 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+
+export const deleteItem = createAsyncThunk(
+    'basket/deleteItem',
+    async function(_args, {rejectWithValue, dispatch}) {
+        try{
+            const res = await new Promise((resolve, reject)=> {
+                dispatch(markAsRemove({basketId: _args.basketId}))
+                setTimeout(() => {resolve(_args.basketId)}, 5000)
+            })
+            return res;
+        }catch(e){
+            return rejectWithValue(e.message)
+        }
+        
+    }
+)
+
 
 const basketSlice = createSlice({
     name: 'basket',
@@ -50,7 +67,7 @@ const basketSlice = createSlice({
             state.basketItems[itemId].count = action.payload.count
             state.basketItems[itemId].options =action.payload.options
         },
-        removeFromBasket(state, action){
+        markAsRemove(state, action){
             const itemId = state.basketItems.findIndex((item) => item.basketId === action.payload.basketId);
             state.basketItems[itemId].removeMark = true;
         },
@@ -83,6 +100,20 @@ const basketSlice = createSlice({
             state.basketItems = []
         }
     },
+    extraReducers:{
+        [deleteItem.pending]: (state, action) =>{
+            
+        },
+        [deleteItem.fulfilled]: (state,action) =>{
+            const potentialWillRemove = state.basketItems.find((item) => item.basketId === action.payload)
+            if(potentialWillRemove.removeMark){
+                state.basketItems = state.basketItems.filter(el => el.basketId !== potentialWillRemove.basketId)
+            }   
+        },
+        [deleteItem.rejected]: (state,action) =>{
+            
+        },
+    }
 })
 
 
@@ -91,6 +122,6 @@ const basketSlice = createSlice({
 export default basketSlice.reducer;
 
 export const {
-    addItemToBasket, removeFromBasket, restoreItemToBasket, 
+    addItemToBasket, markAsRemove, restoreItemToBasket, 
     toggleDelivery, changeItemInBasket, toggleModal, 
     setModalInfo, repeatBasketByOrder, resetBasket} = basketSlice.actions;
