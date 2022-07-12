@@ -6,7 +6,8 @@ export const fetchCatalogItems = createAsyncThunk(
         try{
             let page = _args?.page ? `&page=${_args.page}`: ''
             let category = _args?.category ? `&category=${_args.category}`: ''
-            const response = await fetch(`http://localhost:5000/api/catalog/get_all?limit=2${page+category}`)
+            let name = _args?.name ? `&name=${_args.name}`: ''
+            const response = await fetch(`http://localhost:5000/api/catalog/get_all?limit=2${page+category+name}`)
             
             if(!response.ok){
                 throw new Error('ServerError!')
