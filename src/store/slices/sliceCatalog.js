@@ -1,11 +1,12 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import initState from '../../database/catalog';
 
 export const fetchCatalogItems = createAsyncThunk(
     'catalog/fetchCatalogItems',
-    async function(_, {rejectWithValue}) {
+    async function(_args, {rejectWithValue}) {
         try{
-            const response = await fetch('http://localhost:5000/api/catalog/get_all')
+            let page = _args?.page ? `&page=${_args.page}`: ''
+            let category = _args?.category ? `&category=${_args.category}`: ''
+            const response = await fetch(`http://localhost:5000/api/catalog/get_all?limit=2${page+category}`)
             
             if(!response.ok){
                 throw new Error('ServerError!')
@@ -23,7 +24,7 @@ export const fetchCatalogItems = createAsyncThunk(
 const catalogSlice = createSlice({
     name: 'catalog',
     initialState:{
-        catalogItems: null,
+        catalogItems: [],
         favorites: localStorage.catalogFavorites ? JSON.parse(localStorage.catalogFavorites): [],
         modalIsActive: false,
         productModalId: '',
@@ -57,7 +58,7 @@ const catalogSlice = createSlice({
             state.listFetchingInfo.status = 'pending';
         },
         [fetchCatalogItems.fulfilled]: (state,action) =>{
-            state.catalogItems = action.payload;
+            state.catalogItems = [...state.catalogItems, ...action.payload] ;
             state.listFetchingInfo.status = 'loaded';
         },
         [fetchCatalogItems.rejected]: (state,action) =>{
