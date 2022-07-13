@@ -3,11 +3,13 @@ import { useParams } from 'react-router-dom';
 import { useSelector} from 'react-redux';
 import './styles.scss';
 import LoaderSpinner from 'components/LoaderSpinner';
-import CatalogSearchString from '../CatalogSearchString';
 import { useDispatch } from 'react-redux';
-import { toggleProductIsFavorite } from 'store/slices/sliceCatalog';
+import { fetchCatalogItems, toggleProductIsFavorite } from 'store/slices/sliceCatalog';
 import CatalogControls from '../CatalogControls';
 import { useState } from 'react';
+import { useEffect } from 'react';
+import { throttle } from 'utils';
+import { useRef } from 'react';
 
 
 const CatalogList = ({toggleProductModal}) => {
@@ -29,6 +31,36 @@ const CatalogList = ({toggleProductModal}) => {
 		setFavoritesOnly(!favoritesOnly)
 	}
 
+	const refPageNumber = useRef(2)
+	const refScrollPosition = useRef(0)
+
+	useEffect(() => {
+		const pageDOMElement = document.querySelector('.page-food');
+		
+		const scrollHandler = throttle((e)=>{
+			const el = e.target;
+			if( el.offsetHeight + el.scrollTop + 100 >= el.scrollHeight ){
+				dispatch(fetchCatalogItems({page:refPageNumber.current}))
+				++refPageNumber.current;
+				refScrollPosition.current = el.scrollTop;
+			}
+		},1000)
+
+		pageDOMElement.addEventListener('scroll',scrollHandler)
+		
+		return ()=> {
+			pageDOMElement.removeEventListener('scroll',scrollHandler)
+		}
+	},[])
+
+	useEffect(() => {
+		const pageDOMElement = document.querySelector('.page-food');
+		console.log(refPageNumber.current);
+		//console.log(pageDOMElement.scrollHeight);
+		pageDOMElement.scrollTo(0,400)
+	},[catalogList])
+
+
 	//фильтр, оставляющий только избранные товары
 	if(catalogList && favoritesOnly){
 		catalogList = catalogList.filter(item => favoritesList.includes(item.id))
@@ -42,8 +74,8 @@ const CatalogList = ({toggleProductModal}) => {
 		catalogList = catalogList.filter(item => item.name.toLowerCase().includes(nameFilter))
 	}
 
-	if(listFetchingInfo.status === 'pending')
-		return <LoaderSpinner/>
+	// if(listFetchingInfo.status === 'pending')
+	// 	return <LoaderSpinner/>
 	if(listFetchingInfo.status === 'rejected')
 		return <div className="error">{listFetchingInfo.errorMsg}</div>
 	if(listFetchingInfo.status === 'loaded')
