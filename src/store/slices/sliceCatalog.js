@@ -7,7 +7,7 @@ export const fetchCatalogItems = createAsyncThunk(
             let page = _args?.page ? `&page=${_args.page}`: ''
             let category = _args?.category ? `&category=${_args.category}`: ''
             let name = _args?.name ? `&name=${_args.name}`: ''
-            const response = await fetch(`http://localhost:5000/api/catalog/get_all?limit=9${page+category+name}`)
+            const response = await fetch(`http://localhost:5000/api/catalog/get_all?limit=8${page+category+name}`)
             
             if(!response.ok){
                 throw new Error('ServerError!')
@@ -27,6 +27,7 @@ const catalogSlice = createSlice({
     initialState:{
         catalogItems: [],
         favorites: localStorage.catalogFavorites ? JSON.parse(localStorage.catalogFavorites): [],
+        showFavorites: false,
         modalIsActive: false,
         productModalId: '',
         listFetchingInfo:{
@@ -38,6 +39,9 @@ const catalogSlice = createSlice({
     reducers:{
         toggleModal(state){
             state.modalIsActive = !state.modalIsActive;
+        },
+        toggleShowFavorites(state){
+            state.showFavorites = !state.showFavorites;
         },
         setProductModalId(state,action){
             state.productModalId = action.payload.id;
@@ -74,6 +78,7 @@ export const {
     toggleModal, 
     setProductModalId, 
     setNameFilter,
-    toggleProductIsFavorite} = catalogSlice.actions;
+    toggleProductIsFavorite,
+    toggleShowFavorites} = catalogSlice.actions;
 
 export default catalogSlice.reducer;

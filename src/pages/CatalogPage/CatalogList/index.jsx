@@ -21,14 +21,10 @@ const CatalogList = ({toggleProductModal}) => {
 	const nameFilter = useSelector(state => state.catalog.nameFilter);
 	const favoritesList = useSelector(state => state.catalog.favorites)
 	let catalogList = useSelector( state => state.catalog.catalogItems);
-	const [favoritesOnly, setFavoritesOnly] = useState(false);
+	const favoritesOnly = useSelector( state => state.catalog.showFavorites);
 
 	const toggleProductFavoritStatus = (catalogId) => {
 		dispatch(toggleProductIsFavorite(catalogId))
-	}
-
-	const toggleFavoriteFilter = (bool) => {
-		setFavoritesOnly(!favoritesOnly)
 	}
 
 	const refPageNumber = useRef(2)
@@ -81,7 +77,6 @@ const CatalogList = ({toggleProductModal}) => {
 	if(listFetchingInfo.status === 'loaded')
 		return (
 			<div className="foodList">
-				<CatalogControls toggleFavoriteFilter={toggleFavoriteFilter}/>
 				<div className="foodList__row">
 					{
 						catalogList.length 
