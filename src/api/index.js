@@ -50,3 +50,18 @@ export const OrdersAPI = {
         );
     },
 }
+
+export const CatalogAPI = {
+    getAll(page = null, category = null, name = null){
+        let params = '';
+        if(page)
+            params+=`&page=${page}`;
+        if(category)
+            params+=`&category=${category}`;
+        if(name)
+            params+=`&name=${name}`;
+        return instance.get(
+            `catalog/get_all/?limit=8${params}`,{}
+        );
+    },
+}
