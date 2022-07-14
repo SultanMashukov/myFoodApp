@@ -21,7 +21,7 @@ const NotFoundPage = (props) => {
 					Возможно неправильно набран адрес или страница была удалена.
 				</div>
 				<NavLink to='/catalog/' className="notFoundPage__link">
-					В меню <i class="fal fa-utensils"></i>
+					В меню <i className="fal fa-utensils"></i>
 				</NavLink>
 			</div>
 		</div>
