@@ -1,18 +1,17 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector} from 'react-redux';
 import './styles.scss';
 import LoaderSpinner from 'components/LoaderSpinner';
 import { useDispatch } from 'react-redux';
 import { fetchCatalogItems, toggleProductIsFavorite } from 'store/slices/sliceCatalog';
-import CatalogControls from '../CatalogControls';
-import { useState } from 'react';
 import { useEffect } from 'react';
-import { throttle } from 'utils';
+import { getCookie, throttle } from 'utils';
 import { useRef } from 'react';
+import CatalogItem from './CatalogItem';
 
 
-const CatalogList = ({toggleProductModal}) => {
+const CatalogList = ({toggleProductModal, pageDOMElement}) => {
 
 	const urlParams = useParams();
 	
@@ -23,39 +22,35 @@ const CatalogList = ({toggleProductModal}) => {
 	let catalogList = useSelector( state => state.catalog.catalogItems);
 	const favoritesOnly = useSelector( state => state.catalog.showFavorites);
 
-	const toggleProductFavoritStatus = (catalogId) => {
+	const toggleProductFavoritStatus = useCallback((catalogId) => {
 		dispatch(toggleProductIsFavorite(catalogId))
-	}
+	},[])
 
 	const refPageNumber = useRef(2)
 	const refScrollPosition = useRef(0)
 
+	
 	useEffect(() => {
-		const pageDOMElement = document.querySelector('.page-food');
-		
 		const scrollHandler = throttle((e)=>{
-			const el = e.target;
-			if( el.offsetHeight + el.scrollTop + 100 >= el.scrollHeight ){
-				dispatch(fetchCatalogItems({page:refPageNumber.current}))
-				++refPageNumber.current;
+			const allItemsLoaded = getCookie('catalog_count') <= catalogList.length
+			if(!allItemsLoaded){
+				const el = e.target;
 				refScrollPosition.current = el.scrollTop;
+				if( el.offsetHeight + el.scrollTop + 100 >= el.scrollHeight ){
+					refScrollPosition.current = el.scrollTop;
+					dispatch(fetchCatalogItems({page:refPageNumber.current}))
+					++refPageNumber.current;
+				}
 			}
+			
 		},1000)
 
-		pageDOMElement.addEventListener('scroll',scrollHandler)
+		pageDOMElement.current.addEventListener('scroll',scrollHandler)
 		
 		return ()=> {
-			pageDOMElement.removeEventListener('scroll',scrollHandler)
+			pageDOMElement.current.removeEventListener('scroll',scrollHandler)
 		}
-	},[])
-
-	useEffect(() => {
-		const pageDOMElement = document.querySelector('.page-food');
-		console.log(refPageNumber.current);
-		//console.log(pageDOMElement.scrollHeight);
-		pageDOMElement.scrollTo(0,400)
 	},[catalogList])
-
 
 	//фильтр, оставляющий только избранные товары
 	if(catalogList && favoritesOnly){
@@ -70,51 +65,32 @@ const CatalogList = ({toggleProductModal}) => {
 		catalogList = catalogList.filter(item => item.name.toLowerCase().includes(nameFilter))
 	}
 
-	// if(listFetchingInfo.status === 'pending')
-	// 	return <LoaderSpinner/>
-	if(listFetchingInfo.status === 'rejected')
-		return <div className="error">{listFetchingInfo.errorMsg}</div>
-	if(listFetchingInfo.status === 'loaded')
-		return (
-			<div className="foodList">
-				<div className="foodList__row">
-					{
-						catalogList.length 
-						?catalogList.map((item) => {
-							//проверка на "избранность" товара
-							if(favoritesList.length){
-								item = favoritesList.includes(item.id) 
-								? {...item,isFavorite: true} 
-								: {...item,isFavorite: false}
-							}
-							return(
-									<div className="foodList__item" key={item.id}>
-										<div className="foodList__itemPic " style={{backgroundImage: `url(${item?.images?.[0] || ''})`} }>
-										</div>
-										<div className="foodList__itemContent">
-											<div className="foodList__itemName">{item.name}</div>
-											<div className="foodList__itemControls">
-												<button className={item.isFavorite 
-													? 'foodList__itemButton foodList__itemFavorite--active'
-													: 'foodList__itemButton foodList__itemFavorite'}
-													onClick={()=>toggleProductFavoritStatus(item.id)}>
-													<i className="fas fa-heart"></i>
-												</button>
-												<div className="foodList__itemPrice">{item.price} <i className="fal fa-ruble-sign"></i></div>
-												<button className="foodList__itemButton" onClick={(e) => { toggleProductModal(item.id);}}>
-													<i className="fal fa-shopping-basket"></i>
-												</button>
-											</div>
-										</div>
-									</div>
-							)
-						})
-						:<div className='foodList__empty'>Ничего не найдено :(</div>
-					}
-				</div>
+	return (
+		<div className="foodList">
+			<div className="foodList__row">
+				{
+					catalogList.length 
+					?catalogList.map((item) => {
+						//проверка на "избранность" товара
+						if(favoritesList.length){
+							item = favoritesList.includes(item.id) 
+							? {...item,isFavorite: true} 
+							: {...item,isFavorite: false}
+						}
+						return(
+								<CatalogItem item={item} key={item.id} 
+								toggleProductFavoritStatus={toggleProductFavoritStatus}
+								toggleProductModal={toggleProductModal}/>
+						)
+					})
+					:<div className='foodList__empty'>Ничего не найдено :(</div>
+				}
 			</div>
-		)
-	return <></>
+			{
+				listFetchingInfo.status === 'pending' && <div className="foodList__loading">Загрузка...</div>
+			}
+		</div>
+	)
 };
 
 export default CatalogList;

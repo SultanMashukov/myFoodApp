@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import { toggleModal,setProductModalId, toggleShowFavorites } from 'store/slices/sliceCatalog';
 import CatalogPicker from './CatalogPicker';
 import CatalogControls from './CatalogControls';
+import { useRef } from 'react';
 
 const CatalogPage = (props) => {
 	const dispatch = useDispatch();
@@ -25,11 +26,13 @@ const CatalogPage = (props) => {
 		dispatch(toggleShowFavorites())
 	}
 
+	const pageDOMElement = useRef()
+
 	return (
-		<div className="page-food">
+		<div className="page-food" ref={pageDOMElement}>
 			<CatalogMenu/>
 			<CatalogControls toggleFavoriteFilter={toggleFavoriteFilter}/>
-			<CatalogList toggleProductModal={toggleProductModal}/>
+			<CatalogList toggleProductModal={toggleProductModal} pageDOMElement={pageDOMElement}/>
 			<CatalogPicker toggleProductModal={toggleProductModal}/>
 		</div>
 	) 
