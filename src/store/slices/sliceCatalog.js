@@ -1,24 +1,22 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { CatalogAPI } from "api";
 
 export const fetchCatalogItems = createAsyncThunk(
     'catalog/fetchCatalogItems',
     async function(_args, {rejectWithValue}) {
         try{
-            let page = _args?.page ? `&page=${_args.page}`: ''
-            let category = _args?.category ? `&category=${_args.category}`: ''
-            let name = _args?.name ? `&name=${_args.name}`: ''
-            const response = await fetch(`http://localhost:5000/api/catalog/get_all?limit=8${page+category+name}`)
+            let page = _args?.page || null
+            let category = _args?.category || null
+            let name = _args?.name || null
+            const response = await CatalogAPI.getAll(page, category, name)
             
-            if(!response.ok){
+            if(response.statusText !== "OK"){
                 throw new Error('ServerError!')
             }
-            const data = await response.json();
-            
-            return data;
+            return response.data;
         }catch(e){
             return rejectWithValue(e.message)
         }
-        
     }
 )
 
