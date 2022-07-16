@@ -71,6 +71,12 @@ const CatalogMenu = (props) => {
 							<div className="food-menu__item-name">Напитки</div>
 						</NavLink>
 				</div>
+				<div className="food-menu__item">
+						<NavLink to='/catalog/sauces' className='food-menu__link'>
+							<i className="fal fa-soup"></i>
+							<div className="food-menu__item-name">Соусы</div>
+						</NavLink>
+				</div>
 			</div>
 		</div>
 	) 
