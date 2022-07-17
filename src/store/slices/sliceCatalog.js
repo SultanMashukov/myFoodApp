@@ -55,6 +55,9 @@ const catalogSlice = createSlice({
                 state.favorites.push(action.payload)
             }
         },
+        resetCatalogItems(state){
+            state.catalogItems = [];
+        }
     }, 
     extraReducers:{
         [fetchCatalogItems.pending]: (state) =>{
@@ -77,6 +80,7 @@ export const {
     setProductModalId, 
     setNameFilter,
     toggleProductIsFavorite,
-    toggleShowFavorites} = catalogSlice.actions;
+    toggleShowFavorites,
+    resetCatalogItems} = catalogSlice.actions;
 
 export default catalogSlice.reducer;
