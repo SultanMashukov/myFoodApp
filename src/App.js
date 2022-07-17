@@ -1,14 +1,11 @@
 import 'App.scss';
 import MainMenu from 'components/MainMenu';
 import { Route, Routes } from 'react-router-dom';
-import ModalWindow from 'components/ModalWindow';
-import LoaderSpinner from 'components/LoaderSpinner'
-import { useEffect, useState } from 'react';
+import { useEffect} from 'react';
 import PrivateRoute from 'HOC/PrivateRoute';
 import { useDispatch } from 'react-redux';
 import { checkAuth } from 'store/slices/sliceUser';
 import { publicRoutes, privateRoutes} from 'routes';
-import { fetchCatalogItems } from 'store/slices/sliceCatalog';
 import NotFoundPage from 'pages/NotFoundPage';
 
 function App() {
@@ -17,7 +14,6 @@ function App() {
     
     useEffect(()=>{
         dispatch(checkAuth()) //проверка авторизации
-        dispatch(fetchCatalogItems()) //запрос за каталогом к API
     },[])
 
     return (
