@@ -1,23 +1,24 @@
 import React from 'react';
 import './styles.scss';
 
-const SearchString = ({changeSearchString, initSearchString}) => {
+const SearchString = ({changeRefVal,initSearchString,refProp}) => {
+
 	return (
-		
+			
 		<div className="search">
 			<input 
 				className="searchInput" 
 				type="text" 
-				value={initSearchString}
+				ref={refProp}
 				placeholder="Поиск по названию..."
-				onChange={e=>changeSearchString(e.target.value.toLowerCase())}
+				onChange={e=>changeRefVal(e.target.value.toLowerCase())}
 				/>
 			<div className="searchIcon">
 				<i className="fal fa-search"/>		
 			</div>
 		</div>
 		
-	) 
-};
+	)
+}
 
 export default SearchString;

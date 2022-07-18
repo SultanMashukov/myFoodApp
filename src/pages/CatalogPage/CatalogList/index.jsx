@@ -32,9 +32,10 @@ const CatalogList = ({toggleProductModal, pageDOMElement}) => {
 		dispatch(fetchCatalogItems({
 			page:refPageNumber.current,
 			category: urlParams.category || null,
+			name: nameFilter || null
 		})) 
 		refPageNumber.current = 2
-	},[urlParams.category])
+	},[urlParams.category, nameFilter])
 
 	useEffect(() => {
 		const scrollHandler = throttle((e)=>{
@@ -45,6 +46,7 @@ const CatalogList = ({toggleProductModal, pageDOMElement}) => {
 					dispatch(fetchCatalogItems({
 						page:refPageNumber.current,
 						category: urlParams.category || null,
+						name: nameFilter || null
 					}))
 					++refPageNumber.current;
 				}
