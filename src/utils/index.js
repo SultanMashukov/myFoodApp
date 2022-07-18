@@ -28,21 +28,27 @@ export function throttle(func, ms) {
     return wrapper;
 }
 
-export function debounce(f, ms) {
+export function debounce(func, wait, immediate) {
+    let timeout;
 
-    let isCooldown = false;
+    return function executedFunction() {
+        let context = this;
+        let args = arguments;
 
-    return function () {
-        if (isCooldown) return;
+        let later = function () {
+            timeout = null;
+            if (!immediate) func.apply(context, args);
+        };
 
-        f.apply(this, arguments);
+        let callNow = immediate && !timeout;
 
-        isCooldown = true;
+        clearTimeout(timeout);
 
-        setTimeout(() => isCooldown = false, ms);
+        timeout = setTimeout(later, wait);
+
+        if (callNow) func.apply(context, args);
     };
-
-}
+};
 
 export function getCookie(name) {
     let matches = document.cookie.match(new RegExp(
