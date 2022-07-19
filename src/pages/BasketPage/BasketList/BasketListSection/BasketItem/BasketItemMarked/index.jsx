@@ -27,9 +27,9 @@ const BasketItemMarked = ({basketId, name, restoreItem}) => {
 						<b>{name}</b> был удален.
 					</div>
 					<div className="basket__removedButton">
-						<button	button className="basket__restore-btn" onClick={() => {restoreItem(basketId)}}>
+						<button className="basket__restore-btn" onClick={() => {restoreItem(basketId)}}>
 							<div className="basket__removedCounter">{deleteTimeout}</div>
-							<i class="fal fa-undo"></i>
+							<i className="fal fa-undo"></i>
 						</button>
 					</div>
 					
