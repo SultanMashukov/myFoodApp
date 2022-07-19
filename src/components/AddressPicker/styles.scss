@@ -20,7 +20,7 @@
         font-size: 20px;
     }
     &__mapContainer{
-        flex: 1 0 400px;
+        flex: 1 0 80%;
         background-image: url(https://fvmstatic.s3.amazonaws.com/maps/m/ICON-MM-01-0002.png);
         background-size: 10%;
         background-repeat: repeat;
@@ -28,11 +28,15 @@
     &__controls {
         padding: 10px;
         height: 100%;
-        box-shadow: 0px -3px 9px 1px grey;
         position: relative;
-        border-top-left-radius: 10px;
-        border-top-right-radius: 10px;
         text-align: center;
+        flex: 1 0 20%;
+        &>ymaps{
+            top:40px !important;
+        }
+        &>ymaps>ymaps>ymaps{
+            transform: translateY(-100%);
+        }
     }
     &__controlsTitle{
         text-align: center;
@@ -51,7 +55,7 @@
         padding: 10px;
         display:inline-block;
         vertical-align:middle;
-        margin: 10px 0;
+        margin: 5px 0;
     }
 
     &__controlsBtn {

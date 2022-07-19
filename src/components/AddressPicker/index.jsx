@@ -83,10 +83,11 @@ const AddressPicker = ({initCoord, initAddrString, closeFunc, saveNewLocation}) 
 					<i className="fal fa-times"></i>
 				</div>
 				<div className="addressPicker__controlsTitle">Выберите адрес доставки</div>
+				<input className="addressPicker__controlsSuggest" type="text" id="suggest" placeholder="или введите адрес вручную..."/>
 				<button className="addressPicker__controlsBtn" id="findme">
 					Автоопределение <i className="far fa-location"></i>
 				</button> 
-				<input className="addressPicker__controlsSuggest" type="text" id="suggest" placeholder="или введите адрес вручную..."/>
+				
 				<button className="addressPicker__controlsBtn addressPicker__doneBtn" 
 					disabled={currentAddress.coord.length < 2} 
 					onClick={saveAndClose}>
