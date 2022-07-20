@@ -34,6 +34,7 @@ const AddressPicker = ({initCoord, initAddrString, closeFunc, saveNewLocation}) 
 				async function setLocation (addressString){
 					let geocoder = await ymaps.geocode(addressString);
 					let coordinates = geocoder.geoObjects.get(0).geometry.getCoordinates();
+					let addressLine = geocoder.geoObjects.get(0).getAddressLine();
 					let placemark = new ymaps.Placemark(
 						coordinates,
 						{
@@ -45,7 +46,7 @@ const AddressPicker = ({initCoord, initAddrString, closeFunc, saveNewLocation}) 
 					setCurrentAddress({
 						...currentAddress, 
 						coord: coordinates, 
-						string:'221'
+						string: addressLine,
 					})
 				}
 	
