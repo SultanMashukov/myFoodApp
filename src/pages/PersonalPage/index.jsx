@@ -32,16 +32,6 @@ const PersonalPage = (props) => {
 						</div>
 					</div>
 					<div className="personal__item">
-						<a href="" className="personal__itemLink">
-							<div className="personal__itemIcon">
-								<i className="far fa-map-marked"></i>
-							</div>
-							<div className="personal__itemName">
-								Мои адреса
-							</div>
-						</a>
-					</div>
-					<div className="personal__item">
 						<NavLink to='orders/' className='personal__itemLink'>
 							<div className="personal__itemIcon">
 								<i className="fal fa-history"></i>
@@ -61,6 +51,16 @@ const PersonalPage = (props) => {
 							</div>
 						</NavLink>
 					</div>
+					<div className="personal__item">
+						<a href="" className="personal__itemLink">
+							<div className="personal__itemIcon">
+								<i className="fal fa-info-circle"></i> <i className="fab fa-react"></i>
+							</div>
+							<div className="personal__itemName">
+								Информация о сайте
+							</div>
+						</a>
+					</div>
 					<div className="personal__item personal__item--disabled" >
 						<a href="" className="personal__itemLink">
 							<div className="personal__itemIcon">
@@ -71,13 +71,13 @@ const PersonalPage = (props) => {
 							</div>
 						</a>
 					</div>
-					<div className="personal__item">
+					<div className="personal__item personal__item--disabled">
 						<a href="" className="personal__itemLink">
 							<div className="personal__itemIcon">
-								<i className="fal fa-info-circle"></i> <i className="fab fa-react"></i>
+								<i className="far fa-map-marked"></i>
 							</div>
 							<div className="personal__itemName">
-								Информация о сайте
+								Мои адреса
 							</div>
 						</a>
 					</div>
