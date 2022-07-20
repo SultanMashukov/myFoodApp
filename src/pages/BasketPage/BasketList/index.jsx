@@ -8,10 +8,10 @@ const BasketList = (props) => {
 	const dispatch = useDispatch();
 
 	const basketItems = useSelector(state => state.basket.basketItems);
-	const mainFoodItems = basketItems.filter((item) => ['giros','pizza'].includes(item.type));
+	const mainFoodItems = basketItems.filter((item) => ['giros','pizza','sandwiches','burgers','hotdogs'].includes(item.type));
 	const drinkItems =	basketItems.filter((item) => ['drink'].includes(item.type))
 	const dessertItems =	basketItems.filter((item) => ['dessert'].includes(item.type))
-	const souseItems =	basketItems.filter((item) => ['souse'].includes(item.type))
+	const souseItems =	basketItems.filter((item) => ['sauces'].includes(item.type))
 
 	const removeItem = useCallback(
 		(id) => {
