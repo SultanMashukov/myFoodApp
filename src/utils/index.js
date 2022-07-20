@@ -56,3 +56,7 @@ export function getCookie(name) {
     ));
     return matches ? decodeURIComponent(matches[1]) : undefined;
 }
+
+export function saveInLocalStorage(keyName,itemsArray){
+    localStorage[keyName] = JSON.stringify(itemsArray)
+}
