@@ -71,12 +71,8 @@ const userSlice = createSlice({
         id:'',
         name: '',
         email: '',
-        address: null,
         phone: '', 
-        address:{
-            string: 'ул. Строителей козиматов качественных, 28 кв.1',
-            coord: [45.042710, 41.952956]
-        },
+        address: localStorage.lastDeliveryAddress ? JSON.parse(localStorage.lastDeliveryAddress): {},
         isAuth: false,
         isFetching: true,
         isUpdateFetching: false,
