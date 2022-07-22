@@ -74,6 +74,10 @@
     flex-direction: column;
     position: relative;
     animation: fadeInUp 0.5s forwards;
+    overflow: hidden;
+    &>.fetchLoader{
+      z-index: unset;
+    }
   }
   
   .product-modal__info {

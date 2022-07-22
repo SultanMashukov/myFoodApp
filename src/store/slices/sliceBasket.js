@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { CatalogAPI } from "api";
 
 export const deleteItem = createAsyncThunk(
     'basket/deleteItem',
@@ -16,6 +17,22 @@ export const deleteItem = createAsyncThunk(
     }
 )
 
+export const fetchProductData = createAsyncThunk(
+    'catalog/fetchProductData',
+    async function(_args, {rejectWithValue}) {
+        try{
+            const response = await CatalogAPI.getByIds([_args.id])
+            
+            if(response.statusText !== "OK"){
+                throw new Error('ServerError!')
+            }
+            return response.data;
+        }catch(e){
+            return rejectWithValue(e.message)
+        }
+    }
+)
+
 
 const basketSlice = createSlice({
     name: 'basket',
@@ -26,7 +43,9 @@ const basketSlice = createSlice({
         modalInfo: {
             modalIsActive: false,
             basketItemId: '',
-            productId: ''
+            productId: '',
+            productData: null,
+            isFetching: false,
         }
         
     },
@@ -101,6 +120,7 @@ const basketSlice = createSlice({
         }
     },
     extraReducers:{
+        //Таймер на удаление товара из корзины
         [deleteItem.pending]: (state, action) =>{
             
         },
@@ -112,6 +132,17 @@ const basketSlice = createSlice({
         },
         [deleteItem.rejected]: (state,action) =>{
             
+        },
+        //получение деталки товара
+        [fetchProductData.pending]: (state) =>{
+            state.modalInfo.isFetching = true;
+        },
+        [fetchProductData.fulfilled]: (state,action) =>{
+            state.modalInfo.isFetching = false;  
+            state.modalInfo.productData = action.payload[0]
+        },
+        [fetchProductData.rejected]: (state,action) =>{
+            state.modalInfo.isFetching = false;
         },
     }
 })
