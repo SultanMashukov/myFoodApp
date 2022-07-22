@@ -64,4 +64,11 @@ export const CatalogAPI = {
             `catalog/get_all/?limit=8${params}`,{}
         );
     },
+
+    getByIds(ids){
+        const stringifyArray = ids.join('');
+        return instance.get(
+            `catalog/get_all/?ids=${stringifyArray}`,{}
+        );
+    }
 }
