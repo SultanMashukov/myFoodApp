@@ -55,8 +55,10 @@ export const OrdersAPI = {
 }
 
 export const CatalogAPI = {
-    getAll(page = null, category = null, name = null){
+    getAll(ids, page = null, category = null, name = null){
         let params = '';
+        if(ids)
+            params+=`&ids=${ids.join()}`;
         if(page)
             params+=`&page=${page}`;
         if(category)
@@ -69,7 +71,7 @@ export const CatalogAPI = {
     },
 
     getByIds(ids){
-        const stringifyArray = ids.join('');
+        const stringifyArray = ids.join();
         return instance.get(
             `catalog/get_all/?ids=${stringifyArray}`,{}
         );
