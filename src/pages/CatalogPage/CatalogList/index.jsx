@@ -30,12 +30,13 @@ const CatalogList = ({toggleProductModal, pageDOMElement}) => {
 		dispatch(resetCatalogItems())
 		refPageNumber.current = 1
 		dispatch(fetchCatalogItems({
+			ids: favoritesOnly ? favoritesList : null,
 			page:refPageNumber.current,
 			category: urlParams.category || null,
 			name: nameFilter || null
 		})) 
 		refPageNumber.current = 2
-	},[urlParams.category, nameFilter])
+	},[urlParams.category, nameFilter, favoritesOnly])
 
 	useEffect(() => {
 		const scrollHandler = throttle((e)=>{
@@ -44,6 +45,7 @@ const CatalogList = ({toggleProductModal, pageDOMElement}) => {
 				const el = e.target;
 				if( el.offsetHeight + el.scrollTop + 100 >= el.scrollHeight ){
 					dispatch(fetchCatalogItems({
+						ids: favoritesOnly ? favoritesList : null,
 						page:refPageNumber.current,
 						category: urlParams.category || null,
 						name: nameFilter || null

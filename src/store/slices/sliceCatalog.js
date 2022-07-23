@@ -5,10 +5,12 @@ export const fetchCatalogItems = createAsyncThunk(
     'catalog/fetchCatalogItems',
     async function(_args, {rejectWithValue}) {
         try{
-            let page = _args?.page || null
-            let category = _args?.category || null
-            let name = _args?.name || null
-            const response = await CatalogAPI.getAll(page, category, name)
+            let favoriteIds = _args?.ids || null;
+            let page = _args?.page || null;
+            let category = _args?.category || null;
+            let name = _args?.name || null;
+
+            const response = await CatalogAPI.getAll(favoriteIds, page, category, name)
             
             if(response.statusText !== "OK"){
                 throw new Error('ServerError!')
