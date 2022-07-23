@@ -2,6 +2,7 @@
 .orders {
     position: relative;
     height: 100%;
+    overflow-y: scroll;
 	&__title { 
         padding: 10px;
         text-align: center;
@@ -50,5 +51,10 @@
         font-weight: bold;
         &--processing { color: #e7a932;}
 		&--ready {color: green; }
+    }
+    &__listLoading{
+        padding: 25px;
+        text-align: center;
+        width: 100%;
     }
 }

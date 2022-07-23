@@ -39,9 +39,12 @@ export const OrdersAPI = {
             `orders/add/`,{ address, positions}
         );
     },
-    getAll(){
-        return instance.post(
-            `orders/get_all/`,{}
+    getAll(page = null){
+        let params = ''
+        if(page)
+            params =`&page=${page}`;
+        return instance.get(
+            `orders/get_all/?limit=8${params}`,{}
         );
     },
     getDetail(orderId){

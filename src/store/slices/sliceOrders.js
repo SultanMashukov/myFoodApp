@@ -20,9 +20,10 @@ export const addOrder = createAsyncThunk(
 
 export const fetchOrders = createAsyncThunk(
     'orders/fetchOrders',
-    async function(userData, {rejectWithValue} ) {
+    async function(_args, {rejectWithValue} ) {
         try{
-            const response = await OrdersAPI.getAll()
+            let page = _args?.page || null
+            const response = await OrdersAPI.getAll(page)
 
             if(response.statusText !== "OK"){
                 throw new Error('ServerError!')
@@ -86,6 +87,9 @@ const ordersSlice = createSlice({
             } 
             
         },
+        resetOrdersList(state){
+            state.ordersList = []
+        }
     },
     extraReducers:{
         //добавление заказа
@@ -103,7 +107,7 @@ const ordersSlice = createSlice({
         //получение истории заказов
         [fetchOrders.fulfilled]: (state, { payload }) => {
             state.isFetching = false;
-            state.ordersList = payload
+            state.ordersList = [...state.ordersList, ...payload]
         },
         [fetchOrders.pending]: (state) => {
             state.isFetching = true;
@@ -129,4 +133,4 @@ const ordersSlice = createSlice({
 
 export default ordersSlice.reducer;
 
-export const { addNewOrder, setCurrentDetailId,toggleModal } = ordersSlice.actions;
+export const { addNewOrder, setCurrentDetailId,toggleModal, resetOrdersList } = ordersSlice.actions;
