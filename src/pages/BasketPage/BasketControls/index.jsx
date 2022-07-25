@@ -2,14 +2,22 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addOrder } from 'store/slices/sliceOrders';
 import { resetBasket } from 'store/slices/sliceBasket';
+import { useNavigate } from 'react-router-dom';
 
 const BasketControls = (props) => {
 	const dispatch = useDispatch()
+	const navigate = useNavigate()
 	const basketItems = useSelector(state => state.basket.basketItems);
 	const isNeedDelivery = useSelector(state => state.basket.needDelivery);
 	const userAddress = useSelector(state => state.user.address);
+	const userIsAuth = useSelector(state => state.user.isAuth)
 
 	const addToOrders = () => {
+		if(!userIsAuth){
+			navigate('/signin?from=basket')
+			return;
+		}
+			
 		const orderPositions = [];
 
 		basketItems.forEach(element => {

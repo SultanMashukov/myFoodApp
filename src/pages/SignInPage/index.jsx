@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import './styles.scss';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate, useSearchParams } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import { useSelector, useDispatch } from 'react-redux';
 import { signInUser, clearState } from 'store/slices/sliceUser';
@@ -10,6 +10,8 @@ const SignInPage = (props) => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const { isAuth, isError } = useSelector(state => state.user);
+	const [searchParams] = useSearchParams()
+	const redirectFrom = searchParams.get('from')
 
 	const onSubmit = (data) => {
 		dispatch(signInUser(data));
@@ -18,12 +20,12 @@ const SignInPage = (props) => {
 	useEffect(() => {
 		if (isAuth) {
 			dispatch(clearState());
-			navigate('/');
+			navigate('/'+redirectFrom || '/');
 		}
 		if (isError) {
 			dispatch(clearState());
 		}
-	}, [isAuth, isError]);
+	}, [isAuth, isError, redirectFrom]);
 
 	useEffect(() => {
 		return () => {
