@@ -1,37 +1,44 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import Counter from 'components/Counter';
 import './styles.scss';
 import ProductSlider from './ProductSlider';
 import { changeItemInBasket, fetchProductData } from 'store/slices/sliceBasket';
 import FetchLoadSpinner from 'components/FetchLoadSpinner';
 import { useEffect } from 'react';
+import { useRef } from 'react';
+import ProductCounter from './ProductCounter';
+import ProductOptions from './ProductOptions';
 
 const BasketItemChanger = ({closeChanger, productId, basketItemId}) => {
     
     const productData = useSelector(state => state.basket.modalInfo.productData )
     const currentBasketItemData = useSelector(state => state.basket.basketItems.find(el => el.basketId === basketItemId))
-    const [productCount, setProductCount] = useState(currentBasketItemData.count);
-    const [productOptions, setProductOptions] = useState(currentBasketItemData.options);
-    const dispatch = useDispatch();
     
-    const changeProductCount = (newCount) => {
-        if(newCount>=1){
-            setProductCount(newCount);
-        }
-    }
+    const dispatch = useDispatch();
 
-    const toggleProductOption = (optionName) => {
-        setProductOptions((prevState) => {
-            return prevState.map(option => option.name === optionName ? {...option, active : !option.active} : option);
+    const refCountAndOption = useRef({
+        count: 1,
+        options: currentBasketItemData.options.map((elem) => {
+            return {
+                name: elem.name,
+                active: elem.active
+            }
         })
+    })
+    
+    const changeCount = (newCount) => {
+        refCountAndOption.current.count = newCount;
+    }
+    const changeOption = (optionName) => {
+        let elemId = refCountAndOption.current.options.findIndex(el => el.name === optionName);
+        refCountAndOption.current.options[elemId].active = !refCountAndOption.current.options[elemId].active
     }
 
     const changeItem = () => {
         const dataForBasket = {
             basketItemId,
-            count: productCount,
-            options:productOptions,
+            count: refCountAndOption.current.count,
+            options: refCountAndOption.current.options,
         }
         dispatch(changeItemInBasket(dataForBasket));
         closeChanger();
@@ -74,28 +81,9 @@ const BasketItemChanger = ({closeChanger, productId, basketItemId}) => {
                 <div className="product-modal__description">
                     {productData.description}
                 </div>
-                
-                <div className="product-modal__options">
-                    {
-                        productOptions.map((option, id) => (
-                            <div className="product-modal__options-item" key={id} onClick={() => toggleProductOption(option.name)}>
-                                <input className="product-modal__options-checkbox" 
-                                type="checkbox" 
-                                checked={option.active}
-                                onChange={(e)=> toggleProductOption(option.name)}
-                                />
-                                <div className="product-modal__options-name">{option.name}</div>
-                            </div>
-                        ))
-                    }
-                    
-                </div>
-                
+                <ProductOptions options={refCountAndOption.current.options} changeOption={changeOption}/>
                 <div className="product-modal__order">
-                    <div className="product-modal__price">
-                        {productData.price * productCount} <i className="fal fa-ruble-sign"></i>
-                    </div>
-                    <Counter initCount={productCount} changeCount={changeProductCount}/>
+                    <ProductCounter  changeCount={changeCount} price={productData.price}/>
                     <button className="product-modal__submit" onClick={() => changeItem()}><i className="fal fa-shopping-basket"></i></button>
                 </div>
             </div>
