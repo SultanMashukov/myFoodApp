@@ -4,6 +4,7 @@ import BasketDelivery from './BasketDelivery';
 import BasketList from './BasketList';
 import BasketChanger from './BasketChanger';
 import BasketControls from './BasketControls';
+import BasketSuccessOrder from './BasketSuccessOrder';
 
 
 const BasketPage = (props) => {
@@ -20,6 +21,7 @@ const BasketPage = (props) => {
 				<BasketList/>
 				<BasketControls/>
 				<BasketChanger/>
+				<BasketSuccessOrder/>
 			</div>
 		</div>
 	) 

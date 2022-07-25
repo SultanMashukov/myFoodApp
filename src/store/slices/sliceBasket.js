@@ -33,6 +33,22 @@ export const fetchProductData = createAsyncThunk(
     }
 )
 
+export const showSuccess = createAsyncThunk(
+    'basket/showSuccess',
+    async function(_args, {rejectWithValue, dispatch}) {
+        try{
+            const res = await new Promise((resolve, reject)=> {
+                dispatch(toggleIsSuccess())
+                setTimeout(() => { dispatch(toggleIsSuccess()) }, 3000)
+            })
+            return res;
+        }catch(e){
+            return rejectWithValue(e.message)
+        }
+        
+    }
+)
+
 
 const basketSlice = createSlice({
     name: 'basket',
@@ -40,6 +56,7 @@ const basketSlice = createSlice({
         basketItems: localStorage.userBasket ? JSON.parse(localStorage.userBasket): [],
         needDelivery: false,
         deliveryAddress: '',
+        isSuccess: false,
         modalInfo: {
             modalIsActive: false,
             basketItemId: '',
@@ -117,6 +134,9 @@ const basketSlice = createSlice({
         },
         resetBasket(state){
             state.basketItems = []
+        },
+        toggleIsSuccess(state){
+            state.isSuccess = !state.isSuccess
         }
     },
     extraReducers:{
@@ -144,6 +164,18 @@ const basketSlice = createSlice({
         [fetchProductData.rejected]: (state,action) =>{
             state.modalInfo.isFetching = false;
         },
+        //отображение уведмления об удачном выполнении
+        //получение деталки товара
+        [showSuccess.pending]: (state) =>{
+            state.modalInfo.isFetching = true;
+        },
+        [showSuccess.fulfilled]: (state,action) =>{
+            state.modalInfo.isFetching = false;  
+            state.modalInfo.productData = action.payload[0]
+        },
+        [showSuccess.rejected]: (state,action) =>{
+            state.modalInfo.isFetching = false;
+        },
     }
 })
 
@@ -155,4 +187,4 @@ export default basketSlice.reducer;
 export const {
     addItemToBasket, markAsRemove, restoreItemToBasket, 
     toggleDelivery, changeItemInBasket, toggleModal, 
-    setModalInfo, repeatBasketByOrder, resetBasket} = basketSlice.actions;
+    setModalInfo, repeatBasketByOrder, resetBasket,toggleIsSuccess} = basketSlice.actions;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addOrder } from 'store/slices/sliceOrders';
-import { resetBasket } from 'store/slices/sliceBasket';
+import { resetBasket, showSuccess } from 'store/slices/sliceBasket';
 import { useNavigate } from 'react-router-dom';
 
 const BasketControls = (props) => {
@@ -34,6 +34,7 @@ const BasketControls = (props) => {
 				address: isNeedDelivery ? userAddress : 'В ресторане',
 				positions:orderPositions
 			}));
+			dispatch(showSuccess())
 	
 			dispatch(resetBasket())
 		}
