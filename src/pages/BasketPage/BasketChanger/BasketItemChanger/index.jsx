@@ -17,7 +17,7 @@ const BasketItemChanger = ({closeChanger, productId, basketItemId}) => {
     const dispatch = useDispatch();
 
     const refCountAndOption = useRef({
-        count: 1,
+        count: currentBasketItemData.count,
         options: currentBasketItemData.options.map((elem) => {
             return {
                 name: elem.name,
@@ -83,7 +83,7 @@ const BasketItemChanger = ({closeChanger, productId, basketItemId}) => {
                 </div>
                 <ProductOptions options={refCountAndOption.current.options} changeOption={changeOption}/>
                 <div className="product-modal__order">
-                    <ProductCounter  changeCount={changeCount} price={productData.price}/>
+                    <ProductCounter  changeCount={changeCount} price={productData.price} startCount={refCountAndOption.current.count}/>
                     <button className="product-modal__submit" onClick={() => changeItem()}><i className="fal fa-shopping-basket"></i></button>
                 </div>
             </div>

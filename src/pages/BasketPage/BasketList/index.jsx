@@ -41,7 +41,7 @@ const BasketList = (props) => {
 		<>
 			<BasketListSection 
 				items={mainFoodItems} 
-				foodType={{name:'Покушать', placeholder: 'Ничего :( Нажмите, чтобы выбрать еду '}}
+				foodType={{name:'Еда', placeholder: 'Ничего :( Нажмите, чтобы выбрать еду '}}
 				catalogLink='/catalog'
 				removeItem={removeItem}
 				restoreItem={restoreItem}
@@ -55,7 +55,7 @@ const BasketList = (props) => {
 				openChanger={openChanger}/>
 			<BasketListSection 
 				items={dessertItems} 
-				foodType={{name:'Дессерты', placeholder: 'А десерт? Нажмите, чтобы выбрать десерт'}}
+				foodType={{name:'Десерты', placeholder: 'А десерт? Нажмите, чтобы выбрать десерт'}}
 				catalogLink='/catalog/dessert/'
 				removeItem={removeItem}
 				restoreItem={restoreItem}

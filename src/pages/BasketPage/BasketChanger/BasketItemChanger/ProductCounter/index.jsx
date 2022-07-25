@@ -2,9 +2,9 @@ import Counter from 'components/Counter';
 import React from 'react';
 import { useState } from 'react';
 
-const ProductCounter = ({changeCount, price}) => {
+const ProductCounter = ({startCount, changeCount, price}) => {
 	
-	const [productCount, setProductCount] = useState('1');
+	const [productCount, setProductCount] = useState(startCount);
 
 	const changeProductCount = (newCount) => {
         if(newCount>=1){
