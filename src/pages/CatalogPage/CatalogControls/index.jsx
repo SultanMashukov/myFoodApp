@@ -1,24 +1,29 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
+import { toggleShowFavorites } from 'store/slices/sliceCatalog';
 import CatalogSearchString from '../CatalogSearchString';
 
-const CatalogControls = ({toggleFavoriteFilter}) => {
+const CatalogControls = (props) => {
 	
-	const [searchParams, setSarchParams] = useSearchParams();
+	const [searchParams] = useSearchParams();
 	const [favoritesIsActive, setFavoritesIsActive]  = useState(false);
+	const dispatch = useDispatch();
 	
 	const toggleFavorite = () => {
-		setSarchParams({})
-		toggleFavoriteFilter();
+		dispatch(toggleShowFavorites())
 		setFavoritesIsActive(!favoritesIsActive);
 		
 	}
 
-	if( (searchParams.get('favorites') !== null) && !favoritesIsActive ){
-		toggleFavorite()
-	}
 	
+	
+	useEffect(() => {
+		if( (searchParams.get('favorites') !== null) && !favoritesIsActive ){
+			toggleFavorite()
+		}
+	},[])
 	
 
 	return (
