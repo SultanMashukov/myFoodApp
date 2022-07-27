@@ -20,7 +20,7 @@ const SignInPage = (props) => {
 	useEffect(() => {
 		if (isAuth) {
 			dispatch(clearState());
-			navigate('/'+redirectFrom || '/');
+			navigate( redirectFrom ? '/'+redirectFrom : '/');
 		}
 		if (isError) {
 			dispatch(clearState());
