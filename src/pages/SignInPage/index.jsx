@@ -6,16 +6,23 @@ import { useSelector, useDispatch } from 'react-redux';
 import { signInUser, clearState } from 'store/slices/sliceUser';
 
 const SignInPage = (props) => {
-	const { register, handleSubmit ,   formState:{errors, isValid} } = useForm({mode: 'all'});
+	const { register, handleSubmit , setError, formState:{errors, isValid} } = useForm({mode: 'all'});
+	const serverValidationErrors = useSelector( state => state.user.serverValidationErrors )
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const { isAuth, isError } = useSelector(state => state.user);
 	const [searchParams] = useSearchParams()
 	const redirectFrom = searchParams.get('from')
 
+
 	const onSubmit = (data) => {
 		dispatch(signInUser(data));
 	};
+
+	useEffect(() => {
+		if(serverValidationErrors)
+			serverValidationErrors.forEach(error =>  setError(error.fieldName, {type: 'server', message: error.message}))
+	},[serverValidationErrors])
 
 	useEffect(() => {
 		if (isAuth) {

@@ -78,6 +78,7 @@ const userSlice = createSlice({
         isUpdateFetching: false,
         isSuccess: false,
         isError: false,
+        serverValidationErrors: null,
         errorMessage: "",
         editMode: false,
     },
@@ -121,12 +122,20 @@ const userSlice = createSlice({
         },
         //авторизация
         [signInUser.fulfilled]: (state, { payload }) => {
-            state.isFetching = false;
-            state.isSuccess = true;
-            state.isAuth = true;
-            state.email = payload.email;
-            state.name = payload.name;
-            state.phone = payload.phone;
+            if(!payload.errors){
+                state.isFetching = false;
+                state.isSuccess = true;
+                state.isAuth = true;
+                state.serverValidationErrors = null;
+                state.email = payload.email;
+                state.name = payload.name;
+                state.phone = payload.phone;
+            }else{
+                state.isFetching = false;
+                console.log(payload.errors);
+                state.serverValidationErrors = payload.errors;
+            }
+            
         },
         [signInUser.pending]: (state) => {
             state.isFetching = true;
