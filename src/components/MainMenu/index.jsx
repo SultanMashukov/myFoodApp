@@ -33,7 +33,7 @@ const MainMenu = (props) => {
 				</NavLink>
 				<NavLink to='/about' className={({ isActive }) => isActive ? 'main-menu__item main-menu__item--active' : 'main-menu__item' }>
 					<div className="main-menu__icon">
-						<i class="fab fa-react"></i>
+						<i className="fab fa-react"></i>
 					</div>
 				</NavLink>
 			</div>
