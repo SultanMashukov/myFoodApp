@@ -1,6 +1,6 @@
 import 'App.scss';
 import MainMenu from 'components/MainMenu';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import { useEffect} from 'react';
 import PrivateRoute from 'HOC/PrivateRoute';
 import { useDispatch } from 'react-redux';
@@ -11,9 +11,14 @@ import NotFoundPage from 'pages/NotFoundPage';
 function App() {
     //const [modalActive,  setModalActive] = useState(true)
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     
     useEffect(()=>{
         dispatch(checkAuth()) //проверка авторизации
+        if(!localStorage.getItem('notFirstEnter')){
+            localStorage.setItem('notFirstEnter','yes');
+            navigate('/about')
+        }
     },[])
 
     return (
