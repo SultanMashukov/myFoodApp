@@ -33,6 +33,7 @@ const AboutAppPage = (props) => {
 				<li>express js</li>
 				<li>СУБД PostgreSQL</li>
 				<li>В роли ORM используется Sequelize</li>
+				<li>Регистрация/авторизация реализована через JWT токен</li>
 			</ul>
 		</div>
 	) 
