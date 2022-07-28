@@ -1,0 +1,31 @@
+.aboutApp{
+    padding: 20px;
+    &__title{
+        font-size: 20px;
+        font-weight: normal;
+        text-align: center;
+        margin-bottom: 20px;
+        font-weight: bold;
+    }
+    &__subtitle{
+        margin-bottom: 10px;
+        font-weight: bold;
+    }
+    &__text{
+        margin-bottom: 10px;
+    }
+    &__warning{
+        background-color: red;
+        color: white;
+        border-radius: 10px;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+    &>ul{
+        margin-bottom: 20px;
+        padding-left: 20px;
+    }
+    &>ul, &>ul>li{
+        list-style: disc !important;
+    }
+}

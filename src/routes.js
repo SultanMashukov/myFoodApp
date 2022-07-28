@@ -1,3 +1,4 @@
+import AboutAppPage from "pages/AboutAppPage";
 import BasketPage from "pages/BasketPage";
 import CatalogPage from "pages/CatalogPage";
 import OrdersPage from "pages/OrdersPage";
@@ -29,6 +30,10 @@ export const publicRoutes = [
     {
         path:'/basket/',
         component: BasketPage
+    },
+    {
+        path:'/about/',
+        component: AboutAppPage
     },
 ]
 

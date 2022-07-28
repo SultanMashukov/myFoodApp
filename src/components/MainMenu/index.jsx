@@ -31,6 +31,11 @@ const MainMenu = (props) => {
 						<i className="fal fa-shopping-basket"></i>
 					</div>
 				</NavLink>
+				<NavLink to='/about' className={({ isActive }) => isActive ? 'main-menu__item main-menu__item--active' : 'main-menu__item' }>
+					<div className="main-menu__icon">
+						<i class="fab fa-react"></i>
+					</div>
+				</NavLink>
 			</div>
 		</div>
 	) 
