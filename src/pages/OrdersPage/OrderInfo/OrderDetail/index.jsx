@@ -9,10 +9,13 @@ import { useNavigate } from 'react-router-dom';
 const OrderDetail = ({orderId}) => {
 	
 	const dispatch = useDispatch();
-	const orderData = useSelector( state => state.orders.ordersList ).find( el => el.id === orderId );
 	const navigate = useNavigate()
+
+	const orderData = useSelector( state => state.orders.ordersList ).find( el => el.id === orderId );
 	const mainFoodItems =  orderData.positions.filter((item) => ['giros','pizza'].includes(item.catalog.food_type.code));
 	const drinkItems = orderData.positions.filter((item) => ['drink'].includes(item.catalog.food_type.code));
+	const dessertItems =	orderData.positions.filter((item) => ['dessert'].includes(item.catalog.food_type.code))
+	const souseItems =	orderData.positions.filter((item) => ['sauces'].includes(item.catalog.food_type.code))
 
 	const closeOrdersDetail = () => {
 		dispatch(toggleModal())
@@ -58,6 +61,19 @@ const OrderDetail = ({orderId}) => {
 					placeholder: 'Вы не выбрали ни один из напитков. Нажмите, чтобы добавить напиток.',
 				}} 
 				items={drinkItems}/>
+			<FoodType 
+				foodType={{
+					name:'Десерты',
+					placeholder: 'А десерт? Нажмите, чтобы выбрать десерт'
+				}}
+				items={dessertItems} />
+			<FoodType 
+				
+				foodType={{
+					name:'Соусы', 
+					placeholder: 'Может соус? Нажмите, чтобы вырбрать соусы'
+				}} 
+				items={souseItems} />
 		</div>
 	) 
 };
