@@ -2,6 +2,9 @@
 //@import "./assets/scss/_fonts.scss";
 @import "./assets/scss/_vars.scss";
 
+#root{
+  height: 100%;
+}
 .app-wrapper {
   max-width: 590px;
   margin: 0 auto;
@@ -13,7 +16,7 @@
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
   flex-direction: column;
-  height: 100vh;
+  height: 100%;
   overflow: hidden;
   font-weight: 300;
 }
@@ -22,7 +25,7 @@
   -webkit-box-flex: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
-  height: calc(100vh - 50px);
+  height: calc(100% - 50px);
   background-color: white;
   overflow-y: scroll;
   
