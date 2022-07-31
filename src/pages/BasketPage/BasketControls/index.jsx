@@ -31,7 +31,7 @@ const BasketControls = (props) => {
 
 		if(orderPositions.length){
 			dispatch(addOrder({
-				address: isNeedDelivery ? userAddress : 'В ресторане',
+				address: isNeedDelivery ? userAddress : {string: 'В ресторане'},
 				positions:orderPositions
 			}));
 			dispatch(showSuccess())
