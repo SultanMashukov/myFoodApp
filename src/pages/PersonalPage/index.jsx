@@ -52,14 +52,14 @@ const PersonalPage = (props) => {
 						</NavLink>
 					</div>
 					<div className="personal__item">
-						<a href="" className="personal__itemLink">
+						<NavLink to="/about/" className="personal__itemLink">
 							<div className="personal__itemIcon">
 								<i className="fal fa-info-circle"></i> <i className="fab fa-react"></i>
 							</div>
 							<div className="personal__itemName">
 								Информация о сайте
 							</div>
-						</a>
+						</NavLink>
 					</div>
 					<div className="personal__item personal__item--disabled" >
 						<a href="" className="personal__itemLink">
