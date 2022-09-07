@@ -14,8 +14,8 @@ const AboutAppPage = (props) => {
 				Данный сайт был сделан с целью закрепления теоретических знании по ReactJS и сопутсвующих библиотек. Верстка делалась без дизайна "на ходу", поэтому местами есть повторяющиеся стили и прочие недочеты касающиеся html+css. Верстку можете оценить в другом проекте. <br /><br />
 				<b>Ссылки на верстку:</b>
 				<br /><br />
-				<a className='aboutApp__link' href="https://cb98369.tmweb.ru/" target="_blank">Ознакомиться</a>
-				<a className='aboutApp__link' href="https://github.com/SultanMashukov/teplo" target="_blank">Репозитории проекта</a>
+				<a className='aboutApp__link' href="https://cb98369.tmweb.ru/" target="_blank">Ознакомиться с проектом верстки</a>
+				<a className='aboutApp__link' href="https://github.com/SultanMashukov/teplo" target="_blank">Репозитории проекта верстки</a>
 				<br />
 			</div>
 			<div className="aboutApp__subtitle">
@@ -40,6 +40,8 @@ const AboutAppPage = (props) => {
 				<li>В роли ORM используется Sequelize</li>
 				<li>Регистрация/авторизация реализована через JWT токен</li>
 			</ul>
+			<a className='aboutApp__link' href="https://github.com/SultanMashukov/myFoodApp/tree/refactoring" target="_blank">Репозитории данного проекта</a>
+			
 		</div>
 	) 
 };
